@@ -5,7 +5,7 @@ const todoesSlice=createSlice({
     name:'todo',
     // this is initial value
     initialState:[
-    'barry'
+    
     ],
     // to update the initial value
     reducers:{
