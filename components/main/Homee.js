@@ -1,10 +1,16 @@
 import React from 'react'
 import General from './General'
+import Posts from './Posts'
 
 const Homee = () => {
   return (
-    <div className='w-[1400px]  flex items-center  align-middle '>
+    //   flex items-center  align-middle
+    <div className='w-[1424px] grid grid-cols-3  place-content-center '>
 <General/>
+
+
+<Posts/>
+
 
     </div>
   )
