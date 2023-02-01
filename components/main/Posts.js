@@ -16,7 +16,7 @@ const Posts = () => {
     const dsipatch = useDispatch();
   
   return (
-    <div className='shadow-md bg-[#ffffffe8] h-full w-[45%] place-items-center rounded-2xl mx-3'>
+    <div className={`shadow-md ${like.dark?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'}  h-full w-[45%] place-items-center rounded-2xl mx-3`}>
       
 {/* card */}
 <div className=''>
