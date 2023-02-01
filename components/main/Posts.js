@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Img from '../assets/svg/postImg/WallpaperDog-17124685.jpg'
+import Img from '../assets/imgs/postImg/WallpaperDog-17124685.jpg'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
 
@@ -16,7 +16,7 @@ const Posts = () => {
     const dsipatch = useDispatch();
   
   return (
-    <div className='shadow-md bg-[#ffffffe8] h-full w-[45%] place-items-center rounded-md mx-3'>
+    <div className='shadow-md bg-[#ffffffe8] h-full w-[45%] place-items-center rounded-2xl mx-3'>
       
 {/* card */}
 <div className=''>
