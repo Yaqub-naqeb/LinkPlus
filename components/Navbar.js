@@ -8,14 +8,21 @@ import { search } from './search';
 import { setting } from './assets/svg/setting';
 import { profile } from './assets/svg/profile';
 import { notfication } from './assets/svg/notfication';
+import { profile2 } from './assets/svg/socialIcons/profile2';
+import { setIsOpen } from '@/redux/reducers/isOpen';
+import {useSelector,useDispatch} from "react-redux";
+
+
+
 const poppins = Poppins({ subsets: ["latin"],weight: '600' });
 const Navbar = () => {
-  const [isOpen,setIsOpen]=useState(false);
+  const isOpen = useSelector((state) => state.open);
+  // console.log(isOpenn.open);
+  const dsipatch = useDispatch();
 
   return (
-   <div className='relative '>
-     <div className={`flex lg:${()=>setIsOpen(false)}   align-middle items-center justify-between lg:px-20 md:px-10 px-5  bg-[#EBEBEB] shadow-md py-6 `}>
-
+   <div className=' fixed  w-full'>
+     <div className={`flex    align-middle items-center justify-between lg:px-20 md:px-10 px-5  bg-[#EBEBEB] shadow-md py-6`}>
 
 
 {/* nav */}
@@ -60,7 +67,7 @@ const Navbar = () => {
 <div>{search}</div>
 <div>{setting}</div>
 <div>{notfication}</div>
-<div>{profile}</div>
+<div>{profile2}</div>
 </div>
 </div>
 
@@ -68,8 +75,8 @@ const Navbar = () => {
 {/* mobile */}
 
 <div className='lg:hidden md:hidden '>
-<div className='lg:hidden md:hidden transition-all  duration-300 ease-in-out cursor-pointer' onClick={()=>setIsOpen(!isOpen)}>
-  {isOpen?close:burger}
+<div className='lg:hidden md:hidden transition-all  duration-300 ease-in-out cursor-pointer' onClick={()=>dsipatch(setIsOpen(!isOpen.open))}>
+  {isOpen.open?close:burger}
 </div>
 
 
@@ -80,7 +87,7 @@ const Navbar = () => {
     </div>
 
 
-<div className={`bg-[#EBEBEB] transition-all  duration-300 py-5 lg:hidden md:hidden  ease-in-out absolute w-full top-0 opacity-0 -z-50 ${isOpen?`opacity-100 -z-50 top-20 transition-all  duration-300 ease-in-out`:''} `}>
+<div className={`bg-[#EBEBEB] transition-all   duration-300 py-5 lg:hidden md:hidden  ease-in-out absolute w-full top-0 opacity-0 -z-50 ${isOpen.open?`opacity-100 -z-10 top-20 transition-all  duration-300 ease-in-out`:''} `}>
   
 <ul className=' flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5  '>
 <li>

@@ -4,13 +4,14 @@ import store from '../redux/store'
 import Layout from '../components/Layout'
 export default function App({ Component, pageProps }) {
   return (
-
+<Provider store={store}>
     <Layout>
-       <Provider store={store}>
+       
         
        <Component {...pageProps} />
-    </Provider>
     </Layout>
+    </Provider>
+
 
 
    

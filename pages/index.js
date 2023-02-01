@@ -8,8 +8,8 @@ import Homee from "@/components/main/Homee";
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
 
 export default function Home() {
-  const Current = useSelector((state) => state.todoes);
-  console.log(Current);
+  const current = useSelector((state) => state.todoes);
+  console.log(current);
   return (
     <>
       <Head>
@@ -18,7 +18,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-[#EBEBEB]  mx-auto flex items-center justify-center py-[3rem]">
+      <div className="bg-[#EBEBEB]  mx-auto flex items-center justify-center py-[9rem]">
 
 <Homee/>
 
