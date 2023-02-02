@@ -5,8 +5,8 @@ import ThirdPart from './ThirdPart'
 
 const Homee = () => {
   return (
-    //   flex items-center  align-middle
-    <div className='w-[1424px] grid grid-cols-1 place-items-center  '>
+    //   flex items-center  align-middle w-[1424px]
+    <div className=' grid grid-cols-1 place-items-center  '>
 <General/>
 
 
