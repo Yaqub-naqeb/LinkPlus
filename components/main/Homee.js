@@ -2,6 +2,7 @@ import React from 'react'
 import General from './General'
 import Posts from './Posts'
 import ThirdPart from './ThirdPart'
+import DarkToggle from './toggle/DarkToggle'
 
 const Homee = () => {
   return (
@@ -17,7 +18,7 @@ const Homee = () => {
 <Posts/>
 <br />
 <Posts/>
-<ThirdPart/>
+<DarkToggle/>
 
     </div>
   )

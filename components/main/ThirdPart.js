@@ -11,7 +11,7 @@ const ThirdPart = () => {
 const dispatch=useDispatch();
 
   return (
-    <div className='fixed right-[90px] top-[10rem] '>
+    <div className='fixed right-[90px] top-[12rem] '>
 
 {/* third part */}
 <div className='flex cursor-pointer items-end justify-end align-bottom transition-all duration-700 ease-out place-content-end place-items-end' onClick={()=>dispatch(setDarkMode(!Mode))}>
