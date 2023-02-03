@@ -8,7 +8,7 @@ import Img5 from '../assets/imgs/logoSkills/586d7ac125738d9f2d793e92.png'
 import Img6 from '../assets/imgs/logoSkills/png-clipart-adobe-indesign-adobe-creative-cloud-graphic-design-shop-text-triangle.png'
 const Skills = () => {
   return (
-    <div className='w-[233px] h-[161px] bg-[#51557E] flex flex-col items-center justify-center align-middle gap-5  text-[#E7F6F2] rounded-[45px]'>
+    <div className='w-[233px] h-[161px] bg-[#51557E] flex flex-col items-center justify-center align-middle gap-5  text-[#E7F6F2] rounded-[45px]  place-self-start'>
       <p>Skills</p>
       {/* skills */}
       <div className='grid grid-cols-3 gap-x-2 b gap-y-2'>

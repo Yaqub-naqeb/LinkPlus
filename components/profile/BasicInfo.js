@@ -2,7 +2,7 @@ import React from 'react'
 
 const BasicInfo = () => {
   return (
-    <div className='w-[472px] text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] flex flex-col gap-5 items-center justify-center'> 
+    <div className='w-[472px] place-self-end text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] flex flex-col gap-5 items-center justify-center'> 
     <p className='font-bold'>Basic info</p>
 {/* info */}
     <div className=' text-[15px] grid grid-cols-4 gap-y-2'>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import ProfileImage from '../assets/imgs/profileImg/pexels-spencer-selover-775358.jpg'
 const ProfileCard = () => {
   return (
-    <div className=' w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center'>
+    <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center'>
       <Image src={ProfileImage} className={`w-[209px] h-[303px] rounded-[32px]`} width={300} height={300}/>
 <div className='flex flex-col gap-3 items-center justify-center align-middle'>
   
@@ -22,7 +22,7 @@ const ProfileCard = () => {
 {/* follow */}
 
       
-      <div className='flex flex-col justify-center items-center gap-5 align-middle'>
+      <div className='flex flex-col  justify-center items-center gap-5 align-middle'>
       <button className={`bg-[#51557E] rounded-[15px] w-[204px] h-[50px] text-[#E7F6F2
 ] 
 

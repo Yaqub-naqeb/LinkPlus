@@ -6,21 +6,20 @@ import React from 'react'
 
 const index = () => {
   return (
-   <div className='flex items-center
-   justify-center align-middle'>
+   <div className=''>
 
 
-     <div className='w-[1324px]  h-[100vh] gap-y-[-5rem] grid grid-cols-3 place-items-start '>
+     <div className='  h-[100vh]  flex items-start justify-center align-top gap-[10rem] '>
    <ProfileCard/>
 
-   {/* skill && basic info */}
- <div className='flex items-center gap-5'>
+   {/* skill && basic info using grid */}
+ <div className='grid grid-cols-2 gap-y-5 gap-x-5 place-items-center '>
  <BasicInfo/>
    <Skills/>
    
 
- </div>
  <Projects />
+ </div>
 
 
     </div>
