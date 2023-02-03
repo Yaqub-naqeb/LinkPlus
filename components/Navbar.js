@@ -23,7 +23,7 @@ const Navbar = () => {
   const dsipatch = useDispatch();
 
   return (
-    <div className=" fixed  w-full">
+    <div className=" fixed  w-full z-50">
       <div
         className={`flex    align-middle items-center justify-between lg:px-20 md:px-10 px-5 ${isOpen.dark?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
       >
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div>{isOpen.dark?darkSearch:search}</div>
             <div>{isOpen.dark?darkNotfication:notfication}</div>
             <div>{isOpen.dark?darkSetting:setting}</div>
-            <div>{profile2}</div>
+            <div className="cursor-pointer "><Link href={"/profile"}  >{profile2}</Link></div>
           </div>
         </div>
 
