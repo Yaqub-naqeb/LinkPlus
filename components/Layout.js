@@ -3,6 +3,7 @@ import Modal from "../redux/reducers/isOpen";
 import Navbar from "./Navbar";
 import { Poppins } from "@next/font/google";
 import { useSelector } from "react-redux";
+import DarkToggle from "./main/toggle/DarkToggle";
 
 
 
@@ -15,6 +16,7 @@ const Layout = ({ children }) => {
   return (
     <div className={poppins.className}>
       <Navbar />
+      <DarkToggle/>
      <div className={`pt-[8rem]  px-[5rem] ${isDark.dark?'bg-[#1B2430]':'bg-[#EBEBEB] '}`}>
      {children}
      </div>

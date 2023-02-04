@@ -18,7 +18,7 @@ const Homee = () => {
 <Posts/>
 <br />
 <Posts/>
-<DarkToggle/>
+{/* <DarkToggle/> */}
 
     </div>
   )

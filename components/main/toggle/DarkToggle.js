@@ -11,7 +11,7 @@ const dispatch=useDispatch();
 
 
   return (
-    <div className='fixed right-[90px] top-[13rem] rotate-90 '   >
+    <div className='fixed  right-[90px] top-[13rem] rotate-90  '   >
       
 
 
