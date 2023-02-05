@@ -7,7 +7,6 @@ import { Poppins } from "@next/font/google";
 import { close } from "./assets/svg/rigthNavbarIcons/close";
 import { search } from "./assets/svg/rigthNavbarIcons/search";
 import { setting } from "./assets/svg/rigthNavbarIcons/setting";
-// import { profile } from './assets/svg/rigthNavbarIcons/profile';
 import { notfication } from "./assets/svg/rigthNavbarIcons/notfication";
 import { profile2 } from "./assets/svg/socialIcons/profile2";
 import { setIsOpen } from "@/redux/reducers/isOpen";
@@ -15,14 +14,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { darkSearch } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSearch";
 import { darkSetting } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSetting";
 import { darkNotfication } from "./assets/svg/rigthNavbarIcons/darkIcons/darkNotfication"; 
+import { useRouter } from "next/router";
+
+
+
+
+
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
+
+
+
+  const pages=[
+    {name:'Home',},
+    {}
+  ]
+
+
+  const router = useRouter();
+const currentRoute = router.pathname;
+console.log(currentRoute);
+
+
   const isOpen = useSelector((state) => state.open);
   // console.log(isOpenn.open);
   const dsipatch = useDispatch();
 
   return (
+    
     <div className=" fixed  w-full z-50">
       <div
         className={`flex    align-middle items-center justify-between lg:px-20 md:px-10 px-5 ${isOpen.dark?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
@@ -43,17 +63,19 @@ const Navbar = () => {
 
           <div className="lg:block md:block hidden">
             <ul className="flex gap-5 ">
-              <li>
+              <li className={`hover:scale-110 `}>
                 <Link href={"/"}>home</Link>
               </li>
-              <li>
+              <li  className={currentRoute === "/projects" 
+       ? "active-class-name scale-110 font-[2rem]" 
+       : "non-active-class-name"}>
                 <Link href={"/projects"}>projects</Link>
               </li>
               <li>
                 <Link href={"#"}>desiners</Link>
               </li>
               <li>
-                <Link href={"#"}>login</Link>
+                <Link href={"#"} >login</Link>
               </li>
             </ul>
           </div>

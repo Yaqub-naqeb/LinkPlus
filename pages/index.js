@@ -8,6 +8,7 @@ import Homee from "@/components/main/Homee";
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
 
 export default function Home() {
+  
   const mode = useSelector((state) => state.open);
   return (
     <>
@@ -20,6 +21,8 @@ export default function Home() {
       <div className={` ${mode.dark?'bg-[#1b2430] text-[#E7F6F2]':'bg-[#EBEBEB]'} mx-auto flex items-center justify-center `}>
 
 <Homee/>
+
+
 
 
       </div>
