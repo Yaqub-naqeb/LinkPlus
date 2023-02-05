@@ -211,4 +211,21 @@
    width: 15rem !important;
   
   }
- 
+ /* projectCard */
+ .projectCard:hover .info{
+  opacity: 1;
+  height: 50%;
+
+ }
+
+
+ /* .im:hover{  transform: scale(1.1);
+ } */
+ .imm:hover .im{
+  transform: scale(1.05)
+ }
+
+ *::selection{
+  background: #0081B4 !important;
+  color: #FFFBF5;
+ }
