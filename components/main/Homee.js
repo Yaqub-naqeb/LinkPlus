@@ -1,5 +1,6 @@
 import React from 'react'
 import General from './General'
+import NewPost from './NewPost'
 import Posts from './Posts'
 import ThirdPart from './ThirdPart'
 import DarkToggle from './toggle/DarkToggle'
@@ -7,9 +8,9 @@ import DarkToggle from './toggle/DarkToggle'
 const Homee = () => {
   return (
     //   flex items-center  align-middle w-[1424px]
-    <div className=' grid grid-cols-1 place-items-center  '>
+    <div className=' flex flex-col py-5  pb-10 gap-7 items-center '>
 <General/>
-
+<NewPost/>
 
 <Posts/>
 <br />

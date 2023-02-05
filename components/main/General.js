@@ -8,12 +8,13 @@ import { useSelector, useDispatch } from "react-redux";
 
 const General = () => {
   const isOpen = useSelector((state) => state.open);
+  const dark = useSelector((state) => state.open);
 
   return (
     <div
       className={`flex flex-col gap-8 h-[100vh] fixed left-[90px] top-[10rem] ${
         isOpen.open ? "-z-20" : ""
-      }`}
+      }    ${dark.dark?'text-white':''}`}
     >
       <div className="flex items-center  gap-3">{profile} full name</div>
       <div className="flex items-center  gap-3">
