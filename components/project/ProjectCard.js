@@ -9,14 +9,14 @@ import { view } from "../assets/svg/socialIcons/view";
 import ImageComponent from "../img/ImageComponent";
 const ProjectCard = () => {
   return (
-    <div className=" relative  grid grid-cols-3 gap-8  rounded-2xl  ">
+    <div className="relative grid grid-cols-3 gap-8  rounded-2xl">
     
 
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -35,7 +35,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -44,8 +44,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -64,7 +64,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -75,8 +75,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -95,7 +95,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -104,8 +104,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -124,7 +124,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -135,8 +135,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -155,7 +155,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -164,8 +164,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -184,7 +184,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -195,8 +195,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -215,7 +215,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -224,8 +224,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -244,7 +244,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -255,8 +255,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -275,7 +275,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>
@@ -284,8 +284,8 @@ const ProjectCard = () => {
 
  {/*  */}
 
- <div className="relative   projectCard  rounded-2xl overflow-hidden imm transition-all duration-150 ease-in-out   ">
-        <div className=" w-80 h-72  transition-all duration-150 ease-in-out   im ">
+ <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
+        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -304,7 +304,7 @@ const ProjectCard = () => {
             <p className="hover:underline">rating</p>
           </div>
           {/* svg */}
-          <div className="flex gap-3 items-center justify-center align-middle">
+          <div className="flex items-center justify-center gap-3 align-middle">
             {love}
             {view}
           </div>

@@ -5,9 +5,8 @@ import { smth } from '../assets/svg/socialIcons/smth'
 import { useDispatch, useSelector } from 'react-redux';
 const NewPost = () => {
     const Mode = useSelector((state) => state.open);
-    console.log(Mode.dark);
   return (
-  <div className={` ${Mode.dark?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl my-5  h-[126px] px-5 flex flex-col justify-evenly`}>
+  <div className={` ${Mode.dark?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl   h-[126px] px-5 flex flex-col justify-evenly`}>
       <div className=' flex  gap-3  items-center align-middle '>
       
       {profile}

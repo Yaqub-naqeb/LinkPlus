@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
     <div className={poppins.className}>
       <Navbar />
       <DarkToggle/>
-     <div className={`pt-[8rem]  px-[5rem] ${isDark.dark?'bg-[#1B2430]':'bg-[#EBEBEB] '}`}>
+     <div className={`pt-[10rem]  px-[5rem] ${isDark.dark?'bg-[#1B2430]':'bg-[#EBEBEB] '}`}>
      {children}
      </div>
     </div>
