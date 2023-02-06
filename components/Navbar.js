@@ -27,8 +27,10 @@ const Navbar = () => {
 
 
   const pages=[
-    {name:'Home',},
-    {}
+    {name:'Home',href:'/'},
+    {name:'Projects',href:'/projects'},
+    {name:'Tasks',href:'/tasks'},
+    {name:'Designers',href:'/designers'}
   ]
 
 
@@ -63,20 +65,15 @@ console.log(currentRoute);
 
           <div className="lg:block md:block hidden">
             <ul className="flex gap-5 ">
-              <li className={`hover:scale-110 `}>
-                <Link href={"/"}>home</Link>
-              </li>
-              <li  className={currentRoute === "/projects" 
-       ? "active-class-name scale-110 font-[2rem]" 
+            
+            
+{pages&&pages.map(nav=>(<li  className={currentRoute === nav.href
+       ? "active-class-name scale-125  font-[2rem]" 
        : "non-active-class-name"}>
-                <Link href={"/projects"}>projects</Link>
-              </li>
-              <li>
-                <Link href={"#"}>desiners</Link>
-              </li>
-              <li>
-                <Link href={"#"} >login</Link>
-              </li>
+                <Link href={nav.href}>{nav.name}</Link>
+              </li> ))}
+
+
             </ul>
           </div>
         </nav>
@@ -109,19 +106,13 @@ console.log(currentRoute);
             : ""
         } `}
       >
+        {/* mobile */}
         <ul className=" flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5  ">
-          <li>
-            <Link href={"/"}>home</Link>
-          </li>
-          <li>
-            <Link href={"#"}>projects</Link>
-          </li>
-          <li>
-            <Link href={"#"}>desiners</Link>
-          </li>
-          <li>
-            <Link href={"#"}>login</Link>
-          </li>
+        {pages&&pages.map(nav=>(<li  className={currentRoute === nav.href
+       ? "active-class-name scale-110  font-[2rem]" 
+       : "non-active-class-name"}>
+                <Link href={nav.href}>{nav.name}</Link>
+              </li> ))}
         </ul>
       </div>
     </div>
