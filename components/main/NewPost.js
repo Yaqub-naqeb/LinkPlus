@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 const NewPost = () => {
     const Mode = useSelector((state) => state.open);
   return (
-  <div className={` ${Mode.dark?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl   h-[126px] px-5 flex flex-col justify-evenly`}>
-      <div className=' flex  gap-3  items-center align-middle '>
+  <div className={` ${Mode.dark?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl   h-[126px] px-5 flex flex-col justify-evenly -translate-y-7`}>
+      <div className='flex items-center gap-3 align-middle '>
       
       {profile}
       <input type="text" className='bg-transparent outline-none' placeholder='Type here...'/>
@@ -22,7 +22,7 @@ const NewPost = () => {
 
 
 
-<div className='flex justify-between align-middle items-center px-5'>
+<div className='flex items-center justify-between px-5 align-middle'>
 <div className='flex gap-5'>
 {smth}
 {location}

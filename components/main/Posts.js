@@ -6,13 +6,11 @@ import { loveRed } from '../assets/svg/socialIcons/loveRed'
 
 import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
-import { dark } from '../assets/svg/darkImg/dark'
 import {useSelector,useDispatch} from "react-redux";
 import { setLike } from '@/redux/reducers/isOpen'
 
 const Posts = () => {
     const like = useSelector((state) => state.open);
-    console.log(like.like);
     const dsipatch = useDispatch();
   
   return (

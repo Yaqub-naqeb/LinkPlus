@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { profile } from "../assets/svg/rigthNavbarIcons/profile";
 import { love } from "../assets/svg/socialIcons/love";
 import Img from "../assets/imgs/postImg/WallpaperDog-17124685.jpg";
 import Img1 from "../assets/imgs/profileImg/pexels-spencer-selover-775358.jpg";
@@ -9,14 +8,14 @@ import { view } from "../assets/svg/socialIcons/view";
 import ImageComponent from "../img/ImageComponent";
 const ProjectCard = () => {
   return (
-    <div className="relative grid grid-cols-3 gap-8  rounded-2xl">
+    <div className="relative grid grid-cols-3 gap-8 rounded-2xl">
     
 
 
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -45,7 +44,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -76,7 +75,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -105,7 +104,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -136,7 +135,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -165,7 +164,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -196,7 +195,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -225,7 +224,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -256,7 +255,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
@@ -285,7 +284,7 @@ const ProjectCard = () => {
  {/*  */}
 
  <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out  w-80 h-72 im">
+        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
           <ImageComponent
         
             isContain={false}
