@@ -8,6 +8,7 @@ import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
 import {useSelector,useDispatch} from "react-redux";
 import { setLike } from '@/redux/reducers/isOpen'
+import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 
 const Posts = () => {
     const like = useSelector((state) => state.open);
@@ -19,9 +20,9 @@ const Posts = () => {
 {/* card */}
 <div className=''>
 {/* header of card */}
-<div className='flex justify-between  px-5 pt-5 ' > 
-    <h1>profile</h1>
-    <h1>...</h1>
+<div className='flex justify-between  px-8 pt-5 ' > 
+    <div className='flex items-center gap-1'>  <div className='cursor-pointer'>{profile}</div>  <h1 className='font-bold cursor-pointer'>profile</h1></div>
+    <h1 className='font-bold cursor-pointer'>...</h1>
 </div>
 {/* the content */}
 <div className='px-8 py-5'>
