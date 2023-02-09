@@ -4,12 +4,18 @@ import { Poppins } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import {useSelector} from "react-redux";
 import Homee from "@/components/main/Homee";
+import { initFirebase } from "@/firebase/FirebaseApp";
 
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
 
 export default function Home() {
   
   const mode = useSelector((state) => state.open);
+
+const app=initFirebase();
+console.log(app)
+
+
   return (
     <>
       <Head>
