@@ -18,11 +18,6 @@ import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth,signOut } from "firebase/auth";
 
-
-
-
-
-
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
   const auth=getAuth();
@@ -40,8 +35,6 @@ const Navbar = () => {
 
   const router = useRouter();
 const currentRoute = router.pathname;
-console.log(currentRoute);
-
 
   const isOpen = useSelector((state) => state.open);
   // console.log(isOpenn.open);
@@ -54,8 +47,6 @@ const signOutHandler=()=>{
     // An error happened.
   });
 }
-
-
 
   return (
     

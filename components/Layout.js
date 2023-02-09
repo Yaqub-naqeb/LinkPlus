@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { Poppins } from "@next/font/google";
 import { useSelector } from "react-redux";
 import DarkToggle from "./main/toggle/DarkToggle";
+import PostPopUp from "./popup/PostPopUp";
 
 
 
@@ -14,12 +15,25 @@ const Layout = ({ children }) => {
 
 
   return (
-    <div className={poppins.className}>
+    <div className={poppins.className} >
+{/* background  */}
+
+
+
       <Navbar />
-      <DarkToggle/>
+ <div className={`${isDark.postPopUp&&' blur-sm '}`}>
+ <DarkToggle/>
      <div className={`pt-[8rem]  px-[5rem] ${isDark.dark?'bg-[#1B2430]':'bg-[#EBEBEB] '}`}>
      {children}
+
      </div>
+     <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}>k</div>}
+</div>
+ </div>
+ <div className="fixed top-[10rem] left-1/3  z-50">
+       {isDark.postPopUp&&<PostPopUp/>}
+  </div> 
+
     </div>
   );
 };

@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import {useSelector} from "react-redux";
 import Homee from "@/components/main/Homee";
 import { initFirebase } from "@/firebase/FirebaseApp";
+import PostPopUp from "@/components/popup/PostPopUp";
 
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
 
@@ -13,7 +14,6 @@ export default function Home() {
   const mode = useSelector((state) => state.open);
 
 const app=initFirebase();
-console.log(app)
 
 
   return (
@@ -24,14 +24,19 @@ console.log(app)
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={` ${mode.dark?'bg-[#1b2430] text-[#E7F6F2]':'bg-[#EBEBEB]'} mx-auto flex items-center justify-center `}>
+      <div className={` ${mode.dark?'bg-[#1b2430] text-[#E7F6F2]':'bg-[#EBEBEB]'} mx-auto flex items-center justify-center  `}>
 
 <Homee/>
 
 
+<div className="fixed   top-1/2">
+{/* {mode.postPopUp&&<PostPopUp/>} */}
+</div>
+
 
 
       </div>
+   
     
     </>
   );
