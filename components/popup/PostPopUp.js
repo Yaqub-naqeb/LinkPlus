@@ -17,7 +17,8 @@ const [user,loading]=useAuthState(auth)
 console.log(user);
 
 const [text,setText]=useState();
-const [file,setFile]=useState();
+const [file,setFile]=useState(null);
+console.log(file&&file);
 
 
 
@@ -117,7 +118,8 @@ console.log(file);
       
 
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
-<input onChange={e=>setFile(e.target.value)} value={file} type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
+{/* image */}
+<input onChange={e=>setFile(e.target.files[0])} accept="image/png"  type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
 
 
 <button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true}>Post</button>
