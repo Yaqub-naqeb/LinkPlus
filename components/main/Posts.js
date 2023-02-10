@@ -10,7 +10,9 @@ import {useSelector,useDispatch} from "react-redux";
 import { setLike } from '@/redux/reducers/isOpen'
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 
-const Posts = () => {
+const Posts = ({data,src,name}) => {
+    console.log(src);
+    console.log(data);
     const like = useSelector((state) => state.open);
     const dsipatch = useDispatch();
   
@@ -21,17 +23,16 @@ const Posts = () => {
 <div className=''>
 {/* header of card */}
 <div className='flex justify-between  px-8 pt-5 ' > 
-    <div className='flex items-center gap-1'>  <div className='cursor-pointer'>{profile}</div>  <h1 className='font-bold cursor-pointer'>profile</h1></div>
+    <div className='flex items-center gap-1'>  <div className='cursor-pointer'>{profile}</div>  <h1 className='font-bold cursor-pointer'>{name}</h1></div>
     <h1 className='font-bold cursor-pointer'>...</h1>
 </div>
 {/* the content */}
 <div className='px-8 py-5'>
-    <h1>AVENGERS</h1>
-    <p>avenger: dolor sit amet consectetur adipisicing elit. Minus distinctio asperiores quasi saepe error culpa consectetur quia repellendus dicta, exercitationem quis. Tenetur exercitationem officiis officia, ex ab voluptatem magni similique.</p>
+    <p>{data.text}</p>
 </div>
 {/*  image */}
 <div>
-<Image src={Img} width={400} height={400} priority className='w-full '/>
+<Image src={`${src}`} width={400} height={400} priority className='w-full '/>
 
 </div>
 

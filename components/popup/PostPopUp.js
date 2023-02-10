@@ -19,18 +19,20 @@ const [user,loading]=useAuthState(auth)
 const [imageList,setImageList]=useState([]);
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
+const [path,setPath]=useState('');
 const imageListRef=ref(storage,'images/')
+console.log(file);
 
 // to get all image
-useEffect(()=>{
-    listAll(imageListRef).then(response=>{
-        response.items.forEach(item=>{
-            getDownloadURL(item).then(url=>{
-                setImageList(prev=>[...prev,url])
-            })
-        })
-    })
-},[])
+// useEffect(()=>{
+//     listAll(imageListRef).then(response=>{
+//         response.items.forEach(item=>{
+//             getDownloadURL(item).then(url=>{
+//                 setImageList(prev=>[...prev,url])
+//             })
+//         })
+//     })
+// },[])
 
 
 // to upload image
@@ -38,7 +40,17 @@ useEffect(()=>{
 useEffect(()=>{
    const uploadFile=()=>{
     // console.log(name+'hi');
-    const storageRef = ref(storage,`images/${file.name+uuid()}`);
+    const code=uuid();
+    const storageRef = ref(storage,`images/${file.name+code}`);
+    setPath(code)
+
+    // setPath(storageRef._location.path_.slice(7));
+    // setPath(storageRef._location.path_);
+    
+
+    
+    // console.log(storageRef._location.path_
+    //   );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
 
@@ -86,14 +98,11 @@ uploadTask.on('state_changed',
 try{
     dispatch(setPostPopUp(!PopUp.postPopUp))
     const res=await addDoc(collection(db, "Posts"), {
-        name:"hi",
+      name:user.displayName,
         text: text,
         timeStamp:serverTimestamp(),
         likes:"Num",
-        src:file.name,
-     user:user.displayName
-      
-    
+        src: path,
       });
 
 }catch(err){
@@ -135,11 +144,7 @@ console.log(err)
 
     </div>
 </form>
-<div className='flex '>
-{imageList.map(url=>{
-    return <Image src={`${url}`} width={200} height={200}/>
-})}
-</div>
+
     </div>
   )
 }
