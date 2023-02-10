@@ -18,7 +18,6 @@ console.log(user);
 
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
-console.log(file&&file);
 
 
 
@@ -26,7 +25,7 @@ useEffect(()=>{
    const uploadFile=()=>{
     const name=new Date().getTime()+file
     // console.log(name+'hi');
-    const storageRef = ref(storage, file);
+    const storageRef = ref(storage, name);
     // TODO:Warnign file has the same name 
     const uploadTask = uploadBytesResumable(storageRef, file);
 

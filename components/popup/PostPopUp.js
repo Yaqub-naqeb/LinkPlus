@@ -17,13 +17,9 @@ const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [imageList,setImageList]=useState([]);
-
-console.log(user);
-
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
 const imageListRef=ref(storage,'images/')
-console.log(imageList);
 
 // to get all image
 useEffect(()=>{
@@ -37,19 +33,17 @@ useEffect(()=>{
 },[])
 
 
-
+// to upload image
 
 useEffect(()=>{
    const uploadFile=()=>{
     // console.log(name+'hi');
     const storageRef = ref(storage,`images/${file.name+uuid()}`);
-    // TODO:Warnign file has the same name 
     const uploadTask = uploadBytesResumable(storageRef, file);
 
 
 uploadTask.on('state_changed', 
   (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log('Upload is ' + progress + '% done');
@@ -70,9 +64,8 @@ uploadTask.on('state_changed',
     // Handle successful uploads on complete
     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        // setText((prev)=>({...prev,img:downloadURL}))
-        // setFile(downloadURL)
-        setFile(downloadURL);
+        
+        console.log(downloadURL);
     });
   }
 );
@@ -85,12 +78,11 @@ uploadTask.on('state_changed',
 
 
 
-
+      // upload the text
 
     const submitHandler=async(e)=>{
         e.preventDefault()
 
-      // upload the text
 try{
     dispatch(setPostPopUp(!PopUp.postPopUp))
     const res=await addDoc(collection(db, "Posts"), {
@@ -98,7 +90,7 @@ try{
         text: text,
         timeStamp:serverTimestamp(),
         likes:"Num",
-        // img:file&&file,
+        src:file.name,
      user:user.displayName
       
     
@@ -108,7 +100,7 @@ try{
 console.log(err)
 }
 
-console.log(file);
+
 
           setText('')
           setFile('');
