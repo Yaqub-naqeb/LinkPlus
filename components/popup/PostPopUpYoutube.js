@@ -4,28 +4,38 @@ import { db,storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
 import { setPostPopUp } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
-import {  ref, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import {  ref,listAll,uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
 import Image from 'next/image';
+import UplodingImg from './UplodingImg';
 
-const PostPopUp = () => {
+const PostPopUpYoutube = () => {
 
     const PopUp = useSelector((state) => state.open);
 const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
-const [imageList,setImageList]=useState([]);
-
 console.log(user);
 
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
-const imageListRef=ref(storage,'images/')
-console.log(imageList);
+const [imageList,setImageList]=useState([]);
 
-// to get all image
+
+const imageListRef=ref(storage,'images/')
+// const uploadImage=()=>{
+//     if(file==null) return;
+//     // its just name of the image with current time
+//     const imageRef = ref(storage, `images/${file.name+uuid()}`);
+//     uploadBytes(imageRef,file).then(()=>{
+//         alert('image uploaded')
+
+//     }
+// )
+// }
+// to bring back all images
 useEffect(()=>{
     listAll(imageListRef).then(response=>{
         response.items.forEach(item=>{
@@ -39,76 +49,67 @@ useEffect(()=>{
 
 
 
-useEffect(()=>{
-   const uploadFile=()=>{
-    // console.log(name+'hi');
-    const storageRef = ref(storage,`images/${file.name+uuid()}`);
-    // TODO:Warnign file has the same name 
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-
-uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-     
-    }
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-  }, 
-  () => {
-    // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        // setText((prev)=>({...prev,img:downloadURL}))
-        // setFile(downloadURL)
-        setFile(downloadURL);
-    });
-  }
-);
-
-   }
-   file && uploadFile();
-},[file])
-
-
-
-
-
-
-
     const submitHandler=async(e)=>{
         e.preventDefault()
 
-      // upload the text
+    // its just name of the image with current time
+  
+
+// uploding
+
+const uploadImage=()=>{
+    if(file==null) return;
+    // its just name of the image with current time
+    const imageRef = ref(storage, `images/${file.name+uuid()}`);
+    uploadBytes(imageRef,file).then(()=>{
+        alert('image uploaded')
+
+    }
+)
+}
+uploadImage();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
 try{
     dispatch(setPostPopUp(!PopUp.postPopUp))
     const res=await addDoc(collection(db, "Posts"), {
-        name:"hi",
+       
         text: text,
         timeStamp:serverTimestamp(),
-        likes:"Num",
-        // img:file&&file,
+        img:file,
      user:user.displayName
       
     
       });
+     
 
 }catch(err){
 console.log(err)
 }
 
-console.log(file);
+
+
+
 
           setText('')
           setFile('');
@@ -130,26 +131,27 @@ console.log(file);
     <form onSubmit={submitHandler}>
     <div className='   flex flex-col items-center justify-center align-middle gap-16 w-[30vw] h-[45vh] rounded-md shadow-md px-16'>
 
-       
-
-      
-
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
 {/* image */}
-<input onChange={e=>setFile(e.target.files[0])} accept="image/png"  type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
+<input onChange={e=>setFile(e.target.files[0])} type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
+{/* <UplodingImg setFile={setFile} /> */}
 
 
 <button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true}>Post</button>
-
     </div>
 </form>
+
+
 <div className='flex '>
 {imageList.map(url=>{
     return <Image src={`${url}`} width={200} height={200}/>
 })}
 </div>
+
+
+
     </div>
   )
 }
 
-export default PostPopUp
+export default PostPopUpYoutube 
