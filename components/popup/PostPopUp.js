@@ -9,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
 import Image from 'next/image';
+import UplodingImg from './UplodingImg';
 
 const PostPopUp = () => {
 
@@ -22,19 +23,18 @@ const [text,setText]=useState();
 const [file,setFile]=useState(null);
 const [imageList,setImageList]=useState([]);
 
-console.log(imageList);
 
 const imageListRef=ref(storage,'images/')
-const uploadImage=()=>{
-    if(file==null) return;
-    // its just name of the image with current time
-    const imageRef = ref(storage, `images/${file.name+uuid()}`);
-    uploadBytes(imageRef,file).then(()=>{
-        alert('image uploaded')
+// const uploadImage=()=>{
+//     if(file==null) return;
+//     // its just name of the image with current time
+//     const imageRef = ref(storage, `images/${file.name+uuid()}`);
+//     uploadBytes(imageRef,file).then(()=>{
+//         alert('image uploaded')
 
-    }
-)
-}
+//     }
+// )
+// }
 // to bring back all images
 useEffect(()=>{
     listAll(imageListRef).then(response=>{
@@ -54,6 +54,38 @@ useEffect(()=>{
 
     // its just name of the image with current time
   
+
+// uploding
+
+const uploadImage=()=>{
+    if(file==null) return;
+    // its just name of the image with current time
+    const imageRef = ref(storage, `images/${file.name+uuid()}`);
+    uploadBytes(imageRef,file).then(()=>{
+        alert('image uploaded')
+
+    }
+)
+}
+uploadImage();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,21 +128,18 @@ console.log(err)
 
 
     <hr />
-    <div>
+    <form onSubmit={submitHandler}>
     <div className='   flex flex-col items-center justify-center align-middle gap-16 w-[30vw] h-[45vh] rounded-md shadow-md px-16'>
-
-       
-
-      
 
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
 {/* image */}
-<input onChange={e=>setFile(e.target.files[0])} accept="image/png"  type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
+<input onChange={e=>setFile(e.target.files[0])} type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
+{/* <UplodingImg setFile={setFile} /> */}
 
 
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true} onClick={submitHandler} >Post</button>
+<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true}>Post</button>
     </div>
-</div>
+</form>
 
 
 <div className='flex '>
