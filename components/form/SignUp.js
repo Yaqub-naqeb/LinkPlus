@@ -6,9 +6,18 @@ import {useAuthState}from 'react-firebase-hooks/auth'
 // to redirect we are using useRouter
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { async } from '@firebase/util';
+import { useDispatch, useSelector } from 'react-redux';
+import { set_userName } from '@/redux/reducers/profille';
 
 
 const SignUp = () => {
+
+
+  const like = useSelector((state) => state.profile);
+  const dsipatch = useDispatch();
+
+
 const [fullName,setFullName]=useState();
 const [email,setEmail]=useState();
 const [password,setPassword]=useState();
@@ -28,7 +37,9 @@ if(loading){
   return <div>Loading...</div>
 }
 if(user){
+  console.log(like.userName);
   router.push("/")
+  // user.displayName?'':user.displayName==fullName;
   
   return <div>welcom {user.displayName}</div>
 }
@@ -42,11 +53,12 @@ e.preventDefault();
 
 
 createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+  .then(async(userCredential) => {
     // Signed in 
     const user = userCredential.user;
     console.log(user)
     // ...
+
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -56,6 +68,9 @@ createUserWithEmailAndPassword(auth, email, password)
 
 
   // with popup
+
+  dsipatch(set_userName(fullName))
+
 setFullName('')
 setEmail('')
 setPassword('')

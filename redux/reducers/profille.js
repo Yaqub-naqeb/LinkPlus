@@ -5,17 +5,19 @@ const profileSlice=createSlice({
     name:'profile',
     // this is initial value
     initialState:{
-        name:'name',
+      
+        userName:''
     },
     // to update the initial value
     reducers:{
-        set_name(state,action){
-            state.name=action.payload
+    
+        set_userName(state,action){
+            state.userName=action.payload
         }
     }
 
 
 
 })
-export const {set_name}=profileSlice.actions
+export const {set_userName}=profileSlice.actions
 export default profileSlice.reducer

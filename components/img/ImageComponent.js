@@ -36,7 +36,7 @@ function ImageCompontent({
         <Image
         className='rounded-lg '
           loader={myLoader}
-          src={pathImage}
+          src={`${pathImage}`}
           width={width}
           height={height}
           objectFit={isContain ? 'contain' : 'cover'}
@@ -54,9 +54,8 @@ function ImageCompontent({
       ) : (
         <Image
         className='rounded-lg  '
-
           loader={myLoader}
-          src={pathImage}
+          src={`${pathImage}`}
           objectFit="contain"
           width={width}
           height={height}

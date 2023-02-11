@@ -13,6 +13,8 @@ import Image from 'next/image';
 const PostPopUp = () => {
 
     const PopUp = useSelector((state) => state.open);
+    const fullname=useSelector((state) => state.profile);
+    console.log(fullname.userName);
 const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
@@ -21,7 +23,6 @@ const [text,setText]=useState();
 const [file,setFile]=useState(null);
 const [path,setPath]=useState('');
 const imageListRef=ref(storage,'images/')
-console.log(file);
 
 // to get all image
 // useEffect(()=>{
@@ -39,18 +40,10 @@ console.log(file);
 
 useEffect(()=>{
    const uploadFile=()=>{
-    // console.log(name+'hi');
     const code=uuid();
     const storageRef = ref(storage,`images/${file.name+code}`);
     setPath(code)
 
-    // setPath(storageRef._location.path_.slice(7));
-    // setPath(storageRef._location.path_);
-    
-
-    
-    // console.log(storageRef._location.path_
-    //   );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
 
@@ -74,7 +67,6 @@ uploadTask.on('state_changed',
   }, 
   () => {
     // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         
         console.log(downloadURL);
@@ -98,7 +90,7 @@ uploadTask.on('state_changed',
 try{
     dispatch(setPostPopUp(!PopUp.postPopUp))
     const res=await addDoc(collection(db, "Posts"), {
-      name:user.displayName,
+      name:user.displayName||fullname.userName,
         text: text,
         timeStamp:serverTimestamp(),
         likes:"Num",
@@ -108,8 +100,6 @@ try{
 }catch(err){
 console.log(err)
 }
-
-
 
           setText('')
           setFile('');
@@ -137,7 +127,7 @@ console.log(err)
 
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
 {/* image */}
-<input onChange={e=>setFile(e.target.files[0])} accept="image/png"  type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
+<input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' placeholder='What is on your mind, Yaqub?'/>
 
 
 <button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true}>Post</button>

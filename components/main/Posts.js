@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Img from '../assets/imgs/postImg/WallpaperDog-17124685.jpg'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
-
+import {ImageComponent} from  '../img/ImageComponent'
 import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
 import {useSelector,useDispatch} from "react-redux";
@@ -11,9 +11,10 @@ import { setLike } from '@/redux/reducers/isOpen'
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 
 const Posts = ({data,src,name}) => {
-    console.log(src);
-    console.log(data);
+  
     const like = useSelector((state) => state.open);
+    const name2 = useSelector((state) => state.profile);
+
     const dsipatch = useDispatch();
   
   return (
@@ -32,7 +33,13 @@ const Posts = ({data,src,name}) => {
 </div>
 {/*  image */}
 <div>
-<Image src={`${src}`} width={400} height={400} priority className='w-full '/>
+<Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full '/>
+{/* <ImageComponent 
+     isContain={true}
+        layout={false}
+        pathImage={src}
+        // className={"w-full"}
+      /> */}
 
 </div>
 
