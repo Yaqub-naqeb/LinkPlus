@@ -25,10 +25,10 @@ const BasicInfo = () => {
 // // to get info
 const {data,isPending}=useFetch("ProfileInfo");
 
-// console.log(data&&data.filter(name=>name.data.id==user.uid));
-const info=data&&data.filter(name=>name.data.id==user.uid)
-// console.log(info&&info.data.age);
-// console.log(data&&data.map(name=>name.data.age));
+const agee=data&&data.map(name=>name.id==user.uid&&name.age);
+const cityy=data&&data.map(name=>name.id==user.uid&&name.city);
+const experiencee=data&&data.map(name=>name.id==user.uid&&name.experience);
+
 
   return (
     <div className='w-[472px] place-self-end text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] flex flex-col gap-5 items-center justify-center'> 
@@ -43,17 +43,13 @@ const info=data&&data.filter(name=>name.data.id==user.uid)
         <p className=' font-extralight'>Age</p>
         <p className=' font-extralight'>City</p>
         <p className=' font-extralight'>Experience</p>
-        <p>{user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}</p>
-        <p>{info[0]?info[0].data.age:'edit'}</p>
-        <p>{info[0]?info[0].data.city:'edit'}</p>
-        <p>{info[0]?info[0].data.experience:'edit'}</p>
-        {/* experience */}
-        {/* <p>{data&&data.map(name=>name.data.id==user.uid&&name.data.city)}</p>
-        <p>{data&&data.map(name=>name.data.id==user.uid&&name.data.experience)}</p> */}
-        {/* <p>{user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}</p>
-      
 
-        <input type="text" placeholder={`${fullname.exprince?fullname.exprince:'edit'}`} className='bg-transparent text-center'  onChange={(e)=>dispatch(set_exprience(e.target.value))} /> */}
+         <p>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p>
+       {/* <p>{info[0]?info[0].data.age:'edit'}</p>*/}
+                <p>{agee[0]?agee[0]:"edit"}</p>
+                <p>{cityy[0]?cityy[0]:"edit"}</p>
+                <p>{experiencee[0]?experiencee[0]:"edit"}</p>
+
     </div>
     {/* user info */}
       

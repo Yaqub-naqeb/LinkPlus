@@ -24,24 +24,10 @@ const [user,loading]=useAuthState(auth)
 const [age,setAge]=useState();
 const [city,setCity]=useState();
 const [experince,setExperince]=useState();
-// const [data,setData]=useState('');
 
-// // to get data
-// useEffect(()=>{
-//   const x =async()=>{
-//    const querySnapshot = await getDocs(collection(db, "ProfileInfo"));
-//    querySnapshot.forEach((doc) => {
-//    // unique id of the docs 
-//      setData((prev)=>[...prev,{id:doc.id,data:doc.data()}]);
-//    });
-//   }
-//   x();
-//  },[])
 const {data}=useFetch('ProfileInfo')
 
-
-const info=data&&data.filter(name=>name.data.id==user.uid)
-
+const info=data&&data.filter(name=>name.id==user.uid)
 
 
 // Your Firebase SDK Initialization code here
@@ -49,7 +35,7 @@ const submitHandler =(e)=>{
   e.preventDefault();
   const db = getFirestore(); // initialize Firestore
 
-  const docRef = doc(db, "ProfileInfo", info[0]&&info[0].id);
+  const docRef = doc(db, "ProfileInfo", info[0]&&info[0].docId);
   
   const data1 = {
     age: age,
@@ -105,7 +91,7 @@ const submitHandler =(e)=>{
 
    
 {/* image */}
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${age&&city&&experince?'':'opacity-40'} `} disabled={age&&city&&experince?false:true} >Post</button>
+<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${age&&city&&experince?'':'opacity-40'} `}  disabled={age&&city&&experince?false:true} >Post</button>
 
     </div>
 </form>
