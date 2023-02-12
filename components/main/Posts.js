@@ -6,7 +6,6 @@ import React from 'react'
 import Image from 'next/image'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
-import {ImageComponent} from  '../img/ImageComponent'
 import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
 import {useSelector,useDispatch} from "react-redux";
