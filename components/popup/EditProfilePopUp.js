@@ -9,23 +9,18 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
 import Image from 'next/image';
-import { Jockey_One } from '@next/font/google';
 
-const PostPopUp = () => {
+const EditProfilePopUp = () => {
 
     const PopUp = useSelector((state) => state.open);
     const fullname=useSelector((state) => state.profile);
 const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
-const [imageList,setImageList]=useState([]);
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
 const [path,setPath]=useState('');
 const [data,setData]=useState('');
-const imageListRef=ref(storage,'images/')
-
-
 
 // to get data
 useEffect(()=>{
@@ -39,71 +34,6 @@ useEffect(()=>{
   x();
  },[])
 
-// to upload image
-
-useEffect(()=>{
-   const uploadFile=()=>{
-    const code=uuid();
-    const storageRef = ref(storage,`images/${file.name+code}`);
-    setPath(code)
-
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-
-uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-     
-    }
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-  }, 
-  () => {
-    // Handle successful uploads on complete
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        
-        console.log(downloadURL);
-    });
-  }
-);
-
-   }
-   file && uploadFile();
-},[file])
-
-
-      // upload the text
-
-    const submitHandler=async(e)=>{
-        e.preventDefault()
-
-try{
-    dispatch(setPostPopUp(!PopUp.postPopUp))
-    const res=await addDoc(collection(db, "Posts"), {
-      name:user.displayName||fullname.userName,
-        text: text,
-        timeStamp:serverTimestamp(),
-        likes:"Num",
-        src: path,
-      });
-
-}catch(err){
-console.log(err)
-}
-          setText('')
-          setFile('');
-
-            }
 
   return (
     <div className='z-50 bg-white text-center '>
@@ -124,7 +54,7 @@ console.log(err)
 
       
 
-<input onChange={e=>setText(e.target.value)} value={text} type="text" className=' pl-[10%] outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:data&&data.map(name=>name.data.timeStamp==user.timeStamp&&name.data.name)}?`}/>
+<input onChange={e=>setText(e.target.value)} value={text} type="text" className='outline-none   w-[15rem] ' placeholder={`What is on your mind, ${data&&data.map(name=>name.data.email==user.email&&name.data.name)}?`}/>
 {/* image */}
 <input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' />
 
@@ -138,4 +68,4 @@ console.log(err)
   )
 }
 
-export default PostPopUp
+export default EditProfilePopUp

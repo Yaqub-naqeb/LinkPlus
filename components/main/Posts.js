@@ -1,6 +1,9 @@
+
+//  setprofile the name of new branch
+
+
 import React from 'react'
 import Image from 'next/image'
-import Img from '../assets/imgs/postImg/WallpaperDog-17124685.jpg'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
 import {ImageComponent} from  '../img/ImageComponent'
@@ -34,13 +37,6 @@ const Posts = ({data,src,name}) => {
 {/*  image */}
 <div>
 <Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full '/>
-{/* <ImageComponent 
-     isContain={true}
-        layout={false}
-        pathImage={src}
-        // className={"w-full"}
-      /> */}
-
 </div>
 
 {/* likes */}

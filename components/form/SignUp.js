@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup  } from "firebase/auth";
-import { initFirebase } from '@/firebase/FirebaseApp';
+import { db, initFirebase } from '@/firebase/FirebaseApp';
 // using react firebase hook
 import {useAuthState}from 'react-firebase-hooks/auth'
 // to redirect we are using useRouter
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { async } from '@firebase/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { set_userName } from '@/redux/reducers/profille';
-
+import { set_idd, set_userName } from '@/redux/reducers/profille';
+import { addDoc, collection, getDocs, serverTimestamp,	
+  getSeconds } from 'firebase/firestore';
+import { setSwe } from '@/redux/reducers/isOpen';
+import { uuid } from 'uuidv4';
 
 const SignUp = () => {
 
 
   const like = useSelector((state) => state.profile);
+  const signForm = useSelector((state) => state.open);
   const dsipatch = useDispatch();
 
 
@@ -23,9 +26,13 @@ const [email,setEmail]=useState();
 const [password,setPassword]=useState();
 const [ConfirmPassword,setConfirmPassword]=useState();
 
+const [data,setData]=useState([]);
+// to get data
+
+
+
 initFirebase();
 const provider = new GoogleAuthProvider();
-
 const auth = getAuth();
 const router=useRouter();
 
@@ -33,30 +40,64 @@ const router=useRouter();
 const [user,loading]=useAuthState(auth)
 
 
+
+
+
 if(loading){
   return <div>Loading...</div>
 }
 if(user){
   console.log(like.userName);
-  router.push("/")
-  // user.displayName?'':user.displayName==fullName;
-  
+  router.push("/")  
   return <div>welcom {user.displayName}</div>
 }
 
 
 
 
-const submitHandler=(e)=>{
+const submitHandler= async(e)=>{
 e.preventDefault();
+
+dsipatch(set_userName(fullName))
+
+      // upload the fullname to firebase 
+
+      try{
+
+        const idd=uuid();
+        dsipatch(set_idd(idd))
+
+
+
+
+        const res=await addDoc(collection(db, "ProfileInfo"), {
+          name:fullName,
+            timeStamp:serverTimestamp(),
+            email:email,
+            password:password,
+            confirmPassword:ConfirmPassword,
+             idd:idd,    
+             city:'',
+             age:'',
+             experience:''
+            
+          });
+    
+    }catch(err){
+    console.log(err)
+    }
+        
 
 
 
 createUserWithEmailAndPassword(auth, email, password)
   .then(async(userCredential) => {
     // Signed in 
+    dsipatch(setSwe(!signForm.swe))
     const user = userCredential.user;
-    console.log(user)
+    user.displayName=fullName
+    console.log(user.displayName);
+    
     // ...
 
   })
@@ -67,10 +108,11 @@ createUserWithEmailAndPassword(auth, email, password)
   });
 
 
+
+
+        
+
   // with popup
-
-  dsipatch(set_userName(fullName))
-
 setFullName('')
 setEmail('')
 setPassword('')
@@ -79,16 +121,43 @@ setConfirmPassword('')
 
 
 
-const popupHandler=()=>{
 
+
+
+
+
+const popupHandler=()=>{
+  
   signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
+  .then(async(result) => {
+ // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
     console.log(user)
+  
+    try{
+      const res=await addDoc(collection(db, "ProfileInfo"), {
+          timeStamp:serverTimestamp(),
+          email:user.email,
+          name:user.displayName,
+          city:'',
+          age:'',
+          experience:'',
+          
+          
+        });
+  
+  }catch(err){
+  console.log(err)
+  }
+  
+
+
+
+
+
     // IdP data available using getAdditionalUserInfo(result)
     // ...
   }).catch((error) => {
@@ -105,7 +174,6 @@ const popupHandler=()=>{
 
 
 
-
   return (
    <div className='h-[100vh]'>
 
@@ -116,7 +184,7 @@ const popupHandler=()=>{
       <form onSubmit={submitHandler}  className='flex flex-col gap-5 items-center justify-center align-middle'>
       
       
-      <input onChange={(e)=>setFullName(e.target.value)} value={fullName} type="text" name="" id="" placeholder='FullName' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
+      <input onChange={e=>setFullName(e.target.value)} value={fullName} type="text" name="" id="" placeholder='FullName' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
       <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="email"  name="" id="" placeholder='Email' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
       <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
       <input onChange={(e)=>setConfirmPassword(e.target.value)} value={ConfirmPassword} type="password" name="" id="" placeholder='ConfirmPassword' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
