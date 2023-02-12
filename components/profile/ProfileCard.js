@@ -1,13 +1,28 @@
 import React from 'react'
 import Image from 'next/image'
 import ProfileImage from '../assets/imgs/profileImg/pexels-spencer-selover-775358.jpg'
+import { useFetch } from '../useHooks/useFetch'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { getAuth } from 'firebase/auth'
 const ProfileCard = () => {
+  const auth=getAuth();
+  const [user,loading]=useAuthState(auth)
+
+const {data}=useFetch('ProfileInfo');
+
+
+
+
+
+
+
   return (
     <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center'>
       <Image src={ProfileImage} className={`w-[209px] h-[303px] rounded-[32px]`} width={300} height={300}/>
 <div className='flex flex-col gap-3 items-center justify-center align-middle'>
   
-<p className='font-bold'>John derg</p>
+<p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}</p>
+
 
 <p className='text-[0.8rem]'>Ui/Ux designer</p>
 </div>

@@ -6,12 +6,16 @@ import NewPost from './NewPost'
 import Posts from './Posts'
 import { collection, getDocs } from "firebase/firestore";
 import { async } from '@firebase/util'
+import { useFetch } from '../useHooks/useFetch'
 
 
 const Homee = () => {
   const [imageList,setImageList]=useState([]);
   const imageListRef=ref(storage,'images/')
-  const [data,setData]=useState([]);
+  // const [data,setData]=useState([]);
+  const {data}=useFetch('Posts');
+
+
 
 // to get all image
 useEffect(()=>{
@@ -24,34 +28,16 @@ useEffect(()=>{
   })
 },[])
 
-useEffect(()=>{
- const x =async()=>{
-  const querySnapshot = await getDocs(collection(db, "Posts"));
-  querySnapshot.forEach((doc) => {
-  // unique id of the docs 
-    setData((prev)=>[...prev,{id:doc.id,data:doc.data()}]);
-  });
- }
- x();
-},[])
-// x();
-console.log(imageList);
 
-
+console.log(data&&data.filter(post=>post.data.name) );
 
   return (
-    <div className=' flex flex-col py-5  pb-10 gap-1 items-center '>
+    <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen '>
 <General/>
 <NewPost/>
-{/* {data&&data.map(post=><div>{imageList.filter(img => img.includes(post.data.src))}</div>)} */}
 {data&&data.map(post=><Posts key={post.id} name={post.data.name} data={post.data} src={imageList.filter(img => img.includes(post.data.src))} />
 )}
 
-{/* {names.filter(name => name.includes('J')).map(filteredName => (
-        <li>
-          {filteredName}
-        </li>
-      ))} */}
     </div>
   )
 }

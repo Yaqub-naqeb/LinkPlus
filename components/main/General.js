@@ -5,10 +5,18 @@ import chat from "../assets/imgs/homeImg/chat.png";
 import saved from "../assets/imgs/homeImg/save-instagram.png";
 import tasks from "../assets/imgs/homeImg/to-do-list.png";
 import { useSelector, useDispatch } from "react-redux";
+import { useFetch } from "../useHooks/useFetch";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const General = () => {
   const isOpen = useSelector((state) => state.open);
   const dark = useSelector((state) => state.open);
+  const auth=getAuth();
+  const [user,loading]=useAuthState(auth)
+
+const {data}=useFetch('ProfileInfo');
+
 
   return (
     <div
@@ -16,7 +24,7 @@ const General = () => {
         isOpen.open ? "-z-20" : ""
       }    ${dark.dark?'text-white':''}`}
     >
-      <div className="flex items-center  gap-3">{profile} full name</div>
+      <div className="flex items-center  gap-3">{profile} <p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}</p></div>
       <div className="flex items-center  gap-3">
         <Image
           className=" w-[40px] h-[40px]"

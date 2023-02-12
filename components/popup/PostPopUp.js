@@ -8,8 +8,7 @@ import {  ref, uploadBytesResumable, getDownloadURL, listAll } from "firebase/st
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
-import Image from 'next/image';
-import { Jockey_One } from '@next/font/google';
+
 
 const PostPopUp = () => {
 
@@ -38,6 +37,17 @@ useEffect(()=>{
   }
   x();
  },[])
+
+ const x=data&&(data.filter(name=>name.data.id==user.uid&&name.data.name&&name.data.name));
+//  console.log(data&& x[0].data.name);
+// console.log(data&&(data.filter(name=>name.data.id==user.uid&&name.data.name)))
+
+
+// console.log(user.displayName?user.displayName:data&&(data.filter(name=>name.data.id==user.uid&&name.data.name)));
+
+//  {user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}
+
+// console.log(user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid));
 
 // to upload image
 
@@ -88,13 +98,18 @@ uploadTask.on('state_changed',
         e.preventDefault()
 
 try{
+
+
+
+
     dispatch(setPostPopUp(!PopUp.postPopUp))
     const res=await addDoc(collection(db, "Posts"), {
-      name:user.displayName||fullname.userName,
+      name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
         text: text,
         timeStamp:serverTimestamp(),
         likes:"Num",
         src: path,
+        id:user.uid
       });
 
 }catch(err){
@@ -124,7 +139,7 @@ console.log(err)
 
       
 
-<input onChange={e=>setText(e.target.value)} value={text} type="text" className=' pl-[10%] outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:data&&data.map(name=>name.data.timeStamp==user.timeStamp&&name.data.name)}?`}/>
+<input onChange={e=>setText(e.target.value)} value={text} type="text" className=' pl-[10%] outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:data&&x[0].data.name}?`}/>
 {/* image */}
 <input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' />
 

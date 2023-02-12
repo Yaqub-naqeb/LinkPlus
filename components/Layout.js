@@ -8,6 +8,7 @@ import PostPopUp from "./popup/PostPopUp";
 import SignUp from "./form/SignUp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import EditProfilePopUp from "./popup/EditProfilePopUp";
 
 
 
@@ -31,11 +32,14 @@ const auth=getAuth();
      {children}
 
      </div>
-     <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}>k</div>}
+   <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
+      {isDark.editPopup&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
+ 
 </div>
  </div>
  <div className="fixed top-[10rem] left-1/3  z-50">
        {isDark.postPopUp&&<PostPopUp/>}
+       {isDark.editPopup&&<EditProfilePopUp/>}
   </div> </>:<div className=""><SignUp/></div>
 }
 

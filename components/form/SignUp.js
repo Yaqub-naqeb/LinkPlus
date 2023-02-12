@@ -11,7 +11,6 @@ import { set_idd, set_userName } from '@/redux/reducers/profille';
 import { addDoc, collection, getDocs, serverTimestamp,	
   getSeconds } from 'firebase/firestore';
 import { setSwe } from '@/redux/reducers/isOpen';
-import { uuid } from 'uuidv4';
 
 const SignUp = () => {
 
@@ -26,10 +25,7 @@ const [email,setEmail]=useState();
 const [password,setPassword]=useState();
 const [ConfirmPassword,setConfirmPassword]=useState();
 
-const [data,setData]=useState([]);
 // to get data
-
-
 
 initFirebase();
 const provider = new GoogleAuthProvider();
@@ -49,7 +45,7 @@ if(loading){
 if(user){
   console.log(like.userName);
   router.push("/")  
-  return <div>welcom {user.displayName}</div>
+  return <div>welcome {user.displayName}</div>
 }
 
 
@@ -58,34 +54,10 @@ if(user){
 const submitHandler= async(e)=>{
 e.preventDefault();
 
-dsipatch(set_userName(fullName))
 
       // upload the fullname to firebase 
 
-      try{
-
-        const idd=uuid();
-        dsipatch(set_idd(idd))
-
-
-
-
-        const res=await addDoc(collection(db, "ProfileInfo"), {
-          name:fullName,
-            timeStamp:serverTimestamp(),
-            email:email,
-            password:password,
-            confirmPassword:ConfirmPassword,
-             idd:idd,    
-             city:'',
-             age:'',
-             experience:''
-            
-          });
     
-    }catch(err){
-    console.log(err)
-    }
         
 
 
@@ -93,12 +65,41 @@ dsipatch(set_userName(fullName))
 createUserWithEmailAndPassword(auth, email, password)
   .then(async(userCredential) => {
     // Signed in 
-    dsipatch(setSwe(!signForm.swe))
+    // dsipatch(setSwe(!signForm.swe))
     const user = userCredential.user;
-    user.displayName=fullName
-    console.log(user.displayName);
+    dsipatch(set_userName(fullName))
+
     
     // ...
+  try{
+
+// const idd=uuid();
+// dsipatch(set_idd(idd))
+
+const res=await addDoc(collection(db, "ProfileInfo"), {
+  name:fullName,
+    timeStamp:serverTimestamp(),
+    email:email,
+    password:password,
+    confirmPassword:ConfirmPassword,
+    //  idd:idd,    
+     city:'',
+     age:'',
+     experience:'',
+     id:user.uid
+    
+  });
+
+}catch(err){
+console.log(err)
+}
+
+
+
+
+
+
+
 
   })
   .catch((error) => {
@@ -145,7 +146,7 @@ const popupHandler=()=>{
           city:'',
           age:'',
           experience:'',
-          
+          id:user.uid          
           
         });
   

@@ -10,6 +10,7 @@ const isOpenSlice=createSlice({
         dark:false,
         postPopUp:false,
         swe:false,
+        editPopup:false
     },
     // to update the initial value
     reducers:{
@@ -30,6 +31,9 @@ const isOpenSlice=createSlice({
         
         setSwe(state,action){
             state.swe=!state.postPopUp
+        }, 
+        setEditPopup(state,action){
+            state.editPopup=!state.editPopup
         },
         
     }
@@ -37,5 +41,5 @@ const isOpenSlice=createSlice({
 
 
 })
-export const {setIsOpen,setLike,setDarkMode,setPostPopUp, setSwe}=isOpenSlice.actions
+export const {setIsOpen,setLike,setDarkMode,setPostPopUp, setSwe,setEditPopup}=isOpenSlice.actions
 export default isOpenSlice.reducer
