@@ -24,7 +24,7 @@ const {data}=useFetch('ProfileInfo');
         isOpen.open ? "-z-20" : ""
       }    ${dark.dark?'text-white':''}`}
     >
-      <div className="flex items-center  gap-3">{profile} <p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}</p></div>
+      <div className="flex items-center  gap-3">{profile} <p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p></div>
       <div className="flex items-center  gap-3">
         <Image
           className=" w-[40px] h-[40px]"

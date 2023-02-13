@@ -14,8 +14,8 @@ const Homee = () => {
   const imageListRef=ref(storage,'images/')
   // const [data,setData]=useState([]);
   const {data}=useFetch('Posts');
-
-
+console.log(data);
+// console.log(data.map(post=>post.name));
 
 // to get all image
 useEffect(()=>{
@@ -29,15 +29,16 @@ useEffect(()=>{
 },[])
 
 
-console.log(data&&data.filter(post=>post.data.name) );
+// console.log(data&&data.filter(post=>post.data.name) );
 
   return (
     <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen '>
 <General/>
 <NewPost/>
-{data&&data.map(post=><Posts key={post.id} name={post.data.name} data={post.data} src={imageList.filter(img => img.includes(post.data.src))} />
+{data&&data.map(post=><Posts key={post.id} name={post.name} data={post} src={imageList.filter(img => img.includes(post.src))} />
 )}
-
+{/* {   data&&data.map(post=><Posts key={post.id} name={post.name} data={post}/>)
+} */}
     </div>
   )
 }

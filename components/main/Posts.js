@@ -13,7 +13,8 @@ import { setLike } from '@/redux/reducers/isOpen'
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 
 const Posts = ({data,src,name}) => {
-    console.log(data);
+    console.log(data.text);
+    console.log(name);
   
     const like = useSelector((state) => state.open);
     const name2 = useSelector((state) => state.profile);
@@ -54,9 +55,7 @@ const Posts = ({data,src,name}) => {
 
 </div>
 </div>
-
-
-    </div>
+</div>
   )
 }
 
