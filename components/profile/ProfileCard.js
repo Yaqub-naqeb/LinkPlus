@@ -22,10 +22,10 @@ console.log(data);
       <Image src={ProfileImage} className={`w-[209px] h-[303px] rounded-[32px]`} width={300} height={300}/>
 <div className='flex flex-col gap-3 items-center justify-center align-middle'>
   
-{/* <p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.name)}</p> */}
+<p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p>
+<p className=' text-[0.8rem]'>{data&&data.map(name=>name.id==user.uid&&name.experience)}</p>
 
 
-<p className='text-[0.8rem]'>Ui/Ux designer</p>
 </div>
 
     <div className='grid grid-cols-2 gap-x-12 gap-y-3 place-items-center'>

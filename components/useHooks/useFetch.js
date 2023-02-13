@@ -1,5 +1,5 @@
 import { db } from "@/firebase/FirebaseApp";
-import { collection, getDocs, query,onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query,onSnapshot, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 
