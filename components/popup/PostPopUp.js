@@ -1,10 +1,11 @@
+// newIdea new branch
 import React, { useEffect, useState } from 'react'
 import { addDoc, collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore"; 
 import { db,storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
 import { setPostPopUp } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
-import {  ref, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import {  ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
@@ -43,67 +44,10 @@ useEffect(()=>{
 
 // // to upload image
 
-useEffect(()=>{
-   const uploadFile=()=>{
-    const code=uuid();
-    const storageRef = ref(storage,`images/${file.name+code}`);
-    setPath(code)
-
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-
-uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-     
-    }
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-  }, 
-  () => {
-    // Handle successful uploads on complete
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        
-        setPhoto(downloadURL);
-        
-    });
-  }
-);
-
-   }
-   file && uploadFile();
-},[file])
-
-// just test
-
-
-
-
-console.log(photo);
-
-
-      // upload the text
-
-    const submitHandler=async(e)=>{
-        e.preventDefault()
-
-try{
-
-
-
-//   const uploadFile=()=>{
+// useEffect(()=>{
+//    const uploadFile=()=>{
 //     const code=uuid();
-//     const storageRef = ref(storage,`images/${file.name+code}`);
+    // const storageRef = ref(storage,`images/${file.name+code}`);
 //     setPath(code)
 
 //     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -139,29 +83,82 @@ try{
 
 //    }
 //    file && uploadFile();
+// },[file])
+
+// just test
 
 
 
 
 
+const addData = async (
+  img,
+  text,
+  userid,
+) => {
+  const docRef = await addDoc(collection(db, 'Posts'), {
+    src: img,
+    // name:user.displayName||fullname.userName,
+name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
+    text: text,
+    id: userid,
+    timeStamp: serverTimestamp(),
 
-  
-    dispatch(setPostPopUp(!PopUp.postPopUp))
-    const res=await addDoc(collection(db, "Posts"), {
-      name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
-        text: text,
-        timeStamp:serverTimestamp(),
-        likes:"Num",
-        src:path,
-        id:user.uid,
-        // src2:photo&&
+  });
+  console.log('Document written with ID: ', docRef.id);
+};
+
+
+
+
+      // upload the text
+
+    const submitHandler=async(e)=>{
+        e.preventDefault()
+     
+// try{
+//     dispatch(setPostPopUp(!PopUp.postPopUp))
+//     const res=await addDoc(collection(db, "Posts"), {
+//       name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
+//         text: text,
+//         timeStamp:serverTimestamp(),
+//         likes:"Num",
+//         src:photo,
+//         id:user.uid,
+//         // src2:photo&&
+//       });
+
+// }catch(err){
+// console.log(err)
+// }
+//           setText('')
+//           setFile('');
+
+    const code=uuid();
+
+    const imageRef = ref(storage,`images/${file.name+code}`);
+
+
+    uploadBytes(imageRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then(async(url) => {
+        console.log(url);
+        setPhoto(url)
+        // add them to fire base
+        addData(
+
+          url,
+          text,
+          user && user.uid,
+
+        );
+        dispatch(setPostPopUp(!PopUp.postPopUp))
+
+      
       });
+    });
 
-}catch(err){
-console.log(err)
-}
-          setText('')
-          setFile('');
+
+
 
             }
 
