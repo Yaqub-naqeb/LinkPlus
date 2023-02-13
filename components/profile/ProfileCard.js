@@ -10,12 +10,6 @@ const ProfileCard = () => {
 
 const {data}=useFetch('ProfileInfo');
 
-console.log(data);
-
-
-
-
-
 
   return (
     <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center'>

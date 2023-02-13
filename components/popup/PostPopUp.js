@@ -22,6 +22,7 @@ const [text,setText]=useState();
 const [file,setFile]=useState(null);
 const [path,setPath]=useState('');
 const [data,setData]=useState('');
+const [photo,setPhoto]=useState();
 const imageListRef=ref(storage,'images/')
 
 
@@ -39,17 +40,8 @@ useEffect(()=>{
  },[])
 
  const x=data&&(data.filter(name=>name.data.id==user.uid&&name.data.name&&name.data.name));
-//  console.log(data&& x[0].data.name);
-// console.log(data&&(data.filter(name=>name.data.id==user.uid&&name.data.name)))
 
-
-// console.log(user.displayName?user.displayName:data&&(data.filter(name=>name.data.id==user.uid&&name.data.name)));
-
-//  {user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name)}
-
-// console.log(user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid));
-
-// to upload image
+// // to upload image
 
 useEffect(()=>{
    const uploadFile=()=>{
@@ -82,7 +74,8 @@ uploadTask.on('state_changed',
     // Handle successful uploads on complete
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         
-        console.log(downloadURL);
+        setPhoto(downloadURL);
+        
     });
   }
 );
@@ -90,6 +83,13 @@ uploadTask.on('state_changed',
    }
    file && uploadFile();
 },[file])
+
+// just test
+
+
+
+
+console.log(photo);
 
 
       // upload the text
@@ -101,15 +101,60 @@ try{
 
 
 
+//   const uploadFile=()=>{
+//     const code=uuid();
+//     const storageRef = ref(storage,`images/${file.name+code}`);
+//     setPath(code)
 
+//     const uploadTask = uploadBytesResumable(storageRef, file);
+
+
+// uploadTask.on('state_changed', 
+//   (snapshot) => {
+//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//     console.log('Upload is ' + progress + '% done');
+//     switch (snapshot.state) {
+//       case 'paused':
+//         console.log('Upload is paused');
+//         break;
+//       case 'running':
+//         console.log('Upload is running');
+//         break;
+     
+//     }
+//   }, 
+//   (error) => {
+//     // Handle unsuccessful uploads
+//   }, 
+//   () => {
+//     // Handle successful uploads on complete
+//     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        
+//         setPhoto(downloadURL);
+        
+//     });
+//   }
+// );
+
+//    }
+//    file && uploadFile();
+
+
+
+
+
+
+  
     dispatch(setPostPopUp(!PopUp.postPopUp))
     const res=await addDoc(collection(db, "Posts"), {
       name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
         text: text,
         timeStamp:serverTimestamp(),
         likes:"Num",
-        src: path,
-        id:user.uid
+        src:path,
+        id:user.uid,
+        // src2:photo&&
       });
 
 }catch(err){

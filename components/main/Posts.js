@@ -14,6 +14,7 @@ import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 
 const Posts = ({data,src,name}) => {
     console.log(data.text);
+    console.log(src);
     console.log(name);
   
     const like = useSelector((state) => state.open);
@@ -37,7 +38,7 @@ const Posts = ({data,src,name}) => {
 </div>
 {/*  image */}
 <div>
-<Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full '/>
+<Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full  '/>
 </div>
 
 {/* likes */}
