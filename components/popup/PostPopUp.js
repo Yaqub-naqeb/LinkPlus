@@ -95,8 +95,7 @@ const addData = async (
 ) => {
   const docRef = await addDoc(collection(db, 'Posts'), {
     src: img,
-    // name:user.displayName||fullname.userName,
-    name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
+    name:user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
     text: text,
     id: userid,
     timeStamp: serverTimestamp(),

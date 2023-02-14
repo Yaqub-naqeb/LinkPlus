@@ -46,9 +46,9 @@ const experiencee=data&&data.map(name=>name.id==user.uid&&name.experience);
 
          <p>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p>
        {/* <p>{info[0]?info[0].data.age:'edit'}</p>*/}
-                <p>{agee[0]?agee[0]:"edit"}</p>
-                <p>{cityy[0]?cityy[0]:"edit"}</p>
-                <p>{experiencee[0]?experiencee[0]:"edit"}</p>
+                <p>{agee?agee:"edit"}</p>
+                <p>{cityy?cityy:"edit"}</p>
+                <p>{experiencee?experiencee:"edit"}</p>
 
     </div>
     {/* user info */}
