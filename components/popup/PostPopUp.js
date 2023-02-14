@@ -24,7 +24,6 @@ const [file,setFile]=useState(null);
 const [data,setData]=useState('');
 
 
-
 // to get data
 useEffect(()=>{
   const x =async()=>{
@@ -120,6 +119,7 @@ const addData = async (
     uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then(async(url) => {
         dispatch(set_Update(url))
+       
 
         // add them to fire base
         addData(

@@ -10,7 +10,8 @@ const isOpenSlice=createSlice({
         dark:false,
         postPopUp:false,
         swe:false,
-        editPopup:false
+        editPopup:false,
+        uploadProfilePhoto:false,
     },
     // to update the initial value
     reducers:{
@@ -36,10 +37,14 @@ const isOpenSlice=createSlice({
             state.editPopup=!state.editPopup
         },
         
+        setUploadProfilePhoto(state,action){
+            state.uploadProfilePhoto=!state.uploadProfilePhoto
+        },
+        
     }
 
 
 
 })
-export const {setIsOpen,setLike,setDarkMode,setPostPopUp, setSwe,setEditPopup}=isOpenSlice.actions
+export const {setIsOpen,setLike,setDarkMode,setPostPopUp, setSwe,setEditPopup,setUploadProfilePhoto}=isOpenSlice.actions
 export default isOpenSlice.reducer

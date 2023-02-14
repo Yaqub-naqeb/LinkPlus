@@ -10,7 +10,8 @@ const profileSlice=createSlice({
         city:'',
         exprince:'',
         idd:'',
-        update:''
+        update:'',
+        profilePhoto:''
     },
     // to update the initial value
     reducers:{
@@ -39,10 +40,15 @@ const profileSlice=createSlice({
         set_Update(state,action){
             state.update=action.payload
         }
+        ,
+    
+        set_Profile_Photo(state,action){
+            state.profilePhoto=action.payload
+        }
     }
 
 
 
 })
-export const {set_userName,set_age,set_city,set_exprience,set_idd,set_Update}=profileSlice.actions
+export const {set_userName,set_age,set_city,set_exprience,set_idd,set_Update,set_Profile_Photo}=profileSlice.actions
 export default profileSlice.reducer

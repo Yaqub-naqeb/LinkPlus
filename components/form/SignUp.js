@@ -86,6 +86,7 @@ const res=await addDoc(collection(db, "ProfileInfo"), {
      city:'',
      age:'',
      experience:'',
+     profilePhoto:'',
      id:user.uid
     
   });
