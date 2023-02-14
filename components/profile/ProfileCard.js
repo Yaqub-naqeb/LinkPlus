@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import ProfileImage from '../assets/imgs/profileImg/pexels-spencer-selover-775358.jpg'
 import { collection, getDocs, query, where } from "firebase/firestore";
-
 import { useFetch } from '../useHooks/useFetch'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { getAuth } from 'firebase/auth'
@@ -53,10 +52,6 @@ useEffect(()=>{
 
 },[photoUrl.profilePhoto])
 
-console.log(photo);
-
-
-
 // console.log(profileUrl[0].profilePhoto);
 // console.log(data&&data.filter(name=>name.id==user.uid&&name.profilePhoto));
 
@@ -66,8 +61,7 @@ console.log(photo);
 
 <div className='absolute right-2 top-5 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))}>{edit}</div>
 {/* photoUrl.profilePhoto */}
-      <Image src={photo&&photo.profilePhoto} className={`w-[209px] h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>
-      {/* <Image src={profileUrl[0].profilePhoto?profileUrl[0].profilePhoto:ProfileImage} className={`w-[209px] h-[303px] rounded-[32px]`} width={300} height={300}/> */}
+      <Image src={photo?photo.profilePhoto:ProfileImage} className={`w-[209px] h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>
 <div className='flex flex-col gap-3 items-center justify-center align-middle'>
   
 <p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { doc} from "firebase/firestore"; 
-import { storage } from '@/firebase/FirebaseApp';
+import { db, storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
 import { setEditPopup, setPostPopUp, setUploadProfilePhoto } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
@@ -11,6 +11,8 @@ import { uuid } from 'uuidv4';
 import { getFirestore, updateDoc } from "firebase/firestore";
 import { useFetch } from '../useHooks/useFetch';
 import { set_Profile_Photo } from '@/redux/reducers/profille';
+import { collection, getDocs, query, where } from "firebase/firestore";
+
 const UploadPhotoPopUp = () => {
 
 
@@ -22,8 +24,23 @@ const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState(null);
 const {data}=useFetch('ProfileInfo')
-const info=data&&data.filter(name=>name.id==user.uid)
+const [docId,setDocId]=useState();
 
+useEffect(()=>{
+  const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    // dispatch(set_Profile_Photo(doc.data()))
+    setDocId(doc.id, " => ", doc.data())
+    // doc.id, " => ", doc.data()
+    console.log(doc.data());
+  });}
+
+  rendering();
+
+},[photoUrl.profilePhoto])
 
 // Your Firebase SDK Initialization code here
 const submitHandler =(e)=>{
@@ -44,7 +61,7 @@ dispatch(set_Profile_Photo(url))
 
 
 
-  const docRef = doc(db, "ProfileInfo", info[0]&&info[0].docId);
+  const docRef = doc(db, "ProfileInfo",docId);
   
   const data1 = {
   profilePhoto:photoUrl.profilePhoto&&photoUrl.profilePhoto
