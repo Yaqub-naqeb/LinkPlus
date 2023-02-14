@@ -5,10 +5,11 @@ import { db,storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
 import { setPostPopUp } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
-import {  ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
+import {  ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
+import { set_Update } from '@/redux/reducers/profille';
 
 
 const PostPopUp = () => {
@@ -18,13 +19,9 @@ const PostPopUp = () => {
 const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
-const [imageList,setImageList]=useState([]);
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
-const [path,setPath]=useState('');
 const [data,setData]=useState('');
-const [photo,setPhoto]=useState();
-const imageListRef=ref(storage,'images/')
 
 
 
@@ -99,7 +96,7 @@ const addData = async (
   const docRef = await addDoc(collection(db, 'Posts'), {
     src: img,
     // name:user.displayName||fullname.userName,
-name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
+    name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
     text: text,
     id: userid,
     timeStamp: serverTimestamp(),
@@ -115,24 +112,6 @@ name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>na
 
     const submitHandler=async(e)=>{
         e.preventDefault()
-     
-// try{
-//     dispatch(setPostPopUp(!PopUp.postPopUp))
-//     const res=await addDoc(collection(db, "Posts"), {
-//       name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
-//         text: text,
-//         timeStamp:serverTimestamp(),
-//         likes:"Num",
-//         src:photo,
-//         id:user.uid,
-//         // src2:photo&&
-//       });
-
-// }catch(err){
-// console.log(err)
-// }
-//           setText('')
-//           setFile('');
 
     const code=uuid();
 
@@ -141,15 +120,13 @@ name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>na
 
     uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then(async(url) => {
-        console.log(url);
-        setPhoto(url)
+        dispatch(set_Update(url))
+
         // add them to fire base
         addData(
-
           url,
           text,
           user && user.uid,
-
         );
         dispatch(setPostPopUp(!PopUp.postPopUp))
 
@@ -157,10 +134,7 @@ name:user.displayName||user.displayName?user.displayName:data&&data.map(name=>na
       });
     });
 
-
-
-
-            }
+  }
 
   return (
     <div className='z-50 bg-white text-center '>

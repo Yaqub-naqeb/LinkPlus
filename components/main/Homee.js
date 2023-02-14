@@ -7,14 +7,17 @@ import Posts from './Posts'
 import { collection, getDocs } from "firebase/firestore";
 import { async } from '@firebase/util'
 import { useFetch } from '../useHooks/useFetch'
+import { useSelector } from 'react-redux'
 
 
 const Homee = () => {
+  const up=useSelector((state) => state.profile);
+
   const [imageList,setImageList]=useState([]);
   const imageListRef=ref(storage,'images/')
   // const [data,setData]=useState([]);
   const {data}=useFetch('Posts');
-console.log(data);
+// console.log(data);
 // console.log(data.map(post=>post.name));
 
 // to get all image
@@ -23,11 +26,13 @@ useEffect(()=>{
       response.items.forEach(item=>{
           getDownloadURL(item).then(url=>{
               setImageList(prev=>[...prev,url])
+              // setUrl(url)
           })
       })
   })
-},[])
+},[up.update])
 
+console.log(data&&data.map(post=> post));
 
 // console.log(data&&data.filter(post=>post.data.name) );
 
