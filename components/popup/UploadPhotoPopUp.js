@@ -12,7 +12,7 @@ import { getFirestore, updateDoc } from "firebase/firestore";
 import { useFetch } from '../useHooks/useFetch';
 import { set_Profile_Photo } from '@/redux/reducers/profille';
 import { collection, getDocs, query, where } from "firebase/firestore";
-
+import {useServerRendering} from '../useHooks/useServerRendering'
 const UploadPhotoPopUp = () => {
 
 
@@ -41,6 +41,9 @@ useEffect(()=>{
   rendering();
 
 },[photoUrl.profilePhoto])
+
+
+
 
 // Your Firebase SDK Initialization code here
 const submitHandler =(e)=>{

@@ -5,30 +5,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { set_age,set_city,set_exprience} from '@/redux/reducers/profille';
 
 import { edit } from '../assets/svg/edit/edit';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseApp';
 import { useFetch } from '../useHooks/useFetch';
 import { setEditPopup } from '@/redux/reducers/isOpen';
 
 const BasicInfo = () => {
 
+
+
   const fullname=useSelector((state) => state.profile);
   
   const isOpen=useSelector((state) => state.open);
-  console.log(isOpen.editPopup);
   const auth=getAuth();
   const dispatch=useDispatch();
   const [user,loading]=useAuthState(auth)
   console.log(user);
-// const [data,setData]=useState([]);
+  const [data1,setData1]=useState(null);
 
 // // to get info
-const {data,isPending}=useFetch("ProfileInfo");
+// const {data,isPending}=useFetch("ProfileInfo");
 
-const agee=data&&data.map(name=>name.id==user.uid&&name.age);
-const cityy=data&&data.map(name=>name.id==user.uid&&name.city);
-const experiencee=data&&data.map(name=>name.id==user.uid&&name.experience);
+useEffect(()=>{
+  const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // setDocId(doc.id, " => ", doc.data())
+    setData1(doc.data());
+  });}
 
+  rendering();
+
+},[data1])
 
   return (
     <div className='w-[472px] place-self-end text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] flex flex-col gap-5 items-center justify-center'> 
@@ -44,12 +52,10 @@ const experiencee=data&&data.map(name=>name.id==user.uid&&name.experience);
         <p className=' font-extralight'>City</p>
         <p className=' font-extralight'>Experience</p>
 
-         <p>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p>
-       {/* <p>{info[0]?info[0].data.age:'edit'}</p>*/}
-                <p>{agee?agee:"edit"}</p>
-                <p>{cityy?cityy:"edit"}</p>
-                <p>{experiencee?experiencee:"edit"}</p>
-
+         <p>{user.displayName?user.displayName:data1&&data1.name}</p>
+         <p>{data1.age?data1.age:'edit'}</p>
+         <p>{data1.city?data1.city:'edit'}</p>
+         <p>{data1.experience?data1.experience:'edit'}</p>
     </div>
     {/* user info */}
       
