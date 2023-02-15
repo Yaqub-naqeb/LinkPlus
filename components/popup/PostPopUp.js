@@ -49,6 +49,8 @@ const addData = async (
     text: text,
     id: userid,
     timeStamp: serverTimestamp(),
+    likes:0,
+    isLiked:false
 
   });
   console.log('Document written with ID: ', docRef.id);
