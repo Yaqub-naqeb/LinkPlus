@@ -36,56 +36,7 @@ useEffect(()=>{
   x();
  },[])
 
- const x=data&&(data.filter(name=>name.data.id==user.uid&&name.data.name&&name.data.name));
-
-// // to upload image
-
-// useEffect(()=>{
-//    const uploadFile=()=>{
-//     const code=uuid();
-    // const storageRef = ref(storage,`images/${file.name+code}`);
-//     setPath(code)
-
-//     const uploadTask = uploadBytesResumable(storageRef, file);
-
-
-// uploadTask.on('state_changed', 
-//   (snapshot) => {
-//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//     console.log('Upload is ' + progress + '% done');
-//     switch (snapshot.state) {
-//       case 'paused':
-//         console.log('Upload is paused');
-//         break;
-//       case 'running':
-//         console.log('Upload is running');
-//         break;
-     
-//     }
-//   }, 
-//   (error) => {
-//     // Handle unsuccessful uploads
-//   }, 
-//   () => {
-//     // Handle successful uploads on complete
-//     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        
-//         setPhoto(downloadURL);
-        
-//     });
-//   }
-// );
-
-//    }
-//    file && uploadFile();
-// },[file])
-
-// just test
-
-
-
-
+//  const x=data&&(data.filter(name=>name.data.id==user.uid&&name.data.name&&name.data.name));
 
 const addData = async (
   img,
@@ -94,7 +45,7 @@ const addData = async (
 ) => {
   const docRef = await addDoc(collection(db, 'Posts'), {
     src: img,
-    name:user.displayName?user.displayName:data&&data.map(name=>name.data.id==user.uid&&name.data.name),
+    name:user.displayName?user.displayName:fullname.userName,
     text: text,
     id: userid,
     timeStamp: serverTimestamp(),
@@ -154,7 +105,7 @@ const addData = async (
 
       
 
-<input onChange={e=>setText(e.target.value)} value={text} type="text" className=' pl-[10%] outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:data&&x[0].data.name}?`}/>
+<input onChange={e=>setText(e.target.value)} value={text} type="text" className=' pl-[10%] outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:fullname.userName}?`}/>
 {/* image */}
 <input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' />
 

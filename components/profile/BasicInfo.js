@@ -2,7 +2,7 @@ import { getAuth } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { set_age,set_city,set_exprience} from '@/redux/reducers/profille';
+import { set_age,set_city,set_exprience, set_userName} from '@/redux/reducers/profille';
 
 import { edit } from '../assets/svg/edit/edit';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -21,7 +21,7 @@ const BasicInfo = () => {
   const dispatch=useDispatch();
   const [user,loading]=useAuthState(auth)
   console.log(user);
-  const [data1,setData1]=useState(null);
+  const [data1,setData1]=useState();
 
 // // to get info
 // const {data,isPending}=useFetch("ProfileInfo");
@@ -32,6 +32,8 @@ useEffect(()=>{
   querySnapshot.forEach((doc) => {
     // setDocId(doc.id, " => ", doc.data())
     setData1(doc.data());
+    dispatch(set_userName(doc.data().name))
+    dispatch(set_exprience(doc.data().experience))
   });}
 
   rendering();
@@ -52,10 +54,10 @@ useEffect(()=>{
         <p className=' font-extralight'>City</p>
         <p className=' font-extralight'>Experience</p>
 
-         <p>{user.displayName?user.displayName:data1&&data1.name}</p>
-         <p>{data1.age?data1.age:'edit'}</p>
-         <p>{data1.city?data1.city:'edit'}</p>
-         <p>{data1.experience?data1.experience:'edit'}</p>
+         <p>{user.displayName?user.displayName:fullname.userName}</p>
+         <p>{data1&&data1.age?data1.age:'edit'}</p>
+         <p>{data1&&data1.city?data1.city:'edit'}</p>
+         <p>{data1&&data1.experience?data1.experience:'edit'}</p>
     </div>
     {/* user info */}
       

@@ -1,13 +1,14 @@
+import SignUp from '@/components/form/SignUp'
 import BasicInfo from '@/components/profile/BasicInfo'
 import ProfileCard from '@/components/profile/ProfileCard'
 import Projects from '@/components/profile/Projects'
 import Skills from '@/components/profile/Skills'
+import { getAuth } from 'firebase/auth'
 import React from 'react'
 
 const index = () => {
   return (
    <div className=''>
-
 
      <div className='  h-[100vh]  flex items-start justify-center align-top gap-[10rem] '>
    <ProfileCard/>
@@ -20,8 +21,6 @@ const index = () => {
 
  <Projects />
  </div>
-
-
     </div>
    </div>
   )

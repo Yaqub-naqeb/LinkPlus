@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup  } from "firebase/auth";
 import { db, initFirebase } from '@/firebase/FirebaseApp';
 // using react firebase hook
@@ -7,10 +7,11 @@ import {useAuthState}from 'react-firebase-hooks/auth'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { set_idd, set_userName } from '@/redux/reducers/profille';
-import { addDoc, collection, getDocs, serverTimestamp,	
-  getSeconds } from 'firebase/firestore';
-import { setSwe } from '@/redux/reducers/isOpen';
+import {  set_userName } from '@/redux/reducers/profille';
+import { addDoc, collection, serverTimestamp,	
+   } from 'firebase/firestore';
+import { setLogin } from '@/redux/reducers/isOpen';
+
 
 const SignUp = () => {
 
@@ -44,7 +45,7 @@ if(loading){
 }
 if(user){
   console.log(like.userName);
-  router.push("/")  
+  router.push("/profile")  
   return <div>welcome {user.displayName}</div>
 }
 
@@ -69,7 +70,7 @@ createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
     dsipatch(set_userName(fullName))
 
-    
+    // router.push('/profile')
     // ...
   try{
 
@@ -137,8 +138,6 @@ const popupHandler=()=>{
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-    console.log(user)
-  
     try{
       const res=await addDoc(collection(db, "ProfileInfo"), {
           timeStamp:serverTimestamp(),
@@ -177,13 +176,13 @@ const popupHandler=()=>{
 
 
   return (
-   <div className='h-[100vh]'>
+   <div className='h-[80vh] '>
 
-<div className='w-[505px] h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center gap-8   '>
+<div className='w-[505px] h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center gap-5   '>
       
-      <p className='text-4xl text-[#51557E] font-medium '>Welcome</p>
+<p className='text-4xl text-[#51557E] font-bold '>Welcome </p>
       
-      <form onSubmit={submitHandler}  className='flex flex-col gap-5 items-center justify-center align-middle'>
+      <form onSubmit={submitHandler}  className='flex  flex-col gap-5 items-center justify-center align-middle'>
       
       
       <input onChange={e=>setFullName(e.target.value)} value={fullName} type="text" name="" id="" placeholder='FullName' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
@@ -192,12 +191,13 @@ const popupHandler=()=>{
       <input onChange={(e)=>setConfirmPassword(e.target.value)} value={ConfirmPassword} type="password" name="" id="" placeholder='ConfirmPassword' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] ' required/>
       
       {/* btn */}
-      <button className='bg-[#51557E] tracking-wider rounded-[10px] w-[447px] h-[58px] font-bold text-[#E7F6F2] text-xl'>Create Account</button>
-       <Link href={'/form'} className='text-2xl font-semibold  text-[#4A4E7C]'>Login</Link>
-       <button onClick={popupHandler}>G</button>
+     <button className='bg-[#51557E] tracking-wider rounded-[10px] w-[447px] h-[58px] font-bold text-[#E7F6F2] text-xl'> Create Account</button>
+     
       </form>
+      <button  onClick={()=>dsipatch(setLogin(!signForm.login))} className='text-2xl font-semibold  text-[#4A4E7C]'>Login</button>
       
-      
+      <button onClick={popupHandler}>G</button>
+
           </div>
 
 

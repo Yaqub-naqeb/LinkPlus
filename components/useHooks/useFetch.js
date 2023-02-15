@@ -7,32 +7,7 @@ export const useFetch = (collectionName) => {
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
-  // const [sortBy, setSortBy] = useState('Newest');
-
   
-// useEffect(() => {
-//     const fetchData = async () => {
-//       setIsPending(true);
-
-//       try {
-      
-//    const querySnapshot = await getDocs(collection(db, collectionName));
-//    querySnapshot.forEach((doc) => {
-//    // unique id of the docs 
-//      setData((prev)=>[...prev,{id:doc.id,data:doc.data()}]);
-//    });
-  
-//         setIsPending(false);
-//         setError(null);
-//       } catch (err) {
-//         setIsPending(false);
-//         setError("Could not fetch the data");
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
 useEffect(() => {
   setIsPending(true);
   const blogsRef = collection(db, collectionName);

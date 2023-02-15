@@ -52,6 +52,9 @@ useEffect(()=>{
 
 },[photoUrl.profilePhoto])
 
+
+
+
 // console.log(profileUrl[0].profilePhoto);
 // console.log(data&&data.filter(name=>name.id==user.uid&&name.profilePhoto));
 
@@ -64,8 +67,10 @@ useEffect(()=>{
       <Image src={photo?photo.profilePhoto:ProfileImage} className={`w-[209px] h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>
 <div className='flex flex-col gap-3 items-center justify-center align-middle'>
   
-<p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p>
-<p className=' text-[0.8rem]'>{data&&data.map(name=>name.id==user.uid&&name.experience)}</p>
+<p className='font-bold'>{user.displayName?user.displayName:photoUrl.userName}</p>
+
+{/* <p className=' text-[0.8rem]'>{data&&data.map(name=>name.id==user.uid&&name.experience)}</p> */}
+<p className=' text-[0.8rem]'>{photoUrl.exprince?photoUrl.exprince:'experince'}</p>
 
 
 </div>

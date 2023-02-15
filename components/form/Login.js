@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import { Eye } from '../assets/svg/passwordEye/Eye';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initFirebase } from '@/firebase/FirebaseApp';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLogin } from '@/redux/reducers/isOpen';
 
 const Login = () => {
 const [email,setEmail]=useState();
 const [password,setPassword]=useState();
+const signForm = useSelector((state) => state.open);
+const dsipatch = useDispatch();
 
 initFirebase();
 
@@ -31,7 +35,7 @@ signInWithEmailAndPassword(auth, email, password)
 
 
   return (
-    <div className='w-[505px] h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center gap-16   '>
+    <div className='w-[505px] h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center gap-16  translate-y-[-4rem]  '>
       
 <p className='text-4xl text-[#51557E] font-bold '>Welcome Back</p>
 
@@ -55,8 +59,8 @@ signInWithEmailAndPassword(auth, email, password)
 
 
 {/* btn */}
-<button className='bg-[#51557E] tracking-wider rounded-[10px] w-[447px] h-[58px] font-bold text-[#E7F6F2] text-xl'>Create Account</button>
- <p className='text-2xl font-semibold  text-[#4A4E7C]'>SignUp</p>
+<button className='bg-[#51557E] tracking-wider rounded-[10px] w-[447px] h-[58px] font-bold text-[#E7F6F2] text-xl'>Login</button>
+ <p className='text-2xl font-semibold cursor-pointer text-[#4A4E7C]' onClick={()=>dsipatch(setLogin(!signForm.login))}>SignUp</p>
 </form>
 
 

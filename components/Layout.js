@@ -10,6 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import EditProfilePopUp from "./popup/EditProfilePopUp";
 import UploadPhotoPopUp from "./popup/UploadPhotoPopUp";
+import Login from "./form/Login";
 
 
 
@@ -21,7 +22,7 @@ const auth=getAuth();
 
 
   return (
-    <div className={`${poppins.className } ${user?'':'bg-[#EBEBEB] flex items-center justify-center align-middle h-[120vh]'}`}  >
+    <div className={`${poppins.className } ${user?'':'bg-[#EBEBEB] flex items-center justify-center align-middle min-h-[100vh]'}`}  >
 {/* background  */}
 
 
@@ -33,6 +34,7 @@ const auth=getAuth();
      {children}
 
      </div>
+
    <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
       {isDark.editPopup&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
       {isDark.uploadProfilePhoto&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
@@ -44,7 +46,7 @@ const auth=getAuth();
        {isDark.editPopup&&<EditProfilePopUp/>}
        {isDark.uploadProfilePhoto&&<UploadPhotoPopUp/>}
 
-  </div> </>:<div className=""><SignUp/></div>
+  </div> </>:<div className="pt-[5rem]">{isDark.login?<Login/>:<SignUp/>}</div>
 }
 
 

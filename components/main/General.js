@@ -10,8 +10,8 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const General = () => {
-  const isOpen = useSelector((state) => state.open);
   const dark = useSelector((state) => state.open);
+  const name = useSelector((state) => state.profile);
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
 
@@ -21,10 +21,10 @@ const {data}=useFetch('ProfileInfo');
   return (
     <div
       className={`flex flex-col gap-8 h-[100vh] fixed left-[90px] top-[10rem] ${
-        isOpen.open ? "-z-20" : ""
+        dark.open ? "-z-20" : ""
       }    ${dark.dark?'text-white':''}`}
     >
-      <div className="flex items-center  gap-3">{profile} <p className='font-bold'>{user.displayName?user.displayName:data&&data.map(name=>name.id==user.uid&&name.name)}</p></div>
+      <div className="flex items-center  gap-3">{profile} <p className='font-bold'>{user.displayName?user.displayName:name.userName}</p></div>
       <div className="flex items-center  gap-3">
         <Image
           className=" w-[40px] h-[40px]"

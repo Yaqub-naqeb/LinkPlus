@@ -10,7 +10,8 @@ const form = () => {
   return (
     <div className='  h-[90vh] flex flex-col items-center py-[40px]  align-middle gap-11'>
      <h1 className={`${Mode.dark?'text-[#E7F6F2]':'text-[#000]'}   text-[2.5rem] font- font-bold `}>Designers Community</h1>
-     <SignUp/>
+     
+     {Mode.login?<Login/>:<SignUp/>}
      {/* <Login/> */}
     </div>
   )
