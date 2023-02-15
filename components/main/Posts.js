@@ -20,6 +20,8 @@ const Posts = ({data,src,name}) => {
     const like = useSelector((state) => state.open);
     const auth=getAuth()
 const user=useAuthState(auth);
+console.log(user);
+
 
  
 const likedHandler=()=>{

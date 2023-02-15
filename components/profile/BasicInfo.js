@@ -38,7 +38,7 @@ useEffect(()=>{
 
   rendering();
 
-},[data1])
+},[isOpen.editPopup])
 
   return (
     <div className='w-[472px] place-self-end text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] flex flex-col gap-5 items-center justify-center'> 

@@ -11,6 +11,7 @@ import {  set_userName } from '@/redux/reducers/profille';
 import { addDoc, collection, serverTimestamp,	
    } from 'firebase/firestore';
 import { setLogin } from '@/redux/reducers/isOpen';
+import { useFetch } from '../useHooks/useFetch';
 
 
 const SignUp = () => {
@@ -19,6 +20,10 @@ const SignUp = () => {
   const like = useSelector((state) => state.profile);
   const signForm = useSelector((state) => state.open);
   const dsipatch = useDispatch();
+  const {data}=useFetch('Posts');
+  console.log(data);
+
+
 
 
 const [fullName,setFullName]=useState();
@@ -35,6 +40,7 @@ const router=useRouter();
 
 // using react firebase hooks
 const [user,loading]=useAuthState(auth)
+
 
 
 
@@ -66,12 +72,12 @@ e.preventDefault();
 createUserWithEmailAndPassword(auth, email, password)
   .then(async(userCredential) => {
     // Signed in 
-    // dsipatch(setSwe(!signForm.swe))
+   
     const user = userCredential.user;
     dsipatch(set_userName(fullName))
 
-    // router.push('/profile')
-    // ...
+
+
   try{
 
 // const idd=uuid();
@@ -88,9 +94,10 @@ const res=await addDoc(collection(db, "ProfileInfo"), {
      age:'',
      experience:'',
      profilePhoto:'',
-     id:user.uid
-    
+     id:user.uid,
+    isLike:false
   });
+
 
 }catch(err){
 console.log(err)
