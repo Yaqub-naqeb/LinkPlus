@@ -4,21 +4,24 @@ import React, { useEffect, useState } from 'react'
 import General from './General'
 import NewPost from './NewPost'
 import Posts from './Posts'
-import { collection, getDocs } from "firebase/firestore";
-import { async } from '@firebase/util'
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useFetch } from '../useHooks/useFetch'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { getAuth } from 'firebase/auth'
+import { set_userName } from '@/redux/reducers/profille'
 
 
 const Homee = () => {
   const up=useSelector((state) => state.profile);
-
+  const dispatch=useDispatch();
   const [imageList,setImageList]=useState([]);
   const imageListRef=ref(storage,'images/')
+  const auth=getAuth()
+  const [user]=useAuthState(auth);
+
   // const [data,setData]=useState([]);
   const {data}=useFetch('Posts');
-// console.log(data);
-// console.log(data.map(post=>post.name));
 
 // to get all image
 useEffect(()=>{
@@ -32,9 +35,18 @@ useEffect(()=>{
   })
 },[up.update])
 
-console.log(data&&data.map(post=> post));
 
-// console.log(data&&data.filter(post=>post.data.name) );
+useEffect(()=>{
+  const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // setDocId(doc.id, " => ", doc.data())
+    dispatch(set_userName(doc.data().name))
+  });}
+
+  rendering();
+
+},[])
 
   return (
     <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen '>
@@ -42,8 +54,7 @@ console.log(data&&data.map(post=> post));
 <NewPost/>
 {data&&data.map(post=><Posts key={post.id} name={post.name} data={post} src={imageList.filter(img => img.includes(post.src))} />
 )}
-{/* {   data&&data.map(post=><Posts key={post.id} name={post.name} data={post}/>)
-} */}
+
     </div>
   )
 }
