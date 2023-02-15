@@ -13,36 +13,98 @@ import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 import { db } from "@/firebase/FirebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import { useFetch } from "../useHooks/useFetch";
 
-const Posts = ({data,src,name}) => {
-    console.log(data);
+const Posts = ({PostsData,src,name}) => {
+
+    
 
     const like = useSelector((state) => state.open);
     const auth=getAuth()
-const user=useAuthState(auth);
+const [user]=useAuthState(auth);
+const [userData,setUserData]=useState();
+const [userDocId,setUserDocId]=useState();
+const [click,setClick]=useState(false);
+console.log(userData);
+console.log(userDocId);
+// const {data}=useFetch('ProfileInfo')
+// console.log(data);
+
+
+// useEffect(()=>{
+//     const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+//     const querySnapshot = await getDocs(q);
+//     querySnapshot.forEach((doc) => {
+//       // setDocId(doc.id, " => ", doc.data())
+//       setUserData(doc.data())
+//       console.log(doc.data());
+//     });}
+  
+//     rendering();
+  
+//   },[])
+
+  useEffect(()=>{
+    const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // setDocId(doc.id, " => ", doc.data())
+      setUserData(doc.data().isLike);
+      setUserDocId(doc.id)
+
+
+    });}
+  
+    rendering();
+  
+  },[click])
+
+
+
+
+
+//  isLike:!userData
 
  
 const likedHandler=()=>{
     // dispatch(setLike(!like.like))
-// update data
+// update PostsData
+setClick(!click)
 const db = getFirestore(); // initialize Firestore
 
-const docRef = doc(db, "Posts", data.docId);
+const docRef = doc(db, "Posts", PostsData.docId);
 
-const data1 = {
- likes: data.isLiked?data.likes-1:data.likes+1,
- isLiked:!data.isLiked
+const PostsData1 = {
+ likes: userData?PostsData.likes-1:PostsData.likes+1,
+ isLiked:!userData,
 
 };
 
-updateDoc(docRef, data1)
+
+updateDoc(docRef, PostsData1)
 .then(docRef => {
     console.log("like is updated");
 })
 .catch(error => {
     console.log(error);
 })
+// // userProfile update
 
+// // docId
+// const docRef1 = doc(db,"ProfileInfo", userDocId);
+
+// const PostsData11 = {
+//  isLike:!userData,
+// };
+
+
+// updateDoc(docRef1, PostsData11)
+// .then(docRef => {
+//     console.log("like is updated");
+// })
+// .catch(error => {
+//     console.log(error);
+// })
 
 }
 
@@ -59,7 +121,7 @@ updateDoc(docRef, data1)
 </div>
 {/* the content */}
 <div className='px-8 py-5'>
-    <p>{data.text}</p>
+    <p>{PostsData.text}</p>
 </div>
 {/*  image */}
 <div>
@@ -70,11 +132,11 @@ updateDoc(docRef, data1)
 <div className='flex justify-between mx-5 py-5 items-center '>
   
 <div>
-   {data&&data.likes&&data.likes} Likes
+   {PostsData&&PostsData.likes&&PostsData.likes} Likes
 </div>
 
 
-   <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{data.isLiked?loveRed:love}</div>
+   <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{userData?loveRed:love}</div>
    {/* <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{like.like?love:loveRed}</div> */}
     <div>{comment}</div>
     <div>{send}</div>

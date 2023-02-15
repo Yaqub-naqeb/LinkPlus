@@ -146,7 +146,8 @@ const popupHandler=()=>{
           city:'',
           age:'',
           experience:'',
-          id:user.uid          
+          id:user.uid ,
+          isLike:false         
           
         });
   
