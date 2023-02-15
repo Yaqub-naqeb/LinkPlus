@@ -1,8 +1,7 @@
 
 //  setprofile the name of new branch
-
-
-import React from 'react'
+import { collection, doc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
@@ -11,13 +10,42 @@ import { send } from '../assets/svg/socialIcons/send'
 import {useSelector,useDispatch} from "react-redux";
 import { setLike } from '@/redux/reducers/isOpen'
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
+import { db } from "@/firebase/FirebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
 
 const Posts = ({data,src,name}) => {
-  
-    const like = useSelector((state) => state.open);
-    const name2 = useSelector((state) => state.profile);
+    console.log(data);
 
-    const dsipatch = useDispatch();
+    const like = useSelector((state) => state.open);
+    const auth=getAuth()
+const user=useAuthState(auth);
+
+ 
+const likedHandler=()=>{
+    // dispatch(setLike(!like.like))
+// update data
+const db = getFirestore(); // initialize Firestore
+
+const docRef = doc(db, "Posts", data.docId);
+
+const data1 = {
+ likes: data.isLiked?data.likes-1:data.likes+1,
+ isLiked:!data.isLiked
+
+};
+
+updateDoc(docRef, data1)
+.then(docRef => {
+    console.log("like is updated");
+})
+.catch(error => {
+    console.log(error);
+})
+
+
+}
+
   
   return (
     <div className={`shadow-md ${like.dark?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'}  h-full w-[45%] place-items-center rounded-2xl mx-3`}>
@@ -42,11 +70,12 @@ const Posts = ({data,src,name}) => {
 <div className='flex justify-between mx-5 py-5 items-center '>
   
 <div>
-    1,598 Likes
+   {data&&data.likes&&data.likes} Likes
 </div>
 
 
-   <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={()=>dsipatch(setLike(!like.like))} >{like.like?love:loveRed}</div>
+   <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{data.isLiked?loveRed:love}</div>
+   {/* <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{like.like?love:loveRed}</div> */}
     <div>{comment}</div>
     <div>{send}</div>
     </div>
