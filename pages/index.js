@@ -4,10 +4,12 @@ import { Poppins } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import {useSelector} from "react-redux";
 import Homee from "@/components/main/Homee";
-import { initFirebase } from "@/firebase/FirebaseApp";
+import { db, initFirebase } from "@/firebase/FirebaseApp";
 import PostPopUp from "@/components/popup/PostPopUp";
 import SignUp from "@/components/form/SignUp";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDocument } from 'react-firebase-hooks/firestore';
+
 import { getAuth } from "firebase/auth";
 import {Index}from './profile'
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
@@ -18,8 +20,9 @@ export default function Home() {
   const auth = getAuth();
 
 const app=initFirebase();
-const [user,loading]=useAuthState(auth)
+const [user]=useAuthState(auth)
 
+// const [userDoc, loading, error] = useDocument(user && db.collection('ProfileInfo').doc(user.uid));
 
   return (
     <div className="flex flex-col items-center">
@@ -31,6 +34,10 @@ const [user,loading]=useAuthState(auth)
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={` ${mode.dark?'bg-[#1b2430] text-[#E7F6F2]':'bg-[#EBEBEB]'} mx-auto flex items-center justify-center  `}>
+
+
+
+
 
 <Homee/>
 

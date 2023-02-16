@@ -46,6 +46,11 @@ updateDoc(docRef, data1)
 })
 
 
+
+
+
+
+
 }
 
   
@@ -75,7 +80,7 @@ updateDoc(docRef, data1)
    {data&&data.likes&&data.likes} Likes
 </div>
 
-
+{/* data.isLiked */}
    <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{data.isLiked?loveRed:love}</div>
    {/* <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{like.like?love:loveRed}</div> */}
     <div>{comment}</div>

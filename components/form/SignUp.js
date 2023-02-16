@@ -78,6 +78,8 @@ createUserWithEmailAndPassword(auth, email, password)
 
 
 
+
+
   try{
 
 // const idd=uuid();
@@ -97,6 +99,9 @@ const res=await addDoc(collection(db, "ProfileInfo"), {
      id:user.uid,
     isLike:false
   });
+
+
+
 
 
 }catch(err){
@@ -140,7 +145,7 @@ const popupHandler=()=>{
   
   signInWithPopup(auth, provider)
   .then(async(result) => {
- // This gives you a Google Access Token. You can use it to access the Google API.
+//  This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     // The signed-in user info.
@@ -153,9 +158,19 @@ const popupHandler=()=>{
           city:'',
           age:'',
           experience:'',
-          id:user.uid          
+          id:user.uid   , 
+          isLike:false      
+
+    // const isNewUser = result.additionalUserInfo.isNewUser;
+    // if (isNewUser) {
+    //   console.log('This is the user\'s first login with Google');
+    // } else {
+    //   console.log('This user has logged in with Google before');
+    // }
           
-        });
+        
+    })
+    
   
   }catch(err){
   console.log(err)
