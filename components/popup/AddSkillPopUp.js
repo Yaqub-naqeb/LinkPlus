@@ -21,6 +21,9 @@ const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [skillName,setSkillName]=useState();
+const [description,setDescription]=useState();
+const [proficiency,setProficiency]=useState();
+console.log(proficiency);
 
 const {data}=useFetch('ProfileInfo')
 
@@ -29,25 +32,29 @@ const info=data&&data.filter(name=>name.id==user.uid)
 
 // // Your Firebase SDK Initialization code here
 const submitHandler =(e)=>{
+
   e.preventDefault();
-  const db = getFirestore(); // initialize Firestore
 
-  const docRef = doc(db, "ProfileInfo", info[0]&&info[0].docId);
-  
-  const data1 = {
-    skill: skillName,
-  };
-  
-  updateDoc(docRef, data1)
-  .then(docRef => {
-      console.log("A New Document Field has been added to an existing document");
-  })
-  .catch(error => {
-      console.log(error);
-  })
+//   const db = getFirestore(); // initialize Firestore
 
-  setSkillName('')
-  dispatch(setEditPopup(!PopUp.editPopup))
+//   const docRef = doc(db, "ProfileInfo", info[0]&&info[0].docId);
+  
+//   const data1 = {
+//     skill: skillName,
+//   };
+  
+//   updateDoc(docRef, data1)
+//   .then(docRef => {
+//       console.log("A New Document Field has been added to an existing document");
+//   })
+//   .catch(error => {
+//       console.log(error);
+//   })
+
+//   setSkillName('')
+// setDescription('');
+// setProficiency('');
+//   dispatch(setEditPopup(!PopUp.editPopup))
 
   
 }
@@ -71,10 +78,10 @@ const submitHandler =(e)=>{
        Skills: <input onChange={e=>setSkillName(e.target.value)} value={skillName} type="" className='border   min-w-full ' />
       </label>
       <label className='flex gap-3  items-center justify-center align-middle'>
-      Description: <textarea className='border   min-w-full '/>
+      Description: <textarea onChange={e=>setDescription(e.target.value)} value={description} className='border   min-w-full '/>
       </label>
-      <label className='flex gap-3  items-center justify-center align-middle'>
-      Proficiency: <select className='border   min-w-full '>
+      <label   className='flex gap-3  items-center justify-center align-middle'>
+      Proficiency: <select onChange={e=>setProficiency(e.target.value)} value={proficiency} className='border   min-w-full '>
           <option value="">Select proficiency</option>
           <option value="Beginner">Beginner</option>
           <option value="Intermediate">Intermediate</option>
@@ -83,7 +90,7 @@ const submitHandler =(e)=>{
       </label>
    
 {/* imskill */}
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${skillName?'':'opacity-40'} `}  disabled={skillName?false:true} >Post</button>
+<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${skillName?'':'opacity-40'} `}  disabled={skillName?false:true}  >submit</button>
 
     </div>
 </form>
