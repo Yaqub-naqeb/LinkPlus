@@ -195,8 +195,6 @@ const popupHandler=()=>{
   });
 }
 
-
-
   return (
    <div className='h-[80vh] '>
 
