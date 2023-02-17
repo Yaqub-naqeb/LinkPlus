@@ -11,6 +11,7 @@ import { getAuth } from "firebase/auth";
 import EditProfilePopUp from "./popup/EditProfilePopUp";
 import UploadPhotoPopUp from "./popup/UploadPhotoPopUp";
 import Login from "./form/Login";
+import AddSkillPopUp from "./popup/AddSkillPopUp";
 
 
 
@@ -38,6 +39,7 @@ const auth=getAuth();
    <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
       {isDark.editPopup&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
       {isDark.uploadProfilePhoto&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
+      {isDark.skillsEdit&&<div className={`w-full fixed top-0 blur-lg h-screen bg-[#f3f3f49d] z-50`}></div>}
  
 </div>
  </div>
@@ -45,6 +47,7 @@ const auth=getAuth();
        {isDark.postPopUp&&<PostPopUp/>}
        {isDark.editPopup&&<EditProfilePopUp/>}
        {isDark.uploadProfilePhoto&&<UploadPhotoPopUp/>}
+       {isDark.skillsEdit&&<AddSkillPopUp/>}
 
   </div> </>:<div className="pt-[5rem]">{isDark.login?<Login/>:<SignUp/>}</div>
 }
