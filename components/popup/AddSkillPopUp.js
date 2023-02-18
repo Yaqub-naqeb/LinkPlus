@@ -25,6 +25,9 @@ const [description,setDescription]=useState();
 const [proficiency,setProficiency]=useState();
 console.log(proficiency);
 
+const [iconUrl, setIconUrl] = useState('');
+
+
 const {data}=useFetch('ProfileInfo')
 
 const info=data&&data.filter(name=>name.id==user.uid)
