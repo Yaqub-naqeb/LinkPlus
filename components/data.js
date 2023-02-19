@@ -1,13 +1,15 @@
 export const colourOptions = [
   { value: "html", label: "Html", color: "#00B8D9", isFixed: true },
   { value: "css", label: "Css", color: "#5243AA" },
+  { value: "tailwindcss", label: "TailwindCss", color: "#5243AA" },
   { value: "javascript", label: "JavaScript", color: "#FF5630", isFixed: true },
   { value: "react", label: "React", color: "#FF8B00" },
-  { value: "yellow", label: "View", color: "#FFC400" },
-  { value: "green", label: "Green", color: "#36B37E" },
-  { value: "forest", label: "Forest", color: "#00875A" },
-  { value: "slate", label: "Slate", color: "#253858" },
-  { value: "silver", label: "Silver", color: "#666666" },
+  { value: "git", label: "Git", color: "#FFC400" },
+  { value: "gitHub", label: "GitHub", color: "#36B37E" },
+  { value: "firebase", label: "FireBase", color: "#00875A" },
+  { value: "figma", label: "Figma", color: "#253858" },
+  { value: "redux", label: "Redux", color: "#666666" },
+  { value: "nextjs", label: "NextJs", color: "#666666" },
 ];
 
 export const flavourOptions = [

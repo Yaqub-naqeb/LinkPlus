@@ -8,9 +8,19 @@ import { setSkillsEdit } from "@/redux/reducers/isOpen";
 // import { SkillsIcon } from '../skillsIcon/SkillsIcon'
 import ImageComponent from "../img/ImageComponent";
 
-import react from "../assets/skillsIcon/React-icon.svg.png";
-import js from "../assets/skillsIcon/Unofficial_JavaScript_logo_2.svg.png";
-import html from "../assets/skillsIcon/HTML5_logo_and_wordmark.svg.png";
+import react from "../assets/skills/react.png";
+import js from "../assets/skills/Unofficial_JavaScript_logo_2.svg.png";
+import html from "../assets/skills/480px-HTML5_Badge.svg.png";
+import css from '../assets/skills/CSS3_logo.svg.png'
+import git from '../assets/skills/Git_icon.svg.png'
+import gitHub from '../assets/skills/Octicons-mark-github.svg.png'
+import firebase from '../assets/skills/68747470733a2f2f696d672e69636f6e73382e636f6d2f636f6c6f722f3438302f66697265626173652e706e67.png'
+import next from '../assets/skills/next.png'
+import redux from '../assets/skills/redux.png'
+import tailwindcss from '../assets/skills/Tailwind_CSS_Logo.svg.png'
+
+
+import figma from '../assets/skills/figma.png'
 
 import { useFetch } from "../useHooks/useFetch";
 
@@ -18,6 +28,13 @@ export const SkillsIcon = [
   {
     name: "Html",
     icon: html,
+  },{
+    name: "Css",
+    icon: css,
+  },
+  {
+    name: "TailwindCss",
+    icon:tailwindcss,
   },
   {
     name: "React",
@@ -28,9 +45,29 @@ export const SkillsIcon = [
     icon: js,
   },
   {
-    name: "figma",
-    icon: Img1,
+    name: "Figma",
+    icon: figma,
   },
+  
+  {
+    name: "FireBase",
+    icon: firebase,
+  },
+  
+  {
+    name: "Git",
+    icon: git,
+  },
+  {
+    name: "GitHub",
+    icon: gitHub,
+  },{
+    name: "NextJs",
+    icon: next,
+  },{
+    name: "Redux",
+    icon: redux,
+  }
 ];
 
 const Skills = () => {
@@ -58,7 +95,7 @@ const Skills = () => {
         {edit}
       </p>
       {/* skills */}
-      <div className="grid grid-cols-3 gap-x-2 b gap-y-2">
+      <div className="grid grid-cols-3 gap-x-2 b gap-y-2 overflow-y-scroll scroll-smooth">
 
         {data.map((dt) =>
           dt.skill.map((pskill) =>
