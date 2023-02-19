@@ -16,10 +16,7 @@ import firebase from '../assets/skills/68747470733a2f2f696d672e69636f6e73382e636
 import next from '../assets/skills/next.png'
 import redux from '../assets/skills/redux.png'
 import tailwindcss from '../assets/skills/Tailwind_CSS_Logo.svg.png'
-
-
 import figma from '../assets/skills/figma.png'
-
 import { useFetch } from "../useHooks/useFetch";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
@@ -76,19 +73,6 @@ const Skills = () => {
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
   const info=data&&data.filter(name=>name.id==user.uid)
-
-
-  console.log(info);
-  // console.log(
-  //   data.map(
-  //     (dt, index) =>
-  //       dt &&
-  //       dt.skill &&
-  //       dt.skill.map((psk) => psk.label) == SkillsIcon.map((nm) => nm.name)
-  //   )
-  // );
-
-
   const PopUp = useSelector((state) => state.open);
   const dispatch = useDispatch();
 

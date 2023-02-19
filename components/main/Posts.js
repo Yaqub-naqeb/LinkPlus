@@ -81,10 +81,11 @@ updateDoc(docRef, data1)
 </div>
 
 {/* data.isLiked */}
-   <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{data.isLiked?loveRed:love}</div>
+   <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={likedHandler} >
+    {data.isLiked?loveRed:love}</div>
    {/* <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{like.like?love:loveRed}</div> */}
-    <div>{comment}</div>
-    <div>{send}</div>
+    <div className="cursor-pointer">{comment}</div>
+    <div className="cursor-pointer">{send}</div>
     </div>
 
 </div>
