@@ -17,11 +17,22 @@ import { darkNotfication } from "./assets/svg/rigthNavbarIcons/darkIcons/darkNot
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth,signOut } from "firebase/auth";
+import { useFetch } from "./useHooks/useFetch";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
+
+
+  const photoUrl=useSelector((state) => state.profile);
+
+
+  const PopUp = useSelector((state) => state.open);
+const dispatch=useDispatch();
+
   const auth=getAuth();
-  const [user,loading]=useAuthState(auth);
+  const [user,loading]=useAuthState(auth)
+  
+const {data}=useFetch('ProfileInfo');
 
 
 
@@ -85,10 +96,13 @@ const signOutHandler=()=>{
 
         <div className="lg:block md:block hidden">
           <div className="flex gap-5 items-center align-middle justify-center">
+{/*  */}
             <div>{isOpen.dark?darkSearch:search}</div>
+
             <div>{isOpen.dark?darkNotfication:notfication}</div>
             <div>{isOpen.dark?darkSetting:setting}</div>
-            <div className="cursor-pointer "><Link href={"/profile"}  >{profile2}</Link></div>
+            {/* profileeeeee */}
+            <div className="cursor-pointer "><Link href={"/profile"}>{profile2}</Link></div>
             {user&&<div className="cursor-pointer " onClick={signOutHandler}><Link href={"/form"}  >SignOut</Link></div>}
           </div>
         </div>

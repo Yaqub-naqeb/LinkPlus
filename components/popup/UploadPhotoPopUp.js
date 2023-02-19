@@ -23,6 +23,7 @@ const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState(null);
+console.log(photo);
 const {data}=useFetch('ProfileInfo')
 const [docId,setDocId]=useState();
 
@@ -40,7 +41,7 @@ useEffect(()=>{
 
   rendering();
 
-},[photoUrl.profilePhoto])
+},[photoUrl&&photoUrl.photoUrl])
 
 
 
@@ -58,30 +59,36 @@ const imageRef = ref(storage,`images/${photo.name+code}`);
 
 uploadBytes(imageRef, photo).then((snapshot) => {
     getDownloadURL(snapshot.ref).then((url) => {
-dispatch(set_Profile_Photo(url))
+// dispatch(set_Profile_Photo(url))
+
+
+const docRef = doc(db, "ProfileInfo",docId);
+const data1 = {
+profilePhoto:url
+};
+
+updateDoc(docRef, data1)
+.then(docRef => {
+    alert("profile picture successfully changed");
+})
+.catch(error => {
+    console.log(error);
+})
+
+
+
+
     });
   });
 
 
 
-  const docRef = doc(db, "ProfileInfo",docId);
-  
-  const data1 = {
-  profilePhoto:photoUrl.profilePhoto&&photoUrl.profilePhoto
-  };
-  
-  updateDoc(docRef, data1)
-  .then(docRef => {
-      alert("profile picture successfully changed");
-  })
-  .catch(error => {
-      console.log(error);
-  })
 
   setPhoto('')
 
   dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
 }
+
 
 
   return (
