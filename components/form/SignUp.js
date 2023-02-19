@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, getAdditionalUserInfo  } from "firebase/auth";
 import { db, initFirebase } from '@/firebase/FirebaseApp';
 // using react firebase hook
 import {useAuthState}from 'react-firebase-hooks/auth'
@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import {  set_userName } from '@/redux/reducers/profille';
-import { addDoc, collection, serverTimestamp,	
+import { addDoc, collection, serverTimestamp, setDoc,	
    } from 'firebase/firestore';
 import { setLogin } from '@/redux/reducers/isOpen';
 import { useFetch } from '../useHooks/useFetch';
@@ -21,9 +21,6 @@ const SignUp = () => {
   const signForm = useSelector((state) => state.open);
   const dsipatch = useDispatch();
   const {data}=useFetch('Posts');
-  console.log(data);
-
-
 
 
 const [fullName,setFullName]=useState();
@@ -41,11 +38,6 @@ const router=useRouter();
 // using react firebase hooks
 const [user,loading]=useAuthState(auth)
 
-
-
-
-
-
 if(loading){
   return <div>Loading...</div>
 }
@@ -55,20 +47,10 @@ if(user){
   return <div>welcome {user.displayName}</div>
 }
 
-
-
-
 const submitHandler= async(e)=>{
 e.preventDefault();
 
-
       // upload the fullname to firebase 
-
-    
-        
-
-
-
 createUserWithEmailAndPassword(auth, email, password)
   .then(async(userCredential) => {
     // Signed in 
@@ -76,15 +58,7 @@ createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
     dsipatch(set_userName(fullName))
 
-
-
-
-
   try{
-
-// const idd=uuid();
-// dsipatch(set_idd(idd))
-
 const res=await addDoc(collection(db, "ProfileInfo"), {
   name:fullName,
     timeStamp:serverTimestamp(),
@@ -99,33 +73,15 @@ const res=await addDoc(collection(db, "ProfileInfo"), {
      id:user.uid,
     isLike:false
   });
-
-
-
-
-
 }catch(err){
 console.log(err)
 }
-
-
-
-
-
-
-
-
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..
-  });
-
-
-
-
-        
+  });     
 
   // with popup
 setFullName('')
@@ -136,64 +92,86 @@ setConfirmPassword('')
 
 
 
+ // sign up with Google
+ const googleProvider = new GoogleAuthProvider();
+ const popupHandler = async () => {
+   try {
+     const result = await signInWithPopup(auth, googleProvider);
+     const isNewuser = getAdditionalUserInfo(result).isNewUser;
+     if (isNewuser) {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      try{
+        const res=await addDoc(collection(db, "ProfileInfo"), {
+            timeStamp:serverTimestamp(),
+            email:user.email,
+            name:user.displayName,
+            city:'',
+            age:'',
+            experience:'',
+            id:user.uid   , 
+            isLike:false           
+      })
+      
+    }catch(err){
+    console.log(err)
+    }
+     }
+     navigate('/');
+   } catch (error) {
+     console.log(error);
+   }
+ };
 
 
 
 
 
-const popupHandler=()=>{
+// const popupHandler=()=>{
   
-  signInWithPopup(auth, provider)
-  .then(async(result) => {
-//  This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    try{
-      const res=await addDoc(collection(db, "ProfileInfo"), {
-          timeStamp:serverTimestamp(),
-          email:user.email,
-          name:user.displayName,
-          city:'',
-          age:'',
-          experience:'',
-          id:user.uid   , 
-          isLike:false      
 
-    // const isNewUser = result.additionalUserInfo.isNewUser;
-    // if (isNewUser) {
-    //   console.log('This is the user\'s first login with Google');
-    // } else {
-    //   console.log('This user has logged in with Google before');
-    // }
-          
-        
-    })
+//   signInWithPopup(auth, provider)
+//   .then(async(result) => {
+//   const neww = getAdditionalUserInfo(result).isNewUser;
+  
+
+// //  This gives you a Google Access Token. You can use it to access the Google API.
+//     const credential = GoogleAuthProvider.credentialFromResult(result);
+//     const token = credential.accessToken;
+//     // The signed-in user info.
+//     const user = result.user;
+//     try{
+//       const res=await addDoc(collection(db, "ProfileInfo"), {
+//           timeStamp:serverTimestamp(),
+//           email:user.email,
+//           name:user.displayName,
+//           city:'',
+//           age:'',
+//           experience:'',
+//           id:user.uid   , 
+//           isLike:false           
+//     })
     
+//   }catch(err){
+//   console.log(err)
+//   }
   
-  }catch(err){
-  console.log(err)
-  }
-  
+//     // IdP data available using getAdditionalUserInfo(result)
+//     // ...
+//   }).catch((error) => {
+//     // Handle Errors here.
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // The email of the user's account used.
+//     const email = error.customData.email;
+//     // The AuthCredential type that was used.
+//     const credential = GoogleAuthProvider.credentialFromError(error);
+//     // ...
+//   });
 
-
-
-
-
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
-}
+// }
 
   return (
    <div className='h-[80vh] '>
