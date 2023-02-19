@@ -6,8 +6,6 @@ import { edit } from "../assets/svg/edit/edit";
 import { useDispatch, useSelector } from "react-redux";
 import { setSkillsEdit } from "@/redux/reducers/isOpen";
 // import { SkillsIcon } from '../skillsIcon/SkillsIcon'
-import ImageComponent from "../img/ImageComponent";
-
 import react from "../assets/skills/react.png";
 import js from "../assets/skills/Unofficial_JavaScript_logo_2.svg.png";
 import html from "../assets/skills/480px-HTML5_Badge.svg.png";
@@ -23,6 +21,8 @@ import tailwindcss from '../assets/skills/Tailwind_CSS_Logo.svg.png'
 import figma from '../assets/skills/figma.png'
 
 import { useFetch } from "../useHooks/useFetch";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
 
 export const SkillsIcon = [
   {
@@ -71,15 +71,22 @@ export const SkillsIcon = [
 ];
 
 const Skills = () => {
+
   const { data } = useFetch("ProfileInfo");
-  console.log(
-    data.map(
-      (dt, index) =>
-        dt &&
-        dt.skill &&
-        dt.skill.map((psk) => psk.label) == SkillsIcon.map((nm) => nm.name)
-    )
-  );
+  const auth=getAuth();
+  const [user,loading]=useAuthState(auth)
+  const info=data&&data.filter(name=>name.id==user.uid)
+
+
+  console.log(info);
+  // console.log(
+  //   data.map(
+  //     (dt, index) =>
+  //       dt &&
+  //       dt.skill &&
+  //       dt.skill.map((psk) => psk.label) == SkillsIcon.map((nm) => nm.name)
+  //   )
+  // );
 
 
   const PopUp = useSelector((state) => state.open);
@@ -97,8 +104,8 @@ const Skills = () => {
       {/* skills */}
       <div className="grid grid-cols-3 gap-x-2 b gap-y-2 overflow-y-scroll scroll-smooth">
 
-        {data.map((dt) =>
-          dt.skill.map((pskill) =>
+        {data&&data.map((dt) =>
+    dt.id==user.uid&&dt.skill&&dt.skill.map((pskill) =>
             SkillsIcon.map(
               (skill,index) =>
                 pskill.label === skill.name && (
@@ -107,6 +114,15 @@ const Skills = () => {
             )
           )
         )}
+        {/* {info&&info.map((pskill) =>
+            SkillsIcon.map(
+              (skill,index) =>
+                pskill.label === skill.name && (
+                  <Image key={index} className='h-[40px] w-[40px]' src={skill.icon}   width={800} height={800}/>
+                )
+            ))} */}
+
+
       </div>
     </div>
   );

@@ -43,10 +43,11 @@ const AddSkillPopUp = () => {
     const fullname=useSelector((state) => state.profile);
 const dispatch=useDispatch();
 const auth=getAuth();
-const [user,loading]=useAuthState(auth)
 const [skillName,setSkillName]=useState();
 
+
 const {data}=useFetch('ProfileInfo')
+const [user,loading]=useAuthState(auth)
 
 const info=data&&data.filter(name=>name.id==user.uid)
 
