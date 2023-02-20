@@ -19,8 +19,6 @@ const Homee = () => {
   const imageListRef=ref(storage,'images/')
   const auth=getAuth()
   const [user]=useAuthState(auth);
-
-  // const [data,setData]=useState([]);
   const {data}=useFetch('Posts');
 
 // to get all image
