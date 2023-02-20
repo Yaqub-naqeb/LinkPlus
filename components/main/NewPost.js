@@ -4,6 +4,7 @@ import { location } from '../assets/svg/socialIcons/location'
 import { smth } from '../assets/svg/socialIcons/smth'
 import { useDispatch, useSelector } from 'react-redux';
 import { setPostPopUp } from '@/redux/reducers/isOpen';
+import SmallImage from '../profile/SmallImage';
 const NewPost = () => {
     const Mode = useSelector((state) => state.open);
     console.log(Mode.postPopUp)
@@ -12,7 +13,7 @@ const NewPost = () => {
   <div className={` ${Mode.dark?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl   h-[126px] px-5 flex flex-col justify-evenly -translate-y-7`}>
       <div className='flex items-center gap-3 align-middle '>
       
-      {profile}
+     <SmallImage/>
       <input onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}  type="text" className='bg-transparent outline-none' placeholder='Type here...'/>
       
       

@@ -32,10 +32,7 @@ useEffect(()=>{
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    // dispatch(set_Profile_Photo(doc.data()))
     setDocId(doc.id, " => ", doc.data())
-    // doc.id, " => ", doc.data()
     console.log(doc.data());
   });}
 
@@ -43,30 +40,22 @@ useEffect(()=>{
 
 },[photoUrl&&photoUrl.photoUrl])
 
-
-
-
 // Your Firebase SDK Initialization code here
 const submitHandler =(e)=>{
   e.preventDefault();
   const db = getFirestore(); // initialize Firestore
 
-// to get image url
 
 const code=uuid();
-
 const imageRef = ref(storage,`images/${photo.name+code}`);
 
 uploadBytes(imageRef, photo).then((snapshot) => {
     getDownloadURL(snapshot.ref).then((url) => {
-// dispatch(set_Profile_Photo(url))
-
-
 const docRef = doc(db, "ProfileInfo",docId);
+// update the Profile image
 const data1 = {
 profilePhoto:url
 };
-
 updateDoc(docRef, data1)
 .then(docRef => {
     alert("profile picture successfully changed");
@@ -74,18 +63,9 @@ updateDoc(docRef, data1)
 .catch(error => {
     console.log(error);
 })
-
-
-
-
     });
   });
-
-
-
-
   setPhoto('')
-
   dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
 }
 

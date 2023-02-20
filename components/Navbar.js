@@ -8,7 +8,6 @@ import { close } from "./assets/svg/rigthNavbarIcons/close";
 import { search } from "./assets/svg/rigthNavbarIcons/search";
 import { setting } from "./assets/svg/rigthNavbarIcons/setting";
 import { notfication } from "./assets/svg/rigthNavbarIcons/notfication";
-import { profile2 } from "./assets/svg/socialIcons/profile2";
 import { setIsOpen } from "@/redux/reducers/isOpen";
 import { useSelector, useDispatch } from "react-redux";
 import { darkSearch } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSearch";
@@ -18,6 +17,7 @@ import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth,signOut } from "firebase/auth";
 import { useFetch } from "./useHooks/useFetch";
+import SmallImage from "./profile/SmallImage";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
@@ -33,6 +33,7 @@ const dispatch=useDispatch();
   const [user,loading]=useAuthState(auth)
   
 const {data}=useFetch('ProfileInfo');
+const current=data&&data.filter(dt=>dt.id==user.uid)
 
 
 
@@ -101,8 +102,7 @@ const signOutHandler=()=>{
 
             <div>{isOpen.dark?darkNotfication:notfication}</div>
             <div>{isOpen.dark?darkSetting:setting}</div>
-            {/* profileeeeee */}
-            <div className="cursor-pointer "><Link href={"/profile"}>{profile2}</Link></div>
+<SmallImage/>
             {user&&<div className="cursor-pointer " onClick={signOutHandler}><Link href={"/form"}  >SignOut</Link></div>}
           </div>
         </div>

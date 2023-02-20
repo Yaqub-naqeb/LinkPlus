@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFetch } from "../useHooks/useFetch";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
+import SmallImage from "../profile/SmallImage";
 
 const General = () => {
   const dark = useSelector((state) => state.open);
@@ -24,7 +25,7 @@ const {data}=useFetch('ProfileInfo');
         dark.open ? "-z-20" : ""
       }    ${dark.dark?'text-white':''}`}
     >
-      <div className="flex items-center  gap-3">{profile} <p className='font-bold'>{user.displayName?user.displayName:name.userName}</p></div>
+      <div className="flex items-center  gap-3"><SmallImage/><p className='font-bold'>{user.displayName?user.displayName:name.userName}</p></div>
       <div className="flex items-center  gap-3">
         <Image
           className=" w-[40px] h-[40px]"

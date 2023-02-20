@@ -13,13 +13,22 @@ import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 import { db } from "@/firebase/FirebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import SmallImage from "../profile/SmallImage";
+import Link from "next/link";
+import { profile2 } from "../assets/svg/socialIcons/profile2";
 
 const Posts = ({data,src,name}) => {
     console.log(data);
 
     const like = useSelector((state) => state.open);
-    const auth=getAuth()
-const user=useAuthState(auth);
+const auth=getAuth();
+const [user,loading]=useAuthState(auth)
+
+// const {data}=useFetch('ProfileInfo');
+// const current=data&&data.filter(dt=>dt.id==user.uid)
+
+
+
 console.log(user);
 
 
@@ -61,7 +70,17 @@ updateDoc(docRef, data1)
 <div className=''>
 {/* header of card */}
 <div className='flex justify-between  px-8 pt-5 ' > 
-    <div className='flex items-center gap-1'>  <div className='cursor-pointer'>{profile}</div>  <h1 className='font-bold cursor-pointer'>{name}</h1></div>
+    <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
+        
+           {/* profileeeeee */}
+           <div className="cursor-pointer "><Link href={"/profile"}>
+              {data&&data.profilePhoto?<Image src={data.profilePhoto} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}
+              </Link>
+              </div>
+        
+        
+        
+        </div>  <h1 className='font-bold cursor-pointer'>{name}</h1></div>
     <h1 className='font-bold cursor-pointer'>...</h1>
 </div>
 {/* the content */}

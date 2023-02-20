@@ -28,10 +28,7 @@ const [email,setEmail]=useState();
 const [password,setPassword]=useState();
 const [ConfirmPassword,setConfirmPassword]=useState();
 
-// to get data
-
 initFirebase();
-const provider = new GoogleAuthProvider();
 const auth = getAuth();
 const router=useRouter();
 
@@ -91,7 +88,6 @@ setConfirmPassword('')
 }
 
 
-
  // sign up with Google
  const googleProvider = new GoogleAuthProvider();
  const popupHandler = async () => {
@@ -124,54 +120,6 @@ setConfirmPassword('')
      console.log(error);
    }
  };
-
-
-
-
-
-// const popupHandler=()=>{
-  
-
-//   signInWithPopup(auth, provider)
-//   .then(async(result) => {
-//   const neww = getAdditionalUserInfo(result).isNewUser;
-  
-
-// //  This gives you a Google Access Token. You can use it to access the Google API.
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     const token = credential.accessToken;
-//     // The signed-in user info.
-//     const user = result.user;
-//     try{
-//       const res=await addDoc(collection(db, "ProfileInfo"), {
-//           timeStamp:serverTimestamp(),
-//           email:user.email,
-//           name:user.displayName,
-//           city:'',
-//           age:'',
-//           experience:'',
-//           id:user.uid   , 
-//           isLike:false           
-//     })
-    
-//   }catch(err){
-//   console.log(err)
-//   }
-  
-//     // IdP data available using getAdditionalUserInfo(result)
-//     // ...
-//   }).catch((error) => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.customData.email;
-//     // The AuthCredential type that was used.
-//     const credential = GoogleAuthProvider.credentialFromError(error);
-//     // ...
-//   });
-
-// }
 
   return (
    <div className='h-[80vh] '>
