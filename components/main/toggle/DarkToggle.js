@@ -4,7 +4,6 @@ import { setDarkMode } from '@/redux/reducers/isOpen';
 const DarkToggle = () => {
 
   const Mode = useSelector((state) => state.open);
-  console.log(Mode.dark);
 
 const dispatch=useDispatch();
 

@@ -22,10 +22,6 @@ const Tasks = () => {
       <TaskCard/>
       <TaskCard/>
       <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
-      <TaskCard/>
     </div>
 </div>
   )

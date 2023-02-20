@@ -1,11 +1,9 @@
 import React from "react";
-import { profile } from "../assets/svg/rigthNavbarIcons/profile";
 import Image from "next/image";
 import chat from "../assets/imgs/homeImg/chat.png";
 import saved from "../assets/imgs/homeImg/save-instagram.png";
 import tasks from "../assets/imgs/homeImg/to-do-list.png";
 import { useSelector, useDispatch } from "react-redux";
-import { useFetch } from "../useHooks/useFetch";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SmallImage from "../profile/SmallImage";
@@ -16,7 +14,6 @@ const General = () => {
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
 
-const {data}=useFetch('ProfileInfo');
 
 
   return (

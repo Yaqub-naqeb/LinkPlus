@@ -26,30 +26,12 @@ const [file,setFile]=useState(null);
 
 const {data}=useFetch('ProfileInfo');
   const current=data&&data.filter(dt=>dt.id==user.uid)
-console.log(current);
 
-
-
-
-// to get data
-// useEffect(()=>{
-//   const x =async()=>{
-//    const querySnapshot = await getDocs(collection(db, "ProfileInfo"));
-//    querySnapshot.forEach((doc) => {
-//    // unique id of the docs 
-//      setData((prev)=>[...prev,{id:doc.id,data:doc.data()}]);
-//    });
-//   }
-//   x();
-//  },[])
-
-//  const x=data&&(data.filter(name=>name.data.id==user.uid&&name.data.name&&name.data.name));
-
+  
 const addData = async (
   img,
   text,
   userid,
-  profilePhoto
 ) => {
   const docRef = await addDoc(collection(db, 'Posts'), {
     src: img,
@@ -62,7 +44,7 @@ const addData = async (
     profilePhoto:current&&current[0]&&current[0].profilePhoto
 
   });
-  console.log('Document written with ID: ', docRef.id);
+  // console.log('Document written with ID: ', docRef.id);
 };
 
 

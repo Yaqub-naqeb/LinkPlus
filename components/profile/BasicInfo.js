@@ -20,21 +20,16 @@ const BasicInfo = () => {
   const auth=getAuth();
   const dispatch=useDispatch();
   const [user,loading]=useAuthState(auth)
-  console.log(user);
   const [data1,setData1]=useState();
-
-// // to get info
-// const {data,isPending}=useFetch("ProfileInfo");
 
 useEffect(()=>{
   const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    // setDocId(doc.id, " => ", doc.data())
     setData1(doc.data());
     dispatch(set_userName(doc.data().name))
     dispatch(set_exprience(doc.data().experience))
-  });}
+  },[]);}
 
   rendering();
 

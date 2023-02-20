@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { svg } from "./assets/svg/logo/svg";
 import { darkSvg } from "./assets/svg/logo/darkSvg";
@@ -16,25 +16,12 @@ import { darkNotfication } from "./assets/svg/rigthNavbarIcons/darkIcons/darkNot
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth,signOut } from "firebase/auth";
-import { useFetch } from "./useHooks/useFetch";
 import SmallImage from "./profile/SmallImage";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
-
-
-  const photoUrl=useSelector((state) => state.profile);
-
-
-  const PopUp = useSelector((state) => state.open);
-const dispatch=useDispatch();
-
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
-  
-const {data}=useFetch('ProfileInfo');
-const current=data&&data.filter(dt=>dt.id==user.uid)
-
 
 
   const pages=[
@@ -47,9 +34,7 @@ const current=data&&data.filter(dt=>dt.id==user.uid)
 
   const router = useRouter();
 const currentRoute = router.pathname;
-
   const isOpen = useSelector((state) => state.open);
-  // console.log(isOpenn.open);
   const dsipatch = useDispatch();
 
 const signOutHandler=()=>{
@@ -84,7 +69,7 @@ const signOutHandler=()=>{
             <ul className="flex gap-5 ">
             
             
-{pages&&pages.map(nav=>(<li  className={currentRoute === nav.href
+{pages&&pages.map((nav,index)=>(<li key={index}  className={currentRoute === nav.href
        ? "active-class-name scale-125  font-[2rem]" 
        : "non-active-class-name"}>
                 <Link href={nav.href}>{nav.name}</Link>
@@ -128,7 +113,7 @@ const signOutHandler=()=>{
       >
         {/* mobile */}
         <ul className=" flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5  ">
-        {pages&&pages.map(nav=>(<li  className={currentRoute === nav.href
+        {pages&&pages.map((nav,index)=>(<li  key={index} className={currentRoute === nav.href
        ? "active-class-name scale-110  font-[2rem]" 
        : "non-active-class-name"}>
                 <Link href={nav.href}>{nav.name}</Link>

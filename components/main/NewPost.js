@@ -7,7 +7,6 @@ import { setPostPopUp } from '@/redux/reducers/isOpen';
 import SmallImage from '../profile/SmallImage';
 const NewPost = () => {
     const Mode = useSelector((state) => state.open);
-    console.log(Mode.postPopUp)
     const dsipatch=useDispatch();
   return (
   <div className={` ${Mode.dark?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl   h-[126px] px-5 flex flex-col justify-evenly -translate-y-7`}>

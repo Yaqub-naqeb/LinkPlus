@@ -34,6 +34,7 @@ function ImageCompontent({
     <>
       {layout ? (
         <Image
+        alt='image'
         className='rounded-lg '
           loader={myLoader}
           src={pathImage}
@@ -53,6 +54,7 @@ function ImageCompontent({
         />
       ) : (
         <Image
+        alt='image'
         className='rounded-lg  '
           loader={myLoader}
           src={pathImage}

@@ -1,40 +1,22 @@
 
 //  setprofile the name of new branch
-import { collection, doc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
+import {  doc, getFirestore,updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
 import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
-import {useSelector,useDispatch} from "react-redux";
-import { setLike } from '@/redux/reducers/isOpen'
+import {useSelector} from "react-redux";
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
-import { db } from "@/firebase/FirebaseApp";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
-import SmallImage from "../profile/SmallImage";
 import Link from "next/link";
-import { profile2 } from "../assets/svg/socialIcons/profile2";
 
 const Posts = ({data,src,name}) => {
-    console.log(data);
 
     const like = useSelector((state) => state.open);
-const auth=getAuth();
-const [user,loading]=useAuthState(auth)
-
-// const {data}=useFetch('ProfileInfo');
-// const current=data&&data.filter(dt=>dt.id==user.uid)
-
-
-
-console.log(user);
-
 
  
 const likedHandler=()=>{
-    // dispatch(setLike(!like.like))
 // update data
 const db = getFirestore(); // initialize Firestore
 
@@ -48,18 +30,11 @@ const data1 = {
 
 updateDoc(docRef, data1)
 .then(docRef => {
-    console.log("like is updated");
+    // "like is updated";
 })
 .catch(error => {
-    console.log(error);
+    // you can print the error
 })
-
-
-
-
-
-
-
 }
 
   
@@ -74,7 +49,7 @@ updateDoc(docRef, data1)
         
            {/* profileeeeee */}
            <div className="cursor-pointer "><Link href={"/profile"}>
-              {data&&data.profilePhoto?<Image src={data.profilePhoto} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}
+              {data&&data.profilePhoto?<Image alt="Image" src={`${data.profilePhoto&&data.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}
               </Link>
               </div>
         
@@ -102,7 +77,6 @@ updateDoc(docRef, data1)
 {/* data.isLiked */}
    <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={likedHandler} >
     {data.isLiked?loveRed:love}</div>
-   {/* <div className='flex gap-5 items-center align-middle justify-center'> <div onClick={likedHandler} >{like.like?love:loveRed}</div> */}
     <div className="cursor-pointer">{comment}</div>
     <div className="cursor-pointer">{send}</div>
     </div>
