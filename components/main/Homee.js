@@ -37,7 +37,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-  const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+  const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     // setDocId(doc.id, " => ", doc.data())

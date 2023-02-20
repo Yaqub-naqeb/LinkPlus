@@ -4,12 +4,32 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initFirebase } from '@/firebase/FirebaseApp';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin } from '@/redux/reducers/isOpen';
+import { useRouter } from 'next/router';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Login = () => {
 const [email,setEmail]=useState();
 const [password,setPassword]=useState();
 const signForm = useSelector((state) => state.open);
 const dsipatch = useDispatch();
+
+
+
+
+const auth = getAuth();
+const router=useRouter();
+
+// using react firebase hooks
+const [user,loading]=useAuthState(auth)
+
+if(loading){
+  return <div>Loading...</div>
+}
+if(user){
+  router.push("/profile")  
+  return <div>welcome {user.displayName}</div>
+}
+
 
 initFirebase();
 
@@ -23,6 +43,8 @@ signInWithEmailAndPassword(auth, email, password)
     // Signed in 
     const user = userCredential.user;
     // ...
+    console.log(user);
+    navigate('/');
   })
   .catch((error) => {
     const errorCode = error.code;

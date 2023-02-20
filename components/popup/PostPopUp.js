@@ -24,7 +24,7 @@ const [text,setText]=useState();
 const [file,setFile]=useState(null);
 // const [data,setData]=useState('');
 
-const {data}=useFetch('ProfileInfo');
+const {data}=useFetch('Users');
   const current=data&&data.filter(dt=>dt.id==user.uid)
 
   

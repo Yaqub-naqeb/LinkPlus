@@ -69,7 +69,7 @@ export const SkillsIcon = [
 
 const Skills = () => {
 
-  const { data } = useFetch("ProfileInfo");
+  const { data } = useFetch("Users");
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
   const info=data&&data.filter(name=>name.id==user.uid)

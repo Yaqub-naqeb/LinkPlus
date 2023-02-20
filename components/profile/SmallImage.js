@@ -10,7 +10,7 @@ const SmallImage = () => {
     const auth=getAuth();
     const [user,loading]=useAuthState(auth)
     
-  const {data}=useFetch('ProfileInfo');
+  const {data}=useFetch('Users');
   const current=data&&data.filter(dt=>dt.id==user.uid)
   
   return (

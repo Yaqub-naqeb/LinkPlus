@@ -46,7 +46,7 @@ const auth=getAuth();
 const [skillName,setSkillName]=useState();
 
 
-const {data}=useFetch('ProfileInfo')
+const {data}=useFetch('Users')
 const [user,loading]=useAuthState(auth)
 
 const info=data&&data.filter(name=>name.id==user.uid)
@@ -58,7 +58,7 @@ const submitHandler =(e)=>{
   e.preventDefault();
   const db = getFirestore(); // initialize Firestore
 
-  const docRef = doc(db, "ProfileInfo", info[0]&&info[0].docId);
+  const docRef = doc(db, "Users", info[0]&&info[0].docId);
   
   const data1 = {
     skill: skillName,
@@ -73,7 +73,7 @@ const submitHandler =(e)=>{
   })
 
   setSkillName('')
-  // dispatch(setEditPopup(!PopUp.editPopup))
+  dispatch(setSkillsEdit(!PopUp.skillsEdit))
 
   
 }

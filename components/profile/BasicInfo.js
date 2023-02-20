@@ -23,7 +23,7 @@ const BasicInfo = () => {
   const [data1,setData1]=useState();
 
 useEffect(()=>{
-  const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+  const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     setData1(doc.data());

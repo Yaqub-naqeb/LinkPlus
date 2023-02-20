@@ -5,7 +5,6 @@ import { db, initFirebase } from '@/firebase/FirebaseApp';
 import {useAuthState}from 'react-firebase-hooks/auth'
 // to redirect we are using useRouter
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import {  set_userName } from '@/redux/reducers/profille';
 import { addDoc, collection, serverTimestamp, setDoc,	
@@ -56,7 +55,7 @@ createUserWithEmailAndPassword(auth, email, password)
     dsipatch(set_userName(fullName))
 
   try{
-const res=await addDoc(collection(db, "ProfileInfo"), {
+const res=await addDoc(collection(db, "Users"), {
   name:fullName,
     timeStamp:serverTimestamp(),
     email:email,
@@ -100,7 +99,7 @@ setConfirmPassword('')
       // The signed-in user info.
       const user = result.user;
       try{
-        const res=await addDoc(collection(db, "ProfileInfo"), {
+        const res=await addDoc(collection(db, "Users"), {
             timeStamp:serverTimestamp(),
             email:user.email,
             name:user.displayName,

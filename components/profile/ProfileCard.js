@@ -16,7 +16,7 @@ const dispatch=useDispatch();
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
   
-const {data}=useFetch('ProfileInfo');
+const {data}=useFetch('Users');
 
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
 

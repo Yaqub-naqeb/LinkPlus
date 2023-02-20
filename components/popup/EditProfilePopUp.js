@@ -25,7 +25,7 @@ const [age,setAge]=useState();
 const [city,setCity]=useState();
 const [experince,setExperince]=useState();
 
-const {data}=useFetch('ProfileInfo')
+const {data}=useFetch('Users')
 
 const info=data&&data.filter(name=>name.id==user.uid)
 
@@ -35,7 +35,7 @@ const submitHandler =(e)=>{
   e.preventDefault();
   const db = getFirestore(); // initialize Firestore
 
-  const docRef = doc(db, "ProfileInfo", info[0]&&info[0].docId);
+  const docRef = doc(db, "Users", info[0]&&info[0].docId);
   
   const data1 = {
     age: age,

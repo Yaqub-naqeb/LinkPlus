@@ -24,11 +24,11 @@ const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState(null);
 console.log(photo);
-const {data}=useFetch('ProfileInfo')
+const {data}=useFetch('Users')
 const [docId,setDocId]=useState();
 
 useEffect(()=>{
-  const rendering=async()=>{  const q = query(collection(db, "ProfileInfo"), where("id", "==", user.uid));
+  const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
@@ -51,7 +51,7 @@ const imageRef = ref(storage,`images/${photo.name+code}`);
 
 uploadBytes(imageRef, photo).then((snapshot) => {
     getDownloadURL(snapshot.ref).then((url) => {
-const docRef = doc(db, "ProfileInfo",docId);
+const docRef = doc(db, "Users",docId);
 // update the Profile image
 const data1 = {
 profilePhoto:url
