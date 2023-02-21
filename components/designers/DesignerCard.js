@@ -24,10 +24,9 @@ const DesignerCard = ({user}) => {
 {/* top */}
 <div className='relative w-full h-[40%]   rounded-b-none   '>
 <ImageComponent 
-
         isContain={false}
         layout={true}
-        pathImage={Img1}
+        pathImage={user.backgroundPhoto?user.backgroundPhoto:Img1}
         className={""}
       />
 </div>
@@ -48,8 +47,7 @@ const DesignerCard = ({user}) => {
       
       </p>
     <p className='text-xl font-[550] -translate-y-5'> {user.name}</p>
-    <p className='text-sm -translate-y-5'>{user.experience
-}</p>
+    <p className='text-sm -translate-y-5'>{user.experience}</p>
 <div className='flex flex-col items-center gap-2 text-sm -translate-y-3'>
 <button className=' bg-[#757BB8] w-[74px] h-[26px] rounded-[15px] '>Follow</button>
     <button className=' bg-[#757BB8] w-[118px] h-[30px] rounded-[15px]'>Give a task</button>

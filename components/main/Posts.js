@@ -10,6 +10,8 @@ import { send } from '../assets/svg/socialIcons/send'
 import {useSelector} from "react-redux";
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 import Link from "next/link";
+import ImageComponent from "../img/ImageComponent";
+import ImageComponent2 from "../img/ImageComponent2";
 
 const Posts = ({data,src,name}) => {
 
@@ -27,7 +29,7 @@ const data1 = {
  isLiked:!data.isLiked
 
 };
-
+// 
 updateDoc(docRef, data1)
 .then(docRef => {
     // "like is updated";
@@ -48,11 +50,11 @@ updateDoc(docRef, data1)
     <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
         
            {/* profileeeeee */}
-           <div className="cursor-pointer "><Link href={"/profile"}>
-              {data&&data.profilePhoto?<Image alt="Image" src={`${data.profilePhoto&&data.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}
+           <div className="cursor-pointer relative"><Link href={"/profile"}>
+              {data&&data.profilePhoto?<Image alt="Image" src={`${data.profilePhoto&&data.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
               </Link>
               </div>
-        
+   
         
         
         </div>  <h1 className='font-bold cursor-pointer'>{name}</h1></div>
@@ -63,8 +65,14 @@ updateDoc(docRef, data1)
     <p>{data.text}</p>
 </div>
 {/*  image */}
-<div>
-<Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full  '/>
+<div className="relative w-[full] h-[30rem]">
+{/* <Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full  '/> */}
+<ImageComponent2 
+        isContain={false}
+        layout={true}
+        pathImage={`${src}`}
+        className={""}
+      />
 </div>
 
 {/* likes */}

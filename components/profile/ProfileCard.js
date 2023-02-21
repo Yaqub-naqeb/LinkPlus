@@ -23,24 +23,26 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
 
   return (
-    <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center relative'>
+    <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center relative '>
 
 
-
-<div>
-<Image src={Img1} className={`w-full h-full object-cover rounded-[32px]`} width={900} height={900}/>
-</div>
-
-
-<div className='absolute right-2 top-5 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))}>{edit}</div>
+<div className='absolute right-2 top-5 z-50 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{edit}</div>
 
 {/* profile Image Card */}
 
-<div>
-  
+{profileUrl[0]&&profileUrl[0].backgroundPhoto&&<div className='absolute top-0 left-0 w-full h-1/3'>
+<Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
+</div>}
 
-<Image src={profileUrl[0]&&profileUrl[0].profilePhoto} className={`w-[209px] h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>
-   
+
+<div className='z-50'>
+
+
+
+  
+{profileUrl[0]&&profileUrl[0].profilePhoto&&<Image src={profileUrl[0]&&profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
+
+
    <div className='flex flex-col gap-3  items-center justify-center align-middle'>
      
    <p className='font-bold'>{user.displayName?user.displayName:photoUrl.userName}</p>

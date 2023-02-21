@@ -18,12 +18,13 @@ const UploadPhotoPopUp = () => {
 
     const PopUp = useSelector((state) => state.open);
     const photoUrl=useSelector((state) => state.profile);
+    console.log(photoUrl);
 
 const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState(null);
-console.log(photo);
+const [bgphoto,setBgPhoto]=useState(null);
 const {data}=useFetch('Users')
 const [docId,setDocId]=useState();
 
@@ -47,25 +48,57 @@ const submitHandler =(e)=>{
 
 
 const code=uuid();
-const imageRef = ref(storage,`images/${photo.name+code}`);
+// console.log(photo.name);
+if(photo){
+  const imageRef = ref(storage,`images/${photo.name+code}`);
 
-uploadBytes(imageRef, photo).then((snapshot) => {
+  uploadBytes(imageRef, photo).then((snapshot) => {
     getDownloadURL(snapshot.ref).then((url) => {
+  const docRef = doc(db, "Users",docId);
+  // update the Profile image
+  const data1 = {
+  profilePhoto:url,
+  };
+  updateDoc(docRef, data1)
+  .then(docRef => {
+    alert("profile picture successfully changed");
+  })
+  .catch(error => {
+    console.log(error);
+  })
+    });
+  });
+  
+}
+  const code1=uuid();
+  // console.log(bgphoto.name);
+
+ if(bgphoto){
+  const bgImageRef = ref(storage,`images/${bgphoto.name+code1}`);
+
+  // background photo
+uploadBytes(bgImageRef, bgphoto).then((snapshot) => {
+  getDownloadURL(snapshot.ref).then((url) => {
 const docRef = doc(db, "Users",docId);
 // update the Profile image
 const data1 = {
-profilePhoto:url
+backgroundPhoto:url,
 };
 updateDoc(docRef, data1)
 .then(docRef => {
-    alert("profile picture successfully changed");
+  alert("background picture successfully changed");
 })
 .catch(error => {
-    console.log(error);
+  console.log(error);
 })
-    });
   });
+});
+
+ }
+
+
   setPhoto('')
+  setBgPhoto('')
   dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
 }
 
@@ -90,9 +123,12 @@ updateDoc(docRef, data1)
       <div className='flex gap-3  items-center justify-center align-middle'>
        UploadImage: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' />
       </div>
+      <div className='flex gap-3  items-center justify-center align-middle'>
+       Upload Background Image: <input onChange={e=>setBgPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' />
+      </div>
    
 {/* image */}
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo?'':'opacity-40'} `}  disabled={photo?false:true} >Post</button>
+<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo||bgphoto?'':'opacity-40'} `}  disabled={photo||bgphoto?false:true} >Post</button>
 
     </div>
 </form>
