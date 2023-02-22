@@ -66,7 +66,6 @@ updateDoc(docRef, data1)
 </div>
 {/*  image */}
 <div className="relative w-[full] h-[30rem]">
-{/* <Image src={`${src}`} alt={'postImage'}  width={400} height={400} priority className='w-full  '/> */}
 <ImageComponent2 
         isContain={false}
         layout={true}

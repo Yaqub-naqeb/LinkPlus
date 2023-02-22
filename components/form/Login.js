@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Eye } from '../assets/svg/passwordEye/Eye';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { initFirebase } from '@/firebase/FirebaseApp';
+import { getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { db, initFirebase } from '@/firebase/FirebaseApp';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin } from '@/redux/reducers/isOpen';
 import { useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 const Login = () => {
 const [email,setEmail]=useState();
@@ -54,6 +55,40 @@ signInWithEmailAndPassword(auth, email, password)
 
 
 }
+const googleProvider = new GoogleAuthProvider();
+
+
+ // sign up with Google
+ const popupHandler = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const isNewuser = getAdditionalUserInfo(result).isNewUser;
+    if (isNewuser) {
+     const credential = GoogleAuthProvider.credentialFromResult(result);
+     const token = credential.accessToken;
+     // The signed-in user info.
+     const user = result.user;
+     try{
+       const res=await addDoc(collection(db, "Users"), {
+           timeStamp:serverTimestamp(),
+           email:user.email,
+           name:user.displayName,
+           city:'',
+           age:'',
+           experience:'',
+           id:user.uid   , 
+           isLike:false           
+     })
+     
+   }catch(err){
+   console.log(err)
+   }
+    }
+    navigate('/');
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
   return (
@@ -84,6 +119,8 @@ signInWithEmailAndPassword(auth, email, password)
 <button className='bg-[#51557E] tracking-wider rounded-[10px] w-[447px] h-[58px] font-bold text-[#E7F6F2] text-xl'>Login</button>
  <p className='text-2xl font-semibold cursor-pointer text-[#4A4E7C]' onClick={()=>dsipatch(setLogin(!signForm.login))}>SignUp</p>
 </form>
+<button onClick={popupHandler}>G</button>
+
 
 
     </div>

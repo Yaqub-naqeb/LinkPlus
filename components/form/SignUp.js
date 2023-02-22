@@ -20,6 +20,7 @@ const SignUp = () => {
   const signForm = useSelector((state) => state.open);
   const dsipatch = useDispatch();
   const {data}=useFetch('Posts');
+  const googleProvider = new GoogleAuthProvider();
 
 
 const [fullName,setFullName]=useState();
@@ -88,7 +89,6 @@ setConfirmPassword('')
 
 
  // sign up with Google
- const googleProvider = new GoogleAuthProvider();
  const popupHandler = async () => {
    try {
      const result = await signInWithPopup(auth, googleProvider);
