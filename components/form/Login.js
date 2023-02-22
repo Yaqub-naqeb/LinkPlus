@@ -60,6 +60,7 @@ const googleProvider = new GoogleAuthProvider();
 
  // sign up with Google
  const popupHandler = async () => {
+  
   try {
     const result = await signInWithPopup(auth, googleProvider);
     const isNewuser = getAdditionalUserInfo(result).isNewUser;
