@@ -13,7 +13,8 @@ const isOpenSlice=createSlice({
         editPopup:false,
         uploadProfilePhoto:false,
         login:false,
-        skillsEdit:false
+        skillsEdit:false,
+        projectPhoto:false
     },
     // to update the initial value
     reducers:{
@@ -48,6 +49,9 @@ const isOpenSlice=createSlice({
         },
         setSkillsEdit(state,action){
             state.skillsEdit=!state.skillsEdit
+        },
+        setProjectsPhoto(state,action){
+            state.projectPhoto=!state.projectPhoto
         }
         
     }
@@ -55,5 +59,5 @@ const isOpenSlice=createSlice({
 
 
 })
-export const {setIsOpen,setLike,setDarkMode,setPostPopUp, setSwe,setEditPopup,setUploadProfilePhoto,setLogin,setSkillsEdit}=isOpenSlice.actions
+export const {setIsOpen,setLike,setDarkMode,setPostPopUp,setProjectsPhoto, setSwe,setEditPopup,setUploadProfilePhoto,setLogin,setSkillsEdit}=isOpenSlice.actions
 export default isOpenSlice.reducer
