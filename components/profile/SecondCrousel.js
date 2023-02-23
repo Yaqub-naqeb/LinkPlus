@@ -68,6 +68,8 @@ console.log(profileUrl[0]&&profileUrl[0].projectPhoto);
 
    }
 
+
+
     </Swiper>
   </div>
   )
