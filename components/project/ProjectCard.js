@@ -6,309 +6,50 @@ import Img1 from "../assets/imgs/profileImg/pexels-spencer-selover-775358.jpg";
 
 import { view } from "../assets/svg/socialIcons/view";
 import ImageComponent from "../img/ImageComponent";
+import { useFetch } from "../useHooks/useFetch";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
+import SingleCard from "./SingleCard";
 const ProjectCard = () => {
+
+
+
+  const auth=getAuth();
+const [user,loading]=useAuthState(auth)
+
+const {data}=useFetch('Users');
+console.log(data);
+console.log();
+
+// const profileUrl= data&&data.filter(name=>name.id==user.uid)
+// console.log(profileUrl[0]&&profileUrl[0].projectPhoto);
+
+
+
+
   return (
     <div className="relative grid grid-cols-3 gap-8 rounded-2xl">
     
 
 
  {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img1}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
+{
+  // profileUrl[0]&&profileUrl[0]&&profileUrl[0].projectPhoto.map(((prj,index)=><SingleCard key={index} src={prj}/>))
 
 
 
- {/*  */}
+  data&&data.map((user=>
+    
+<>
+{user&&user.projectPhoto&&user.projectPhoto.map((prj,index)=><SingleCard key={index} src={prj}/>)}
 
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img1}
-            className={""}
+</>
+ 
+    ))
 
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
+}
 
 
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img1}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
-
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img1}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
-
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img1}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
-
- {/*  */}
-
- <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
-        <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
-          <ImageComponent
-        
-            isContain={false}
-            layout={true}
-            pathImage={Img}
-            className={""}
-
-          />
-        </div>
-
-        {/* info about project */}
-        <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
-          {/* name of prj */}
-          <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-            <p className="hover:underline ">Project Name</p>
-            <p className="hover:underline">rating</p>
-          </div>
-          {/* svg */}
-          <div className="flex items-center justify-center gap-3 align-middle">
-            {love}
-            {view}
-          </div>
-        </div>
-      </div>
 
 
  
