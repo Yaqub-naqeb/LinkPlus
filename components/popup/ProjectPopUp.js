@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { doc} from "firebase/firestore"; 
+import { addDoc, doc} from "firebase/firestore"; 
 import { db, storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
-import { setEditPopup, setPostPopUp, setProjectsPhoto, setUploadProfilePhoto } from '@/redux/reducers/isOpen';
+import { setProjectsPhoto} from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
-import {  ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
+import {  ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
 import { getFirestore, updateDoc } from "firebase/firestore";
 import { useFetch } from '../useHooks/useFetch';
-import { set_Profile_Photo } from '@/redux/reducers/profille';
 import { collection, getDocs, query, where } from "firebase/firestore";
 const ProjectPopUp = () => {
     const PopUp = useSelector((state) => state.open);
-    const photoUrl=useSelector((state) => state.profile);
-
-    // console.log(profileUrl[0]&&profileUrl[0].projectPhoto);
 
 const dispatch=useDispatch();
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState([]);
+const [projectName,setProjectName]=useState();
+const [projectUrl,setProjectUrl]=useState();
+
 const {data}=useFetch('Users')
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
-// setUrls(profileUrl[0]&&profileUrl[0].projectPhoto)
-    // console.log(profileUrl[0]&&profileUrl[0].projectPhoto.length==1);
 
 const [docId,setDocId]=useState();
 
@@ -35,7 +32,6 @@ useEffect(()=>{
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     setDocId(doc.id, " => ", doc.data())
-    // console.log(doc.data());
   });}
 
   rendering();
@@ -53,13 +49,28 @@ const code=uuid();
   const imageRef = ref(storage,`images/${photo.name+code}`);
 
   uploadBytes(imageRef, photo).then((snapshot) => {
-    getDownloadURL(snapshot.ref).then((url) => {
+    getDownloadURL(snapshot.ref).then(async(url) => {
       
   const docRef = doc(db, "Users",docId);
-
+  // just for image 
   const data1 = {
-  projectPhoto:profileUrl[0]&&profileUrl[0].projectPhoto==null?[url]:[...profileUrl[0]&&profileUrl[0].projectPhoto,url],
-  };
+    projectPhoto:profileUrl[0]&&profileUrl[0].projectPhoto==null?[url]:[...profileUrl[0]&&profileUrl[0].projectPhoto,url],
+    };
+ 
+
+
+//   try{
+//     const res=await doc(collection(db,"Users", docId,"profilePhoto"), {
+//         // timeStamp:serverTimestamp(),
+//         test:'hello'         
+//   })
+  
+// }catch(err){
+// console.log(err)
+// }
+
+
+ 
   updateDoc(docRef, data1)
   .then(docRef => {
     alert("profile picture successfully changed");
@@ -72,16 +83,10 @@ const code=uuid();
   
 
   setPhoto('')
+  setProjectName('')
+  setProjectUrl('')
   dispatch(setProjectsPhoto(!PopUp.projectPhoto))
 }
-
-
-
-const handleImageChange = (e) => {
-  if (e.target.files[0]) {
-    setPhoto((prevImages) => [...prevImages, e.target.files[0]]);
-  }
-};
 
 
   return (
@@ -96,13 +101,27 @@ const handleImageChange = (e) => {
     <hr />
     <form onSubmit={submitHandler}>
     <div className='   flex flex-col items-center justify-center align-middle gap-5 w-[37vw] h-[45vh] rounded-md shadow-md px-20'> 
-      <div className='flex gap-3  items-center justify-center align-middle'>
-       Project image: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' />
+
+
+{/* project Name */}
+<div className='flex gap-3  items-center justify-center align-middle'>
+       Project Name: <input onChange={e=>setProjectName(e.target.value)} value={projectName} type="text"  className='border   max-w-full ' required/>
       </div>
+
+       {/* project Url */}
+ <div className='flex gap-3  items-center justify-center align-middle'>
+       Project Url: <input onChange={e=>setProjectUrl(e.target.value)}  type="text"  value={projectUrl} className='border   max-w-full ' />
+      </div>
+
+{/* project Image */}
+      <div className='flex gap-3  items-center justify-center align-middle'>
+       Project image: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' required/>
+      </div>
+
     
    
 {/* image */}
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo?'':'opacity-40'} `}  disabled={photo?false:true} >Post</button>
+<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo&&projectName?'':'opacity-40'} `}  disabled={photo&&projectName?false:true} >Post</button>
 
     </div>
 </form>

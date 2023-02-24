@@ -1,22 +1,17 @@
 import React from 'react'
 import ImageComponent from '../img/ImageComponent'
 import { love } from "../assets/svg/socialIcons/love";
-import Img from "../assets/imgs/postImg/WallpaperDog-17124685.jpg";
-import Img1 from "../assets/imgs/profileImg/pexels-spencer-selover-775358.jpg";
-
 import { view } from "../assets/svg/socialIcons/view";
 
-const SingleCard = ({src}) => {
+const SingleCard = ({src,data}) => {
+  console.log(data);
   return (
     <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
     <div className="transition-all duration-150 ease-in-out w-80 h-72 im">
       <ImageComponent
-    
         isContain={false}
         layout={true}
-        pathImage={src}
-        className={""}
-  
+        pathImage={src}  
       />
     </div>
   
@@ -24,8 +19,10 @@ const SingleCard = ({src}) => {
     <div className=" overflow-hidden imm info absolute bottom-0  rounded-2xl bg-transparent  bg-gradient-to-t from-[#000000]  w-full h-[0%]  opacity-0  text-white    flex justify-around  transition-all duration-100 ease-in-out pt-4">
       {/* name of prj */}
       <div className=" flex flex-col text-[1.2rem] justify-center align-middle items-start">
-        <p className="hover:underline ">Project Name</p>
-        <p className="hover:underline">rating</p>
+        {/* ProjectName */}
+        <p className=" ">{data&&data.projectName}</p>
+        {/* project Url */}
+        <a href={data&&data.projectUrl?data.projectUrl:'#'}  target='_blank' className="hover:underline">{data&&data.projectUrl?'Demo':'Please Add Url'}</a>
       </div>
       {/* svg */}
       <div className="flex items-center justify-center gap-3 align-middle">

@@ -1,5 +1,5 @@
 //   npm i swiper
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import im from '../assets/imgs/postImg/WallpaperDog-17124685.jpg'
