@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { addDoc, doc} from "firebase/firestore"; 
+import { addDoc, doc, onSnapshot, setDoc} from "firebase/firestore"; 
 import { db, storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
-import { setProjectsPhoto} from '@/redux/reducers/isOpen';
+import { setImageUrl, setProjectsPhoto} from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
 import {  ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -20,11 +20,18 @@ const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState([]);
 const [projectName,setProjectName]=useState();
 const [projectUrl,setProjectUrl]=useState();
+const [data1,setData1]=useState();
+const [subCollectionData,setSubCollection]=useState([])
 
-const {data}=useFetch('Users')
-const profileUrl= data&&data.filter(name=>name.id==user.uid)
+// const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
 const [docId,setDocId]=useState();
+
+// var {data,subCollectionData}=useFetch('Users')
+
+
+
+
 
 useEffect(()=>{
   const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));
@@ -38,54 +45,101 @@ useEffect(()=>{
 
 },[])
 
+console.log('project');
+
 // Your Firebase SDK Initialization code here
-const submitHandler =(e)=>{
+const submitHandler =async(e)=>{
   e.preventDefault();
   const db = getFirestore(); // initialize Firestore
 
 
 const code=uuid();
-// console.log(photo.name);
   const imageRef = ref(storage,`images/${photo.name+code}`);
-
+  dispatch(setImageUrl(!PopUp.imageUrl))
   uploadBytes(imageRef, photo).then((snapshot) => {
     getDownloadURL(snapshot.ref).then(async(url) => {
-      
-  const docRef = doc(db, "Users",docId);
-  // just for image 
-  const data1 = {
-    projectPhoto:profileUrl[0]&&profileUrl[0].projectPhoto==null?[url]:[...profileUrl[0]&&profileUrl[0].projectPhoto,url],
-    };
- 
 
 
-//   try{
-//     const res=await doc(collection(db,"Users", docId,"profilePhoto"), {
-//         // timeStamp:serverTimestamp(),
-//         test:'hello'         
-//   })
-  
-// }catch(err){
-// console.log(err)
-// }
+   // send data to firebase
+  const SecondDocId=uuid();
+      const docRef = doc(db, `Users/${docId}/moredetail`,SecondDocId);
+   await setDoc(docRef,{
+    projectPhoto:url,
+projectUrl:projectUrl?projectUrl:'',
+projectName:projectName,
+docIdd:user.uid
 
+   })
 
- 
-  updateDoc(docRef, data1)
-  .then(docRef => {
-    alert("profile picture successfully changed");
-  })
-  .catch(error => {
-    console.log(error);
-  })
+  //  its send image to firebase too but not inside subCollection
+
+  // const data1 = {
+  // projectPhoto:profileUrl[0]&&profileUrl[0].projectPhoto==null?[url]:[...profileUrl[0]&&profileUrl[0].projectPhoto,url],
+  // };
+  // updateDoc(docRef, data1)
+  // .then(docRef => {
+  //   alert("profile picture successfully changed");
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // })
     });
   });
   
+
+
+
+// kljlkjaslkdjl
+    
+// useEffect(() => {
+  
+//   const blogsRef = collection(db, 'Users');
+//   const querySnapshot = query(
+//     blogsRef);
+//   const unsubscribe = onSnapshot(querySnapshot, (snapshot) => {
+//     const data = snapshot.docs.map((doc) => ({
+//       docId: doc.id,
+//       ...doc.data(),
+//     }));
+//     data&&data.map(async sub=>{
+//       const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
+//       const workDetal= await getDocs(WorkQ)
+
+//       const collectionInfo=workDetal.docs.map(doc=>({
+//         ...doc.data(),docId:doc.id,
+       
+//       })
+//       )
+//       if(collectionInfo.length!=0){
+//         setSubCollection(collectionInfo);
+
+    
+//       } })
+
+
+
+// console.log('hi');
+
+
+//     setData1(data);
+//   });
+//   return () => unsubscribe();
+// }, []);
+
+
+
+
+
+
+
 
   setPhoto('')
   setProjectName('')
   setProjectUrl('')
   dispatch(setProjectsPhoto(!PopUp.projectPhoto))
+
+
+ 
 }
 
 
@@ -101,7 +155,13 @@ const code=uuid();
     <hr />
     <form onSubmit={submitHandler}>
     <div className='   flex flex-col items-center justify-center align-middle gap-5 w-[37vw] h-[45vh] rounded-md shadow-md px-20'> 
-
+{
+  subCollectionData&&subCollectionData.map(el=>(
+    <div>
+      {el.projectName}
+    </div>
+  ))
+}
 
 {/* project Name */}
 <div className='flex gap-3  items-center justify-center align-middle'>
