@@ -3,7 +3,7 @@ import ImageComponent from '../img/ImageComponent'
 import { love } from "../assets/svg/socialIcons/love";
 import { view } from "../assets/svg/socialIcons/view";
 
-const SingleCard = ({src,data}) => {
+const SingleCard = ({data}) => {
   console.log(data);
   return (
     <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
@@ -11,7 +11,8 @@ const SingleCard = ({src,data}) => {
       <ImageComponent
         isContain={false}
         layout={true}
-        pathImage={src}  
+        pathImage={data&&data.projectPhoto &&data.projectPhoto
+        }  
       />
     </div>
   

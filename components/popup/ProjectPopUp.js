@@ -20,19 +20,10 @@ const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState([]);
 const [projectName,setProjectName]=useState();
 const [projectUrl,setProjectUrl]=useState();
-const [data1,setData1]=useState();
-const [subCollectionData,setSubCollection]=useState([])
-
-// const profileUrl= data&&data.filter(name=>name.id==user.uid)
-
 const [docId,setDocId]=useState();
 
-// var {data,subCollectionData}=useFetch('Users')
-
-
-
-
-
+const {data}=useFetch('Users')
+const profileUrl= data&&data.filter(name=>name.id==user.uid)
 useEffect(()=>{
   const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));
 
@@ -45,20 +36,17 @@ useEffect(()=>{
 
 },[])
 
-console.log('project');
 
 // Your Firebase SDK Initialization code here
 const submitHandler =async(e)=>{
   e.preventDefault();
   const db = getFirestore(); // initialize Firestore
 
-
 const code=uuid();
   const imageRef = ref(storage,`images/${photo.name+code}`);
   dispatch(setImageUrl(!PopUp.imageUrl))
   uploadBytes(imageRef, photo).then((snapshot) => {
     getDownloadURL(snapshot.ref).then(async(url) => {
-
 
    // send data to firebase
   const SecondDocId=uuid();
@@ -67,79 +55,30 @@ const code=uuid();
     projectPhoto:url,
 projectUrl:projectUrl?projectUrl:'',
 projectName:projectName,
-docIdd:user.uid
+docIdd:docId
 
    })
 
   //  its send image to firebase too but not inside subCollection
+  const docRef1 = doc(db, "Users",docId);
 
-  // const data1 = {
-  // projectPhoto:profileUrl[0]&&profileUrl[0].projectPhoto==null?[url]:[...profileUrl[0]&&profileUrl[0].projectPhoto,url],
-  // };
-  // updateDoc(docRef, data1)
-  // .then(docRef => {
-  //   alert("profile picture successfully changed");
-  // })
-  // .catch(error => {
-  //   console.log(error);
-  // })
+  const data1 = {
+  projectPhoto:profileUrl[0]&&profileUrl[0].projectPhoto==null?[url]:[...profileUrl[0]&&profileUrl[0].projectPhoto,url],
+  };
+  updateDoc(docRef1, data1)
+  .then(docRef => {
+    alert("profile picture successfully changed");
+  })
+  .catch(error => {
+    console.log(error);
+  })
     });
   });
   
-
-
-
-// kljlkjaslkdjl
-    
-// useEffect(() => {
-  
-//   const blogsRef = collection(db, 'Users');
-//   const querySnapshot = query(
-//     blogsRef);
-//   const unsubscribe = onSnapshot(querySnapshot, (snapshot) => {
-//     const data = snapshot.docs.map((doc) => ({
-//       docId: doc.id,
-//       ...doc.data(),
-//     }));
-//     data&&data.map(async sub=>{
-//       const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
-//       const workDetal= await getDocs(WorkQ)
-
-//       const collectionInfo=workDetal.docs.map(doc=>({
-//         ...doc.data(),docId:doc.id,
-       
-//       })
-//       )
-//       if(collectionInfo.length!=0){
-//         setSubCollection(collectionInfo);
-
-    
-//       } })
-
-
-
-// console.log('hi');
-
-
-//     setData1(data);
-//   });
-//   return () => unsubscribe();
-// }, []);
-
-
-
-
-
-
-
-
   setPhoto('')
   setProjectName('')
   setProjectUrl('')
   dispatch(setProjectsPhoto(!PopUp.projectPhoto))
-
-
- 
 }
 
 
@@ -155,13 +94,6 @@ docIdd:user.uid
     <hr />
     <form onSubmit={submitHandler}>
     <div className='   flex flex-col items-center justify-center align-middle gap-5 w-[37vw] h-[45vh] rounded-md shadow-md px-20'> 
-{
-  subCollectionData&&subCollectionData.map(el=>(
-    <div>
-      {el.projectName}
-    </div>
-  ))
-}
 
 {/* project Name */}
 <div className='flex gap-3  items-center justify-center align-middle'>

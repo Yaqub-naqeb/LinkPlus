@@ -29,26 +29,21 @@ useEffect(() => {
       docId: doc.id,
       ...doc.data(),
     }));
-    // data&&data.map(async sub=>{
-    //   const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
-    //   const workDetal= await getDocs(WorkQ)
 
-    //   const collectionInfo=workDetal.docs.map(doc=>({
-    //     ...doc.data(),docId:doc.id,
+    data.map(async sub=>{
+      // if you want to render all user you can inter sub.docId
+      const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
+      const workDetal= await getDocs(WorkQ)
+      const collectionInfo=workDetal.docs.map(doc=>({
+        ...doc.data(),docId:doc.id,
        
-    //   })
-    //   )
-    //   if(collectionInfo.length!=0){
-    //     setSubCollection(collectionInfo);
+      })
+      )
+      if(collectionInfo.length!=0){
+        setSubCollection(collectionInfo);
 
     
-    //   } })
-
-
-
-console.log('hi');
-
-
+      } })
     setData(data);
     setIsPending(false);
   });
@@ -56,7 +51,7 @@ console.log('hi');
 }, []);
 
 
-  return { data, isPending, error };
+  return { data,subCollectionData, isPending, error };
 };
 
 
