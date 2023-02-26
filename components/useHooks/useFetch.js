@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 export const useFetch = (collectionName) => {
   const PopUp = useSelector((state) => state.open);
   const [isImageLoad,setIsImageLoad]=useState(false);
+  const [AllDocs,setAllDocs]=useState([]);
 
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
@@ -16,6 +17,14 @@ export const useFetch = (collectionName) => {
   const auth=getAuth();
   const {user}=useAuthState(auth)
   const [subCollectionData,setSubCollection]=useState([]);
+
+
+
+   
+
+
+
+
 
   
 useEffect(() => {
@@ -30,25 +39,73 @@ useEffect(() => {
       ...doc.data(),
     }));
 
-    data.map(async sub=>{
-      // if you want to render all user you can inter sub.docId
-      const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
-      const workDetal= await getDocs(WorkQ)
-      const collectionInfo=workDetal.docs.map(doc=>({
-        ...doc.data(),docId:doc.id,
-       
-      })
-      )
-      if(collectionInfo.length!=0){
-        setSubCollection(collectionInfo);
-
     
-      } })
+  // data.map(async sub=>{
+  //   // if you want to render all user you can inter sub.docId
+  //   const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
+  //   const workDetal= await getDocs(WorkQ)
+
+  //   const collectionInfo=workDetal.docs.map(doc=>({
+    
+  //     ...doc.data(),docId:doc.id,
+  //   })
+
+  //   )
+  //   console.log(collectionInfo);
+  //   // console.log(collectionInfo);
+  //   // if(collectionInfo.length!=0){
+  //     setSubCollection((prevDocs) => [...prevDocs, collectionInfo]);
+  //   // } 
+  // })
+
+
+
+
+
     setData(data);
     setIsPending(false);
   });
+
+  
   return () => unsubscribe();
 }, []);
+
+
+
+
+
+// useEffect(()=>{
+
+  // data.map(async sub=>{
+  //   // if you want to render all user you can inter sub.docId
+  //   const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
+  //   const workDetal= await getDocs(WorkQ)
+
+  //   const collectionInfo=workDetal.docs.map(doc=>({
+    
+  //     ...doc.data(),docId:doc.id,
+  //   })
+
+  //   )
+  //   console.log(collectionInfo);
+  //   // console.log(collectionInfo);
+  //   // if(collectionInfo.length!=0){
+  //     setSubCollection((prevDocs) => [...prevDocs, collectionInfo]);
+  //   // } 
+  // })
+//     // setAllDocs
+//     setAllDocs((prevDocs) => [...prevDocs, subCollectionData]);
+//     console.log(subCollectionData);
+//     console.log(AllDocs);
+
+// },[])
+
+
+
+
+
+
+
 
 
   return { data,subCollectionData, isPending, error };
