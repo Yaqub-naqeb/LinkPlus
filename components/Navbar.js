@@ -8,7 +8,7 @@ import { close } from "./assets/svg/rigthNavbarIcons/close";
 import { search } from "./assets/svg/rigthNavbarIcons/search";
 import { setting } from "./assets/svg/rigthNavbarIcons/setting";
 import { notfication } from "./assets/svg/rigthNavbarIcons/notfication";
-import { setIsOpen } from "@/redux/reducers/isOpen";
+import { setIsOpen, setIsProjectOpen } from "@/redux/reducers/isOpen";
 import { useSelector, useDispatch } from "react-redux";
 import { darkSearch } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSearch";
 import { darkSetting } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSetting";
@@ -25,10 +25,10 @@ const Navbar = () => {
 
 
   const pages=[
-    {name:'Home',href:'/'},
-    {name:'Projects',href:'/projects'},
-    {name:'Tasks',href:'/tasks'},
-    {name:'Designers',href:'/designers'}
+    {name:'Home',href:'/',isProject:false},
+    {name:'Projects',href:'/projects',isProject:true},
+    {name:'Tasks',href:'/tasks',isProject:false},
+    {name:'Designers',href:'/designers',isProject:false}
   ]
 
 
@@ -44,6 +44,7 @@ const signOutHandler=()=>{
     // An error happened.
   });
 }
+
 
   return (
     

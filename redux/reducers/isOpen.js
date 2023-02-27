@@ -16,6 +16,7 @@ const isOpenSlice=createSlice({
         skillsEdit:false,
         projectPhoto:false,
         imageUrl:false,
+    
     },
     // to update the initial value
     reducers:{
@@ -58,7 +59,7 @@ const isOpenSlice=createSlice({
         setImageUrl(state,action){
             state.imageUrl=!state.imageUrl
         }
-
+     
         
     }
 

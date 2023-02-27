@@ -17,6 +17,8 @@ export const useFetch = (collectionName) => {
   const {user}=useAuthState(auth)
   const [subCollectionData,setSubCollection]=useState([]);
 
+  const [allDoc,setAllDoc]=useState([]);
+
   
 useEffect(() => {
   
@@ -29,29 +31,13 @@ useEffect(() => {
       docId: doc.id,
       ...doc.data(),
     }));
-
-    data.map(async sub=>{
-      // if you want to render all user you can inter sub.docId
-      const WorkQ=query(collection(db,`Users/${sub.docId}/moredetail`))
-      const workDetal= await getDocs(WorkQ)
-      const collectionInfo=workDetal.docs.map(doc=>({
-        ...doc.data(),docId:doc.id,
-       
-      })
-      )
-      if(collectionInfo.length!=0){
-        setSubCollection(collectionInfo);
-
-    
-      } })
     setData(data);
     setIsPending(false);
   });
   return () => unsubscribe();
 }, []);
 
-
-  return { data,subCollectionData, isPending, error };
+  return { data, isPending, error };
 };
 
 

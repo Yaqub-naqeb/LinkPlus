@@ -4,7 +4,6 @@ import { love } from "../assets/svg/socialIcons/love";
 import { view } from "../assets/svg/socialIcons/view";
 
 const SingleCard = ({data}) => {
-  console.log(data);
   return (
     <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl imm ">
     <div className="transition-all duration-150 ease-in-out w-80 h-72 im">

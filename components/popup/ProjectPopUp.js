@@ -15,6 +15,7 @@ const ProjectPopUp = () => {
     const PopUp = useSelector((state) => state.open);
 
 const dispatch=useDispatch();
+
 const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [photo,setPhoto]=useState([]);

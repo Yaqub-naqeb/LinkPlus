@@ -6,6 +6,7 @@ import  im from '../assets/imgs/postImg/WallpaperDog-17124685.jpg'
 import Slider from "react-slick";
 import Image from 'next/image';
 const Projects = () => {
+
   var settings = {
     dots: true,
     infinite: true,
