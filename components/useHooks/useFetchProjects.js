@@ -9,16 +9,15 @@ export const useFetchProjects = (collectionName) => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [subCollectionData,setSubCollection]=useState([]);
-
-
-  const [allDoc,setAllDoc]=useState([]);
   
 useEffect(() => {
   
   setIsPending(true);
   const blogsRef = collection(db, collectionName);
   const querySnapshot = query(
-    blogsRef);
+    blogsRef,
+    orderBy('timeStamp','desc')
+    );
   const unsubscribe = onSnapshot(querySnapshot, (snapshot) => {
     const data = snapshot.docs.map((doc) => ({
       docId: doc.id,

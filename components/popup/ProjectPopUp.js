@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { addDoc, doc, onSnapshot, setDoc} from "firebase/firestore"; 
+import { addDoc, doc, onSnapshot, serverTimestamp, setDoc} from "firebase/firestore"; 
 import { db, storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
 import { setImageUrl, setProjectsPhoto} from '@/redux/reducers/isOpen';
@@ -56,7 +56,8 @@ const code=uuid();
     projectPhoto:url,
 projectUrl:projectUrl?projectUrl:'',
 projectName:projectName,
-docIdd:docId
+docIdd:docId,
+timeStamp:serverTimestamp(),
 
    })
 
