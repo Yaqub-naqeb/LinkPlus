@@ -1,6 +1,6 @@
 
 //  setprofile the name of new branch
-import {  doc, getFirestore,updateDoc } from "firebase/firestore";
+import {  doc, getFirestore,serverTimestamp,setDoc,updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { love } from '../assets/svg/socialIcons/love'
@@ -12,25 +12,52 @@ import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 import Link from "next/link";
 import ImageComponent from "../img/ImageComponent";
 import ImageComponent2 from "../img/ImageComponent2";
+import { uuid } from "uuidv4";
+import { useFetch } from "../useHooks/useFetch";
 
-const Posts = ({data,src,name}) => {
+const Posts = ({postData,src,name}) => {
+
+    console.log(postData);
+const {data}=useFetch('Posts');
+
+
+const db = getFirestore(); // initialize Firestore
+
+
+console.log(data);
 
     const like = useSelector((state) => state.open);
 
- 
-const likedHandler=()=>{
-// update data
-const db = getFirestore(); // initialize Firestore
+const likedHandler=async()=>{
 
-const docRef = doc(db, "Posts", data.docId);
+   // send postData to firebase
+   const SecondDocId=uuid();
+   const docReff = doc(db, `Posts/${postData.docId}/LikeDetail`,SecondDocId);
+await setDoc(docReff,{
+    likes: postData.isLiked?postData.likes-1:postData.likes+1,
+    isLiked:!postData.isLiked,
+docIdd:postData.docId,
+timeStamp:serverTimestamp(),
 
-const data1 = {
- likes: data.isLiked?data.likes-1:data.likes+1,
- isLiked:!data.isLiked
+})
+
+
+
+
+
+
+// update postData
+// const db = getFirestore(); // initialize Firestore
+
+const docRef = doc(db, "Posts", postData.docId);
+
+const postData1 = {
+ likes: postData.isLiked?postData.likes-1:postData.likes+1,
+ isLiked:!postData.isLiked
 
 };
 // 
-updateDoc(docRef, data1)
+updateDoc(docRef, postData1)
 .then(docRef => {
     // "like is updated";
 })
@@ -51,7 +78,7 @@ updateDoc(docRef, data1)
         
            {/* profileeeeee */}
            <div className="cursor-pointer relative"><Link href={"/profile"}>
-              {data&&data.profilePhoto?<Image alt="Image" src={`${data.profilePhoto&&data.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
+              {postData&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto&&postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
               </Link>
               </div>
    
@@ -62,7 +89,7 @@ updateDoc(docRef, data1)
 </div>
 {/* the content */}
 <div className='px-8 py-5'>
-    <p>{data.text}</p>
+    <p>{postData.text}</p>
 </div>
 {/*  image */}
 <div className="relative w-[full] h-[30rem]">
@@ -78,12 +105,12 @@ updateDoc(docRef, data1)
 <div className='flex justify-between mx-5 py-5 items-center '>
   
 <div>
-   {data&&data.likes&&data.likes} Likes
+   {postData&&postData.likes&&postData.likes} Likes
 </div>
 
-{/* data.isLiked */}
+{/* postData.isLiked */}
    <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={likedHandler} >
-    {data.isLiked?loveRed:love}</div>
+    {postData.isLiked?loveRed:love}</div>
     <div className="cursor-pointer">{comment}</div>
     <div className="cursor-pointer">{send}</div>
     </div>
