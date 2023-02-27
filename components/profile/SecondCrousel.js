@@ -1,12 +1,8 @@
 //   npm i swiper
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import required modules
 import { Mousewheel, Pagination } from "swiper";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,8 +16,6 @@ const SecondCrousel = () => {
 const dispatch=useDispatch();
 
 const {data}=useFetch('Users');
-
-
 const auth=getAuth();
 const [user]=useAuthState(auth)
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
