@@ -15,11 +15,11 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useLikeDetail } from "../useHooks/useLikeDetail";
 import { setIsLikeByUser } from "@/redux/reducers/isOpen";
+import { set_user_uid } from "@/redux/reducers/profille";
 
 const Posts = ({postData,src,name}) => {
-
+    console.log(postData);
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
-console.log(subCollectionLikeData);
 
 // console.log(subCollectionLikeData.isLiked);
 
@@ -28,6 +28,8 @@ const [user]=useAuthState(auth);
 
 
     const like = useSelector((state) => state.open);
+    const prof = useSelector((state) => state.profile);
+
     const dispatch=useDispatch();
 
 
@@ -92,7 +94,19 @@ updateDoc(docRef, postData1)
 })
 }
 
-  
+// profileHandler
+const profileHandler=()=>{
+
+    dispatch(set_user_uid(postData.userUid))
+    console.log(prof.user_uid);
+
+
+}  
+
+
+
+
+
   return (
     <div className={`shadow-md ${like.dark?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'}  h-full w-[45%] place-items-center rounded-2xl mx-3`}>
       
@@ -103,15 +117,18 @@ updateDoc(docRef, postData1)
     <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
         
            {/* profileeeeee */}
-           <div className="cursor-pointer relative"><Link href={"/profile"}>
+           <Link href={"/publicProfile"}>
+             <div className="cursor-pointer relative" onClick={profileHandler}>
               {postData&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto&&postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
-              </Link>
               </div>
+              </Link>
    
         
         
-        </div>  <h1 className='font-bold cursor-pointer'>{name}</h1></div>
+        </div>  <h1 className='font-bold cursor-pointer'>{name}</h1> </div>
+
     <h1 className='font-bold cursor-pointer'>...</h1>
+    
 </div>
 {/* the content */}
 <div className='px-8 py-5'>
