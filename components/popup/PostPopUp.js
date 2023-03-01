@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { addDoc, collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore"; 
 import { db,storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
-import { setPostPopUp } from '@/redux/reducers/isOpen';
+import { setIsLikeByUser, setPostPopUp } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
 import {  ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -25,7 +25,14 @@ const [file,setFile]=useState(null);
 // const [data,setData]=useState('');
 
 const {data}=useFetch('Users');
+
+
+
+
+
+
   const current=data&&data.filter(dt=>dt.id==user.uid)
+  console.log(current);
 
   
 const addData = async (
@@ -41,7 +48,9 @@ const addData = async (
     timeStamp: serverTimestamp(),
     likes:0,
     isLiked:false,
-    profilePhoto:current&&current[0]&&current[0].profilePhoto
+    isNew:true,
+    userUid:user.uid,
+    profilePhoto:current&&current[0]&&current[0].profilePhoto?current[0].profilePhoto:''
 
   });
   // console.log('Document written with ID: ', docRef.id);
@@ -72,6 +81,8 @@ const addData = async (
           user && user.uid,
         
         );
+dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
+
         dispatch(setPostPopUp(!PopUp.postPopUp))
 
       
@@ -101,7 +112,7 @@ const addData = async (
 
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className=' pl-[10%] outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:fullname.userName}?`}/>
 {/* image */}
-<input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' />
+<input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' required/>
 
 
 <button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true}>Post</button>

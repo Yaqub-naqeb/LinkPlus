@@ -1,62 +1,88 @@
 
 //  setprofile the name of new branch
 import {  doc, getFirestore,serverTimestamp,setDoc,updateDoc } from "firebase/firestore";
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
 import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { profile } from '../assets/svg/rigthNavbarIcons/profile'
 import Link from "next/link";
-import ImageComponent from "../img/ImageComponent";
 import ImageComponent2 from "../img/ImageComponent2";
-import { uuid } from "uuidv4";
-import { useFetch } from "../useHooks/useFetch";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useLikeDetail } from "../useHooks/useLikeDetail";
+import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 
 const Posts = ({postData,src,name}) => {
 
-    console.log(postData);
-const {data}=useFetch('Posts');
+const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
+console.log(subCollectionLikeData);
 
+// console.log(subCollectionLikeData.isLiked);
 
-const db = getFirestore(); // initialize Firestore
+const auth=getAuth()
+const [user]=useAuthState(auth);
 
-
-console.log(data);
 
     const like = useSelector((state) => state.open);
+    const dispatch=useDispatch();
+
+
+    const db = getFirestore(); // initialize Firestore
+
+
 
 const likedHandler=async()=>{
-
-   // send postData to firebase
-   const SecondDocId=uuid();
-   const docReff = doc(db, `Posts/${postData.docId}/LikeDetail`,SecondDocId);
-await setDoc(docReff,{
-    likes: postData.isLiked?postData.likes-1:postData.likes+1,
-    isLiked:!postData.isLiked,
-docIdd:postData.docId,
-timeStamp:serverTimestamp(),
-
-})
+    const dbb = getFirestore(); // initialize Firestore
 
 
+    const docReff = doc(dbb, `Posts/${postData.docId}/LikeDetail`,user.uid);
+    // if it is new
+    if(postData.isNew){
+        await setDoc(docReff,{
+            likes: 1,
+            isLiked:true,
+            userId:user.uid,
+        timeStamp:serverTimestamp(),}) 
+        // update the isNew
+        
+  const docRef = doc(dbb, "Posts", postData.docId);
+  
+  const data1 = {
+    isNew:false
+  };
+  
+  updateDoc(docRef, data1)
+  .then(docRef => {
+      console.log("A New Document Field has been added to an existing document");
+  })
+  .catch(error => {
+      console.log(error);
+  })   
 
+    }else{
 
+        await setDoc(docReff,{
+            isLiked:subCollectionLikeData.isLiked?false:true,   
+            timeStamp:serverTimestamp(),})
+    }
+ 
+    
+    dispatch(setIsLikeByUser(!like.isLikeByUser))
 
 
 // update postData
-// const db = getFirestore(); // initialize Firestore
+const db = getFirestore(); // initialize Firestore
 
 const docRef = doc(db, "Posts", postData.docId);
 
 const postData1 = {
- likes: postData.isLiked?postData.likes-1:postData.likes+1,
- isLiked:!postData.isLiked
-
+likes: subCollectionLikeData&&subCollectionLikeData.isLiked?postData.likes-1:postData.likes+1,
 };
-// 
+
 updateDoc(docRef, postData1)
 .then(docRef => {
     // "like is updated";
@@ -105,12 +131,13 @@ updateDoc(docRef, postData1)
 <div className='flex justify-between mx-5 py-5 items-center '>
   
 <div>
-   {postData&&postData.likes&&postData.likes} Likes
+   {postData&&postData.likes} Likes
 </div>
-
-{/* postData.isLiked */}
+{/* Like comment Send */}
    <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={likedHandler} >
-    {postData.isLiked?loveRed:love}</div>
+
+    {subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
+
     <div className="cursor-pointer">{comment}</div>
     <div className="cursor-pointer">{send}</div>
     </div>
