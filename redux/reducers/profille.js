@@ -11,9 +11,7 @@ const profileSlice=createSlice({
         exprince:'',
         idd:'',
         update:'',
-        profilePhoto:'',
-        
-
+        profilePhoto:'',    
     },
     // to update the initial value
     reducers:{
