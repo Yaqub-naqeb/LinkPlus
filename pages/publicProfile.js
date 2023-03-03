@@ -10,6 +10,9 @@ import SecondSingleCard from '../components/project/SecondSingleCard'
 
 const publicProfile = () => {
   const {subCollectionData}=useFetchProjects('Users');
+  console.log(subCollectionData);
+  
+
   const like = useSelector((state) => state.open);
   console.log(like.dark);
 
@@ -26,6 +29,7 @@ const publicProfile = () => {
   
     rendering();
   },[])
+
   console.log(dt);
   return (
    <div className='min-h-screen '>
