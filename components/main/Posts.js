@@ -18,7 +18,7 @@ import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 import { set_user_uid } from "@/redux/reducers/profille";
 
 const Posts = ({postData,src,name}) => {
-    console.log(postData);
+    // console.log(postData);
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
 
 // console.log(subCollectionLikeData.isLiked);
@@ -119,7 +119,7 @@ const profileHandler=()=>{
            {/* profileeeeee */}
            <Link href={"/publicProfile"}>
              <div className="cursor-pointer relative" onClick={profileHandler}>
-              {postData&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto&&postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
+              {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
               </div>
               </Link>
    
@@ -136,12 +136,11 @@ const profileHandler=()=>{
 </div>
 {/*  image */}
 <div className="relative w-[full] h-[30rem]">
-<ImageComponent2 
+{src&&<ImageComponent2 
         isContain={false}
         layout={true}
         pathImage={`${src}`}
-        className={""}
-      />
+      />}
 </div>
 
 {/* likes */}

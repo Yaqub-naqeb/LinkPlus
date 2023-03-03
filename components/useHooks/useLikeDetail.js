@@ -34,7 +34,7 @@ useEffect(() => {
     setIsPending(false);
 // first user second
 data.map( async sub=>{ 
-  console.log(sub);
+  // console.log(sub);
   const WorkQ=query(collection(db,`Posts/${sub.docId}/LikeDetail`))
 const workDetal= await getDocs(WorkQ)
 const collectionInfo=workDetal.docs.map(doc=>({

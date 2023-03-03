@@ -22,6 +22,7 @@ const auth=getAuth();
 const [user,loading]=useAuthState(auth)
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
+const [postLoad,setPostLoad]=useState(true);
 // const [data,setData]=useState('');
 
 const {data}=useFetch('Users');
@@ -63,19 +64,18 @@ const addData = async (
 
     const submitHandler=async(e)=>{
         e.preventDefault()
+        setPostLoad(false);
 
     const code=uuid();
 
     const imageRef = ref(storage,`images/${file.name+code}`);
 
 
-    uploadBytes(imageRef, file).then((snapshot) => {
+    await uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then(async(url) => {
         dispatch(set_Update(url))
-       
-
         // add them to fire base
-        addData(
+     addData(
           url,
           text,
           user && user.uid,
@@ -88,6 +88,12 @@ dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
       
       });
     });
+// like.isLikeByUser
+// dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
+
+setTimeout(() => {
+  setPostLoad(true)
+}, 5000);
 
   }
 
@@ -115,7 +121,7 @@ dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 <input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' required/>
 
 
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text?'':'opacity-40'} `} disabled={text?false:true}>Post</button>
+<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text&&postLoad?'':'opacity-40'} `} disabled={text&&postLoad?false:true}>Post</button>
 
     </div>
 </form>

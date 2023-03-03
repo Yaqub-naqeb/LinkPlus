@@ -40,8 +40,9 @@ function ImageCompontent2({
           src={pathImage}
           width={width}
           height={height}
-          objectFit={isContain ? 'contain' : 'cover'}
-          layout={'fill'}
+          object-fit={isContain ? 'contain' : 'cover'}
+          // layout={'fill'}
+          fill
           unoptimized={true}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
