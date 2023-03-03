@@ -71,7 +71,7 @@ const addData = async (
     const imageRef = ref(storage,`images/${file.name+code}`);
 
 
-    await uploadBytes(imageRef, file).then((snapshot) => {
+    uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then(async(url) => {
         dispatch(set_Update(url))
         // add them to fire base

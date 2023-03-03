@@ -40,7 +40,7 @@ function ImageCompontent2({
           src={pathImage}
           width={width}
           height={height}
-          object-fit={isContain ? 'contain' : 'cover'}
+          objectFit={isContain ? 'contain' : 'cover'}
           // layout={'fill'}
           fill
           unoptimized={true}

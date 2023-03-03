@@ -50,7 +50,7 @@ useEffect(()=>{
     <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen '>
 <General/>
 <NewPost/>
-{imageList&&data&&data.map((post,index)=><Posts key={index} name={post.name} postData={post} src={imageList&&imageList.filter(img =>img.includes(post.src))} />
+{data&&data.map((post,index)=><Posts key={index} name={post.name} postData={post} src={imageList&&imageList&&imageList.filter(img =>img.includes(post.src))} />
 )}
 
     </div>
