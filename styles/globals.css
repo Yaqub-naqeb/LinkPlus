@@ -225,6 +225,7 @@
   transform: scale(1.05)
  }
 
+
  *::selection{
   background: #0081B4 !important;
   color: #FFFBF5;
