@@ -32,7 +32,7 @@ useEffect(()=>{
       })
   })
 },[up.update])
-
+//up.update
 
 useEffect(()=>{
   const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));

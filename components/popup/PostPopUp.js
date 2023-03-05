@@ -79,11 +79,10 @@ const addData = async (
           url,
           text,
           user && user.uid,
-        
         );
 dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
-
-        dispatch(setPostPopUp(!PopUp.postPopUp))
+dispatch(setPostPopUp(!PopUp.postPopUp))
+// dispatch(set_Update(!PopUp.update))
 
       
       });

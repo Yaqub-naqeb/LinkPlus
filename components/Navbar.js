@@ -58,7 +58,7 @@ const signOutHandler=()=>{
           <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem]">
             {isOpen.dark? darkSvg:svg}
             <div
-              className={`flex flex-col  align-middle items-center ${poppins.className}`}
+              className={`flex flex-col   align-middle items-center ${poppins.className}`}
             >
               <p> Designers </p>
               <p>commiunity</p>
@@ -88,7 +88,11 @@ const signOutHandler=()=>{
 
             <div>{isOpen.dark?darkNotfication:notfication}</div>
             <div>{isOpen.dark?darkSetting:setting}</div>
-<SmallImage/>
+            {/* max-w-0 */}
+            <div>
+            <SmallImage/>
+
+            </div>
             {user&&<div className="cursor-pointer " onClick={signOutHandler}><Link href={"/form"}  >SignOut</Link></div>}
           </div>
         </div>
