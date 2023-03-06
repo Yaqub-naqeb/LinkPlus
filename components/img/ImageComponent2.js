@@ -37,10 +37,13 @@ function ImageCompontent2({
         alt='image'
         className='rounded-none '
           loader={myLoader}
-          src={pathImage}
+          src={pathImage&&pathImage}
           width={width}
           height={height}
-          objectFit={isContain ? 'contain' : 'cover'}
+          style={{objectFit:isContain ? 'contain' : 'cover'}}
+
+          // object-fit="cover"
+          // object-fit={isContain ? 'contain' : 'cover'}
           // layout={'fill'}
           fill
           unoptimized={true}
@@ -59,7 +62,7 @@ function ImageCompontent2({
         className='rounded-none'
           loader={myLoader}
           src={pathImage}
-          objectFit="contain"
+          object-fit="contain"
           width={width}
           height={height}
           unoptimized={true}

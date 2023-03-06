@@ -1,6 +1,7 @@
 import { db } from "@/firebase/FirebaseApp";
 import { collection, query,onSnapshot, orderBy, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const useFetch = (collectionName) => {
   const [data, setData] = useState([]);
@@ -8,6 +9,7 @@ export const useFetch = (collectionName) => {
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState('Newest');
 
+  const up=useSelector((state) => state.profile);
 
   
 useEffect(() => {
@@ -30,7 +32,7 @@ useEffect(() => {
   });
   console.log(data);
   return () => unsubscribe();
-}, []);
+}, [up.update]);
 
   return { data, isPending, error };
 };
