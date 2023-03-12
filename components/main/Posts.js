@@ -1,7 +1,7 @@
 
 //  setprofile the name of new branch
 import {  doc, getFirestore,serverTimestamp,setDoc,updateDoc } from "firebase/firestore";
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { love } from '../assets/svg/socialIcons/love'
 import { loveRed } from '../assets/svg/socialIcons/loveRed'
@@ -20,12 +20,10 @@ import { set_user_uid } from "@/redux/reducers/profille";
 const Posts = ({postData,src,name}) => {
     console.log(postData.isNew);
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
-console.log(subCollectionLikeData);
-
-// console.log(subCollectionLikeData.isLiked);
-
 const auth=getAuth()
 const [user]=useAuthState(auth);
+const [active, setActive] = useState(true);
+
 
 
     const like = useSelector((state) => state.open);
@@ -39,12 +37,15 @@ const [user]=useAuthState(auth);
 
 
 const likedHandler=async()=>{
+    setActive(false);
+
     const dbb = getFirestore(); // initialize Firestore
 
 
     const docReff = doc(dbb, `Posts/${postData.docId}/LikeDetail`,user.uid);
     // if it is new
     if(postData.isNew){
+
         await setDoc(docReff,{
             likes: 1,
             isLiked:true,
@@ -66,16 +67,17 @@ const likedHandler=async()=>{
       console.log(error);
   })   
 
+  dispatch(setIsLikeByUser(!like.isLikeByUser))
+
+
     }else{
 
         await setDoc(docReff,{
             isLiked:subCollectionLikeData.isLiked?false:true,   
             timeStamp:serverTimestamp(),})
-    }
- 
-    
-    dispatch(setIsLikeByUser(!like.isLikeByUser))
+            dispatch(setIsLikeByUser(!like.isLikeByUser))
 
+    }
 
 // update postData
 const db = getFirestore(); // initialize Firestore
@@ -83,7 +85,7 @@ const db = getFirestore(); // initialize Firestore
 const docRef = doc(db, "Posts", postData.docId);
 
 const postData1 = {
-likes: subCollectionLikeData&&subCollectionLikeData.isLiked?postData.likes+1:postData.likes-1,
+likes: postData.isNew?postData.isLiked?postData.likes-1:postData.likes+1:subCollectionLikeData&&subCollectionLikeData.isLiked?postData.likes-1:postData.likes+1,
 };
 
 updateDoc(docRef, postData1)
@@ -93,6 +95,13 @@ updateDoc(docRef, postData1)
 .catch(error => {
     // you can print the error
 })
+
+
+setTimeout(() => {
+    setActive(true);
+
+}, 800);
+
 }
 
 // profileHandler
@@ -152,9 +161,10 @@ const profileHandler=()=>{
    {postData&&postData.likes} Likes
 </div>
 {/* Like comment Send */}
-   <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={likedHandler} >
+   <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={active ? likedHandler : null} >
 
     {postData.isNew?love: subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
+    {/* { subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div> */}
 
     <div className="cursor-pointer">{comment}</div>
     <div className="cursor-pointer">{send}</div>
