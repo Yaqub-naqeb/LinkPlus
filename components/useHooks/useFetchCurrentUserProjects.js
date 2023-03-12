@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
-export const useFetchCurrentUserProjects = (collectionName) => {
+export const useFetchCurrentUserProjects = (collectionName,publicUserId) => {
+  console.log(publicUserId);
 
     const auth=getAuth();
     const [user,loading]=useAuthState(auth)
@@ -40,7 +41,7 @@ data.map( async sub=>{
     const collectionInfo=workDetal.docs.map(doc=>({
     ...doc.data(),docId:doc.id,}))
     // first Collection moredetail
-if(user.uid==sub.id){
+if(publicUserId==sub.id){
   setSubCollection((prev)=>[...prev,collectionInfo]); 
 }
 

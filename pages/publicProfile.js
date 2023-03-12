@@ -11,8 +11,7 @@ import SecondSingleCard from '../components/project/SecondSingleCard'
 
 const publicProfile = () => {
 
-  const {subCollectionData}=useFetchCurrentUserProjects('Users');
-  console.log(subCollectionData);
+
   
 
   const like = useSelector((state) => state.open);
@@ -22,6 +21,14 @@ const publicProfile = () => {
   const auth=getAuth();
   const [user]=useAuthState(auth)
   const prof = useSelector((state) => state.profile);
+  console.log(prof.user_uid);
+
+  const {subCollectionData}=useFetchCurrentUserProjects('Users',prof.user_uid);
+  console.log(subCollectionData);
+  
+
+
+
   useEffect(()=>{
     const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", prof.user_uid));
     const querySnapshot = await getDocs(q);
@@ -31,6 +38,7 @@ const publicProfile = () => {
   
     rendering();
   },[])
+
 
   console.log(dt);
   return (
@@ -55,7 +63,6 @@ const publicProfile = () => {
     <div className="relative grid grid-cols-3 gap-8 rounded-2xl px-[5rem] py-[8rem] ">
 {subCollectionData&&subCollectionData.map((user)=>(
   user&&user.map((subData,index)=><SecondSingleCard key={index} data={subData} />)))}
-
     </div>
    </div>
   )
