@@ -1,3 +1,4 @@
+import { useFetchCurrentUserProjects } from '@/components/useHooks/useFetchCurrentUserProjects';
 import { useFetchProjects } from '@/components/useHooks/useFetchProjects';
 import { db } from '@/firebase/FirebaseApp';
 import { getAuth } from 'firebase/auth';
@@ -9,7 +10,8 @@ import { useSelector } from 'react-redux';
 import SecondSingleCard from '../components/project/SecondSingleCard'
 
 const publicProfile = () => {
-  const {subCollectionData}=useFetchProjects('Users');
+
+  const {subCollectionData}=useFetchCurrentUserProjects('Users');
   console.log(subCollectionData);
   
 
