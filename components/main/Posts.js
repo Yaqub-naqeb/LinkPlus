@@ -117,15 +117,16 @@ const profileHandler=()=>{
     <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
         
            {/* profileeeeee */}
-           <Link href={"/publicProfile"}>
+           <Link href={"/publicProfile"} className={'flex items-center gap-1'} >
              <div className="cursor-pointer relative" onClick={profileHandler}>
               {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
               </div>
+              <h1 className='font-bold cursor-pointer'>{name}</h1>
               </Link>
    
         
         
-        </div>  <h1 className='font-bold cursor-pointer'>{name}</h1> </div>
+        </div>   </div>
 
     <h1 className='font-bold cursor-pointer'>...</h1>
     
