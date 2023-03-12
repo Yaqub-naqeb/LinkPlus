@@ -17,7 +17,7 @@ import { useLikeDetail } from "../useHooks/useLikeDetail";
 import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 import { set_user_uid } from "@/redux/reducers/profille";
 
-const Posts = ({postData,src,name}) => {
+const Posts = ({postData,src,text}) => {
     console.log(postData.isNew);
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
 const auth=getAuth()
@@ -131,7 +131,7 @@ const profileHandler=()=>{
              <div className="cursor-pointer relative" >
               {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
               </div>
-              <h1 className='font-bold cursor-pointer'>{name}</h1>
+              <h1 className='font-bold cursor-pointer'>{postData.name}</h1>
               </Link>
    
         
@@ -143,7 +143,7 @@ const profileHandler=()=>{
 </div>
 {/* the content */}
 <div className='px-8 py-5'>
-    <p>{postData.text}</p>
+    <p>{text}</p>
 </div>
 {/*  image */}
 <div className="relative w-[full] h-[30rem]">

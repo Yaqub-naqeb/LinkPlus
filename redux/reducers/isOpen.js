@@ -16,7 +16,8 @@ const isOpenSlice=createSlice({
         skillsEdit:false,
         projectPhoto:false,
         imageUrl:false,
-        isLikeByUser:false
+        isLikeByUser:false,
+        isImagePosted:true
     
     },
     // to update the initial value
@@ -63,6 +64,9 @@ const isOpenSlice=createSlice({
         ,
         setIsLikeByUser(state,action){
             state.isLikeByUser=!state.isLikeByUser
+        },
+        setIsImagePosted(state,action){
+            state.isImagePosted=!state.isImagePosted
         }
      
         
@@ -71,5 +75,5 @@ const isOpenSlice=createSlice({
 
 
 })
-export const {setIsOpen,setLike,setDarkMode,setPostPopUp,setProjectsPhoto, setSwe,setEditPopup,setUploadProfilePhoto,setLogin,setSkillsEdit,setImageUrl,setIsLikeByUser}=isOpenSlice.actions
+export const {setIsOpen,setLike,setDarkMode,setPostPopUp,setProjectsPhoto, setSwe,setEditPopup,setUploadProfilePhoto,setLogin,setSkillsEdit,setImageUrl,setIsLikeByUser,setIsImagePosted}=isOpenSlice.actions
 export default isOpenSlice.reducer

@@ -4,6 +4,7 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useFetch } from '../useHooks/useFetch';
 import { profile2 } from "../assets/svg/socialIcons/profile2";
+import defaultImage from '../assets/imgs/profileImg/user.png'
 import Image from 'next/image';
 
 const SmallImage = () => {
@@ -17,7 +18,7 @@ const SmallImage = () => {
     <div>
          {/* profileeeeee */}
          <div className="cursor-pointer "><Link href={"/profile"}>
-              {current&&current[0]&&current[0].profilePhoto?<Image src={current[0].profilePhoto} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile2}
+              {current&&current[0]&&current[0].profilePhoto?<Image src={current[0].profilePhoto} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={defaultImage} className={`w-10 h-10 object-cover rounded-full `}/>}
               </Link>
               </div>
     </div>

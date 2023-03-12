@@ -1,12 +1,14 @@
 import { db } from "@/firebase/FirebaseApp";
 import { collection, query,onSnapshot, orderBy, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const useFetch = (collectionName) => {
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState('Newest');
+  const PopUp = useSelector((state) => state.open);
 
 
   
@@ -30,7 +32,7 @@ useEffect(() => {
   });
   console.log(data);
   return () => unsubscribe();
-}, []);
+}, [PopUp.postPopUp]);
 
   return { data, isPending, error };
 };

@@ -13,25 +13,28 @@ import { set_userName } from '@/redux/reducers/profille'
 
 
 const Homee = () => {
-  const up=useSelector((state) => state.profile);
+  // const up=useSelector((state) => state.profile);
+  const op=useSelector((state) => state.open);
+
   const dispatch=useDispatch();
   const [imageList,setImageList]=useState([]);
   const imageListRef=ref(storage,'images/')
   const auth=getAuth()
   const [user]=useAuthState(auth);
   const {data}=useFetch('Posts');
+  console.log(data[0]);
 
 // to get all image
-useEffect(()=>{
-  listAll(imageListRef).then(response=>{
-      response.items.forEach(item=>{
-          getDownloadURL(item).then(url=>{
-              setImageList(prev=>[...prev,url])
-              // setUrl(url)
-          })
-      })
-  })
-},[up.update])
+// useEffect(()=>{
+//   listAll(imageListRef).then(response=>{
+//       response.items.forEach(item=>{
+//           getDownloadURL(item).then(url=>{
+//               setImageList(prev=>[...prev,url])
+//               // setUrl(url)
+//           })
+//       })
+//   })
+// },[up.update])
 //up.update
 
 useEffect(()=>{
@@ -50,7 +53,7 @@ useEffect(()=>{
     <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen '>
 <General/>
 <NewPost/>
-{data&&data.map((post,index)=><Posts key={index} name={post.name} postData={post} src={imageList&&imageList&&imageList.filter(img =>img.includes(post.src))} />
+{data&&data.map((post,index)=>index==0? <Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />:<Posts key={index}  postData={post} text={post.text} src={post.src} />
 )}
 
     </div>

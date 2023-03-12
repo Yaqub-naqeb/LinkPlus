@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { addDoc, collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore"; 
 import { db,storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
-import { setIsLikeByUser, setPostPopUp } from '@/redux/reducers/isOpen';
+import { setIsImagePosted, setIsLikeByUser, setPostPopUp } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
 import {  ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -64,6 +64,7 @@ const addData = async (
 
     const submitHandler=async(e)=>{
         e.preventDefault()
+       dispatch(setIsImagePosted(false));
         setPostLoad(false);
 
     const code=uuid();
@@ -83,16 +84,17 @@ const addData = async (
 dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 // TODO:labar away postaka newya dabe false bchta naw
 
-dispatch(setPostPopUp(!PopUp.postPopUp))
 // dispatch(set_Update(!PopUp.update))
 
       
       });
     });
 // like.isLikeByUser
+dispatch(setPostPopUp(!PopUp.postPopUp))
 
 setTimeout(() => {
   setPostLoad(true)
+  dispatch(setIsImagePosted(true))
   dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 
 }, 5000);
