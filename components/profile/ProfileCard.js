@@ -6,7 +6,8 @@ import { getAuth } from 'firebase/auth'
 import { edit } from '../assets/svg/edit/edit'
 import { setUploadProfilePhoto } from '@/redux/reducers/isOpen'
 import { useDispatch, useSelector } from 'react-redux'
-import Img1 from '../assets/imgs/profileImg/bg.jpg'
+import defaultBackground from '../assets/imgs/profileImg/texture-of-scratches-old-blue-paper-abstract-background-free-photo.jpg'
+
 
 const ProfileCard = () => {
   const photoUrl=useSelector((state) => state.profile);
@@ -29,12 +30,12 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 <div className='absolute right-2 top-5 z-50 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{edit}</div>
 
 {/* profile Image Card */}
-
-{profileUrl[0]&&profileUrl[0].backgroundPhoto&&<div className='absolute top-0 left-0 w-full h-1/3'>
+<div className='absolute top-0 left-0 w-full h-1/3'>
+{profileUrl[0]&&profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
-</div>}
+:<Image src={defaultBackground} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>}
 
-
+</div>
 <div className='z-50'>
 
 

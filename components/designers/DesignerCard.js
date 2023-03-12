@@ -1,7 +1,7 @@
 import React from 'react'
 import ImageComponent from '../img/ImageComponent'
-import Img1 from '../assets/imgs/profileImg/bg.jpg'
-import { profile } from '../assets/svg/rigthNavbarIcons/profile'
+import Img1 from '../assets/imgs/profileImg/texture-of-scratches-old-blue-paper-abstract-background-free-photo.jpg'
+import  profile  from '../assets/imgs/profileImg/user.png'
 import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -39,7 +39,7 @@ const DesignerCard = ({user}) => {
       
        {/* profileeeeee */}
        <div className="cursor-pointer "><Link href={"/profile"}>
-              {user&&user.profilePhoto?<Image src={user.profilePhoto} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}
+              {user&&user.profilePhoto?<Image src={user.profilePhoto} className={`w-14 h-14 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-14 h-14 object-cover rounded-full `} width={100} height={100}/>}
               </Link>
               </div>
       

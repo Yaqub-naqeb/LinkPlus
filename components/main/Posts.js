@@ -8,7 +8,7 @@ import { loveRed } from '../assets/svg/socialIcons/loveRed'
 import { comment } from '../assets/svg/socialIcons/comment'
 import { send } from '../assets/svg/socialIcons/send'
 import {useDispatch, useSelector} from "react-redux";
-import { profile } from '../assets/svg/rigthNavbarIcons/profile'
+import profile  from '../assets/imgs/profileImg/user.png'
 import Link from "next/link";
 import ImageComponent2 from "../img/ImageComponent2";
 import { getAuth } from "firebase/auth";
@@ -123,13 +123,13 @@ const profileHandler=()=>{
 {/* card */}
 <div className=''>
 {/* header of card */}
-<div className='flex justify-between  px-8 pt-5 ' > 
+<div className='flex justify-between  px-7 pt-5 ' > 
     <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
         
            {/* profileeeeee */}
-           <Link href={"/publicProfile"} className={'flex items-center gap-1'} onClick={profileHandler}>
+           <Link href={"/publicProfile"} className={'flex items-center gap-3'} onClick={profileHandler}>
              <div className="cursor-pointer relative" >
-              {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:profile}    
+              {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>}    
               </div>
               <h1 className='font-bold cursor-pointer'>{postData.name}</h1>
               </Link>
