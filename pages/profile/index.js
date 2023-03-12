@@ -19,10 +19,6 @@ const index = () => {
  <div className='grid grid-cols-2 gap-y-5 gap-x-5 place-items-center '>
  <BasicInfo/>
    <Skills/>
-   
-
- {/* <Projects /> */}
- {/* <Crousel/> */}
  <SecondCrousel/>
  </div>
     </div>
