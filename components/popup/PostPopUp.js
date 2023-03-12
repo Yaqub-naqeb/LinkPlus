@@ -9,7 +9,7 @@ import {  ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
-import { set_Update } from '@/redux/reducers/profille';
+import { set_isLiked, set_Update } from '@/redux/reducers/profille';
 import { useFetch } from '../useHooks/useFetch';
 
 
@@ -81,6 +81,8 @@ const addData = async (
           user && user.uid,
         );
 dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
+// TODO:labar away postaka newya dabe false bchta naw
+
 dispatch(setPostPopUp(!PopUp.postPopUp))
 // dispatch(set_Update(!PopUp.update))
 
@@ -88,10 +90,11 @@ dispatch(setPostPopUp(!PopUp.postPopUp))
       });
     });
 // like.isLikeByUser
-// dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 
 setTimeout(() => {
   setPostLoad(true)
+  dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
+
 }, 5000);
 
   }

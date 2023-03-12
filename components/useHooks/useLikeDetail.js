@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 
 export const useLikeDetail = (collectionName,docId) => {
+    // const like = useSelector((state) => state.profile);
     const like = useSelector((state) => state.open);
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
@@ -41,6 +42,7 @@ const collectionInfo=workDetal.docs.map(doc=>({
 ...doc.data(),docId:doc.id,}))
 // first Collection moredetail
 collectionInfo&&collectionInfo.map(dt=>{
+  console.log(dt);
   // if the current user equal to this user that like the post do this
   if(dt.docId==user.uid&&docId==sub.docId){setSubCollection(dt)}
 })    
@@ -49,6 +51,7 @@ collectionInfo&&collectionInfo.map(dt=>{
  
   return () => unsubscribe();
 }, [like.isLikeByUser]);
+// like.isLikeByUser
   return { data,subCollectionLikeData, isPending, error };
 };
 

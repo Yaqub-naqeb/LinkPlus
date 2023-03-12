@@ -12,7 +12,7 @@ const profileSlice=createSlice({
         idd:'',
         update:'',
         profilePhoto:'',
-        user_uid:''    
+        user_uid:'',
     },
     // to update the initial value
     reducers:{
@@ -50,7 +50,8 @@ const profileSlice=createSlice({
     
         set_user_uid(state,action){
             state.user_uid=action.payload
-        }
+        },
+  
     }
 
 

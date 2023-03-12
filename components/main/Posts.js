@@ -18,8 +18,9 @@ import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 import { set_user_uid } from "@/redux/reducers/profille";
 
 const Posts = ({postData,src,name}) => {
-    // console.log(postData);
+    console.log(postData.isNew);
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
+console.log(subCollectionLikeData);
 
 // console.log(subCollectionLikeData.isLiked);
 
@@ -82,7 +83,7 @@ const db = getFirestore(); // initialize Firestore
 const docRef = doc(db, "Posts", postData.docId);
 
 const postData1 = {
-likes: subCollectionLikeData&&subCollectionLikeData.isLiked?postData.likes-1:postData.likes+1,
+likes: subCollectionLikeData&&subCollectionLikeData.isLiked?postData.likes+1:postData.likes-1,
 };
 
 updateDoc(docRef, postData1)
@@ -153,7 +154,7 @@ const profileHandler=()=>{
 {/* Like comment Send */}
    <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={likedHandler} >
 
-    {subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
+    {postData.isNew?love: subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
 
     <div className="cursor-pointer">{comment}</div>
     <div className="cursor-pointer">{send}</div>
