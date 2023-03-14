@@ -1,5 +1,6 @@
 import { useFetchCurrentUserProjects } from '@/components/useHooks/useFetchCurrentUserProjects';
 import { useFetchProjects } from '@/components/useHooks/useFetchProjects';
+import { useMode } from '@/components/useHooks/useMode';
 import { db } from '@/firebase/FirebaseApp';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -26,7 +27,7 @@ const publicProfile = () => {
   const {subCollectionData}=useFetchCurrentUserProjects('Users',prof.user_uid);
   console.log(subCollectionData);
   
-
+const {mode}=useMode();
 
 
   useEffect(()=>{
@@ -51,15 +52,15 @@ const publicProfile = () => {
 <div className=' flex items-center   gap-8 mt-[5rem]  '>
         <Image className='w-[18rem] z-40 h-[18rem] bg-[#ffff] shadow-lg p-2 object-cover  rounded-full' src={dt&&dt.profilePhoto} width={900} height={900} />
       <div className={``}>
-      <p className={`text-black translate-y-16 font-semibold text-2xl z-50 ${like.dark?'text-white':'text-black'}`}>{dt&&dt.name}</p>
-        <p className={`text-black translate-y-16 font-medium text-lg z-50 ${like.dark?'text-white':'text-black'}`}>{dt&&dt.experience?dt.experience:'experience'}</p>
+      <p className={`text-black translate-y-16 font-semibold text-2xl z-50 ${mode?'text-white':'text-black'}`}>{dt&&dt.name}</p>
+        <p className={`text-black translate-y-16 font-medium text-lg z-50 ${mode?'text-white':'text-black'}`}>{dt&&dt.experience?dt.experience:'experience'}</p>
       </div>
 
       </div>
 
 
     </div>
- <h1 className={`text-center pt-[8rem] text-2xl font-semibold ${like.dark?'text-white':'text-black'}`}>Projects</h1>
+ <h1 className={`text-center pt-[8rem] text-2xl font-semibold ${mode?'text-white':'text-black'}`}>Projects</h1>
     <div className="relative grid grid-cols-3 gap-8 rounded-2xl px-[5rem] py-[8rem] ">
 {subCollectionData&&subCollectionData.map((user)=>(
   user&&user.map((subData,index)=><SecondSingleCard key={index} data={subData} />)))}

@@ -68,7 +68,8 @@ const res=await addDoc(collection(db, "Users"), {
      experience:'',
      profilePhoto:'',
      id:user.uid,
-    isLike:false
+    isLike:false,
+    mode:false
   });
 }catch(err){
 console.log(err)
@@ -107,7 +108,8 @@ setConfirmPassword('')
             age:'',
             experience:'',
             id:user.uid   , 
-            isLike:false           
+            isLike:false   ,
+            mode:false        
       })
       
     }catch(err){

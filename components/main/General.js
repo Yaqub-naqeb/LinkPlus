@@ -7,20 +7,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SmallImage from "../profile/SmallImage";
+import { useMode } from "../useHooks/useMode";
 
 const General = () => {
   const dark = useSelector((state) => state.open);
   const name = useSelector((state) => state.profile);
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
-
+  const {mode}=useMode();
+console.log(mode);
 
 
   return (
     <div
       className={`flex flex-col gap-8 h-[100vh] fixed left-[90px] top-[10rem] ${
         dark.open ? "-z-20" : ""
-      }    ${dark.dark?'text-white':''}`}
+      }    ${mode?'text-white':''}`}
     >
       <div className="flex items-center  gap-3"><SmallImage/><p className='font-bold'>{user.displayName?user.displayName:name.userName}</p></div>
       <div className="flex items-center  gap-3">

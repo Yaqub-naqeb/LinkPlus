@@ -13,26 +13,33 @@ import UploadPhotoPopUp from "./popup/UploadPhotoPopUp";
 import Login from "./form/Login";
 import AddSkillPopUp from "./popup/AddSkillPopUp";
 import ProjectPopUp from "./popup/ProjectPopUp";
+import { useMode } from "./useHooks/useMode";
+import { useRouter } from "next/router";
 
 
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["600", "400", "700"] });
 const Layout = ({ children }) => {
   const isDark = useSelector((state) => state.open);
+  const {mode}=useMode();
+  console.log(mode);
 const auth=getAuth();
   const [user,loading]=useAuthState(auth)
-
+  const router = useRouter();
+  const currentPath = router.asPath;
+  console.log(currentPath);
 
   return (
-    <div className={`${poppins.className } ${user?'':'bg-[#EBEBEB] flex items-center justify-center align-middle min-h-[100vh]'}`}  >
+    <div className={`${poppins.className }  ${user?``:'bg-[#EBEBEB] flex items-center justify-center align-middle min-h-[100vh]'}`}  >
 {/* background  */}
 
 
 {user?<>
       <Navbar />
  <div className={`${isDark.postPopUp&&' blur-sm '}`}>
- <DarkToggle/>
-     <div className={`pt-[8rem]  px-[5rem] ${isDark.dark?'bg-[#1B2430]':'bg-[#EBEBEB] '}`}>
+
+ {currentPath!='/publicProfile'&&<DarkToggle/>}
+     <div className={`pt-[8rem]  px-[5rem] ${mode?'bg-[#1B2430]':'bg-[#EBEBEB]  '}`}>
      {children}
 
      </div>

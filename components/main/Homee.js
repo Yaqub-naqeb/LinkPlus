@@ -13,7 +13,6 @@ import { set_userName } from '@/redux/reducers/profille'
 
 
 const Homee = () => {
-  // const up=useSelector((state) => state.profile);
   const op=useSelector((state) => state.open);
 
   const dispatch=useDispatch();
@@ -24,18 +23,6 @@ const Homee = () => {
   const {data}=useFetch('Posts');
   console.log(data[0]);
 
-// to get all image
-// useEffect(()=>{
-//   listAll(imageListRef).then(response=>{
-//       response.items.forEach(item=>{
-//           getDownloadURL(item).then(url=>{
-//               setImageList(prev=>[...prev,url])
-//               // setUrl(url)
-//           })
-//       })
-//   })
-// },[up.update])
-//up.update
 
 useEffect(()=>{
   const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", user.uid));

@@ -16,9 +16,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useLikeDetail } from "../useHooks/useLikeDetail";
 import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 import { set_user_uid } from "@/redux/reducers/profille";
+import { useMode } from "../useHooks/useMode";
 
 const Posts = ({postData,src,text}) => {
-    console.log(postData.isNew);
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
 const auth=getAuth()
 const [user]=useAuthState(auth);
@@ -28,6 +28,7 @@ const [active, setActive] = useState(true);
 
     const like = useSelector((state) => state.open);
     const prof = useSelector((state) => state.profile);
+    const {mode}=useMode();
 
     const dispatch=useDispatch();
 
@@ -118,7 +119,7 @@ const profileHandler=()=>{
 
 
   return (
-    <div className={`shadow-md ${like.dark?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'}  h-full w-[45%] place-items-center rounded-2xl mx-3`}>
+    <div className={`shadow-md ${mode?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'}  h-full w-[45%] place-items-center rounded-2xl mx-3`}>
       
 {/* card */}
 <div className=''>

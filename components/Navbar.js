@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth,signOut } from "firebase/auth";
 import SmallImage from "./profile/SmallImage";
+import { useMode } from "./useHooks/useMode";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
@@ -35,6 +36,7 @@ const Navbar = () => {
   const router = useRouter();
 const currentRoute = router.pathname;
   const isOpen = useSelector((state) => state.open);
+  const {mode}=useMode();
   const dsipatch = useDispatch();
 
 const signOutHandler=()=>{
@@ -50,13 +52,13 @@ const signOutHandler=()=>{
     
     <div className=" fixed  w-full z-50">
       <div
-        className={`flex    align-middle items-center justify-between lg:px-20 md:px-10 px-5 ${isOpen.dark?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
+        className={`flex    align-middle items-center justify-between lg:px-20 md:px-10 px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
       >
         {/* nav */}
         <nav className="flex align-middle items-center lg:gap-[10rem] justify-between md:gap-8">
           {/* logo */}
           <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem]">
-            {isOpen.dark? darkSvg:svg}
+            {mode? darkSvg:svg}
             <div
               className={`flex flex-col   align-middle items-center ${poppins.className}`}
             >
@@ -84,10 +86,10 @@ const signOutHandler=()=>{
         <div className="lg:block md:block hidden">
           <div className="flex gap-5 items-center align-middle justify-center">
 {/*  */}
-            <div>{isOpen.dark?darkSearch:search}</div>
+            <div>{mode?darkSearch:search}</div>
 
-            <div>{isOpen.dark?darkNotfication:notfication}</div>
-            <div>{isOpen.dark?darkSetting:setting}</div>
+            <div>{mode?darkNotfication:notfication}</div>
+            <div>{mode?darkSetting:setting}</div>
             {/* max-w-0 */}
             <div>
             <SmallImage/>

@@ -8,11 +8,17 @@ import Link from 'next/link'
 import { getAuth } from 'firebase/auth'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useFetch } from '../useHooks/useFetch'
+import { useMode } from '../useHooks/useMode'
 
 const DesignerCard = ({user}) => {
   console.log(user);
   const Mode = useSelector((state) => state.open);
   const auth=getAuth();
+
+  const {mode}=useMode();
+  console.log(mode);
+
+
   // const [user,loading]=useAuthState(auth)
   
 // const {data}=useFetch('Users');
@@ -20,7 +26,7 @@ const DesignerCard = ({user}) => {
 
   return (
 
-    <div className={`items-start content-start self-start hover:scale-105 hover:shadow-lg transition-all duration-100 ease-in-out shadow-md w-80 h-72 justify-self-start rounded-2xl ${Mode.dark?'bg-[#273649] text-[#E7F6F2] font-medium':'bg-[#ffffffe8]'}`}>
+    <div className={`items-start content-start self-start hover:scale-105 hover:shadow-lg transition-all duration-100 ease-in-out shadow-md w-80 h-72 justify-self-start rounded-2xl ${mode?'bg-[#273649] text-[#E7F6F2] font-medium':'bg-[#ffffffe8]'}`}>
 {/* top */}
 <div className='relative w-full h-[40%]   rounded-b-none   '>
 <ImageComponent 

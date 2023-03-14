@@ -12,11 +12,13 @@ import { useDocument } from 'react-firebase-hooks/firestore';
 
 import { getAuth } from "firebase/auth";
 import {Index}from './profile'
+import { useMode } from "@/components/useHooks/useMode";
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
 
 export default function Home() {
   
-  const mode = useSelector((state) => state.open);
+  // const mode = useSelector((state) => state.open);
+  const {mode}=useMode();
   const auth = getAuth();
 
 const app=initFirebase();
@@ -33,7 +35,7 @@ const [user]=useAuthState(auth)
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={` ${mode.dark?'bg-[#1b2430] text-[#E7F6F2]':'bg-[#EBEBEB]'} mx-auto flex items-center justify-center  `}>
+      <div className={` ${mode?'bg-[#1b2430] text-[#E7F6F2]':'bg-[#EBEBEB]'} mx-auto flex items-center justify-center  `}>
 
 
 
