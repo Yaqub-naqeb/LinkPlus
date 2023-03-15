@@ -34,7 +34,7 @@ const NewPost = () => {
 {mode?smth:WhiteSmth}
 {mode?location:whiteLocation}
 </div>
-<button className='bg-[#757BB8]  py-2 px-8 font-medium rounded-full'>Post</button>
+<button className='bg-[#757BB8]  py-2 px-8 font-medium rounded-full' onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}>Post</button>
 </div>
 
 
