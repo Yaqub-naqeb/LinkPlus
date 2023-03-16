@@ -14,13 +14,14 @@ import { setProjectsPhoto } from "@/redux/reducers/isOpen";
 import { useFetch } from "../useHooks/useFetch";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useMode } from "../useHooks/useMode";
 
 const SecondCrousel = () => {
   const PopUp = useSelector((state) => state.open);
 const dispatch=useDispatch();
 
 const {data}=useFetch('Users');
-
+const {mode}=useMode();
 
 const auth=getAuth();
 const [user]=useAuthState(auth)
@@ -30,7 +31,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
   return (
     
     <div className=" w-[730px] place-self-start relative  pt-8   h-[437px] col-start-1 row-start-0  col-span-2  rounded-2xl">
-<div className='text-center cursor-pointer w-fit  absolute left-[50%] translate-x-[-50%] top-0'
+<div className={`text-center cursor-pointer w-fit  absolute left-[50%] translate-x-[-50%] top-0 ${mode?'text-white':'text-black'}`}
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
 + Add your Projects
 </div>
