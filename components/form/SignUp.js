@@ -62,14 +62,15 @@ const res=await addDoc(collection(db, "Users"), {
     email:email,
     password:password,
     confirmPassword:ConfirmPassword,
-    //  idd:idd,    
      city:'',
      age:'',
      experience:'',
      profilePhoto:'',
      id:user.uid,
     isLike:false,
-    mode:false
+    mode:false,
+    following:0,
+    follower:0, 
   });
 }catch(err){
 console.log(err)
@@ -109,7 +110,9 @@ setConfirmPassword('')
             experience:'',
             id:user.uid   , 
             isLike:false   ,
-            mode:false        
+            mode:false ,
+            following:0,
+            follower:0,       
       })
       
     }catch(err){

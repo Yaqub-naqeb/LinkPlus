@@ -20,18 +20,22 @@ const dispatch=useDispatch();
   
 const {data}=useFetch('Users');
 
+
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
+
 
 
   return (
     <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center relative '>
 
+{profileUrl[0]&&<>
 
-<div className='absolute right-2 top-5 z-50 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{edit}</div>
+
+  <div className='absolute right-2 top-5 z-50 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{edit}</div>
 
 {/* profile Image Card */}
 <div className='absolute top-0 left-0 w-full h-1/3'>
-{profileUrl[0]&&profileUrl[0].backgroundPhoto?
+{profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
 :<Image src={defaultBackground} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>}
 
@@ -41,7 +45,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
 
   
-{profileUrl[0]&&profileUrl[0].profilePhoto&&<Image src={profileUrl[0]&&profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
+{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
 
 
    <div className='flex flex-col gap-3  items-center justify-center align-middle'>
@@ -56,8 +60,8 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
        <div className='grid grid-cols-2 gap-x-12 gap-y-3 place-items-center'>
       <p>Following</p>
       <p>Follower</p>
-      <p>120</p>
-      <p>135</p>
+      <p>{profileUrl[0].following}</p>
+      <p>{profileUrl[0].follower}</p>
        </div>
    
    {/* follow */}
@@ -72,10 +76,13 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
     relative `}><span className=''>Follow</span></button>
          <button className=' bg-[#757BB8] w-[144px] h-[50px] rounded-[15px]'>Give a task</button>
          </div>
-   
+
 </div>
 
+</>}
+
     </div>
+    
   )
 }
 
