@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ImageComponent from '../img/ImageComponent'
 import Img1 from '../assets/imgs/profileImg/texture-of-scratches-old-blue-paper-abstract-background-free-photo.jpg'
 import  profile  from '../assets/imgs/profileImg/user.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getAuth } from 'firebase/auth'
@@ -11,12 +11,31 @@ import { useFetch } from '../useHooks/useFetch'
 import { useMode } from '../useHooks/useMode'
 import { doc, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore'
 import { uuid } from 'uuidv4'
+import { useFetchNotfication } from '../useHooks/useFetchNotfication'
+import { setFollow } from '@/redux/reducers/isOpen'
 
 const DesignerCard = ({user,cu}) => {
-  
-  // const Mode = useSelector((state) => state.open);
-  const [follow,setFollow]=useState(false);
+  const Mode = useSelector((state) => state.open);
+  const dispatch=useDispatch();
+  const [dis,setDisable]=useState(false);
   const {mode}=useMode();
+
+
+  const {subCollection}=useFetchNotfication('followings');
+  // console.log(subCollection);
+
+
+
+const equal=()=>{
+
+  setDisable(true)
+  console.log('hiiii');
+}
+
+console.log(dis);
+
+ 
+
 
 
   const {data}=useFetch('Users');
@@ -36,6 +55,7 @@ console.log(current[0].name);
     setDoc(docRef,{
 follow:'Following',
 timeStamp:serverTimestamp(),
+userId:user.id
    })
    // send data to firebase
   const friendDocId=uuid();
@@ -47,7 +67,8 @@ follow:'Followed you ',
 timeStamp:serverTimestamp(),
    })
 
-   setFollow(false);
+  //  setFollow(false);
+  dispatch(setFollow(!Mode.follow))
 
 
 
@@ -86,7 +107,18 @@ timeStamp:serverTimestamp(),
     <p className='text-xl font-[550] -translate-y-5'> {user.name}</p>
     <p className='text-sm -translate-y-5'>{user.experience}</p>
 <div className='flex flex-col items-center gap-2 text-sm -translate-y-3'>
-<button className={`bg-[#757BB8] w-[74px] h-[26px] cursor-pointer rounded-[15px] ${follow?'bg-[#757bb8a3]':'bg-[#757BB8]'}`} onClick={clickFollowHandler} disabled={follow}>{follow?'Following':'Follow'}</button>
+
+  {subCollection&&
+<button className={`bg-[#757BB8] w-[74px] h-[26px] cursor-pointer rounded-[15px] ${dis&&'bg-[#757bb82e]'}`} onClick={clickFollowHandler} disabled={dis}>
+  
+  {subCollection.filter(sub=>(
+  user.id==sub.userId
+)).length==0?'follow':(()=>equal(),'following')}
+{/* {follow?'hi':'false'} */}
+
+
+</button>
+}
     <button className=' bg-[#757BB8] w-[118px] h-[30px] rounded-[15px]'>Give a task</button>
     
 </div>

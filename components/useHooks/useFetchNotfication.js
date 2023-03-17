@@ -5,9 +5,12 @@ import { getAuth } from "firebase/auth";
 import { collection, query,onSnapshot, orderBy, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector } from "react-redux";
 import { useFetch } from "./useFetch";
 
-export const useFetchNotfication = () => {
+export const useFetchNotfication = (type) => {
+  const PopUp = useSelector((state) => state.open);
+
     const [subCollection,setSubCollection]=useState([]);
     const [isDocIdAvalable,setIsDocIdAvalable]=useState(false);
 const {data}=useFetch('Users');
@@ -24,13 +27,13 @@ const {data}=useFetch('Users');
             const current=  data&&data.filter(dt=>dt.id==user.uid)
 
 if(current[0]&&current[0].docId){
-       const WorkQ=query(collection(db,`Users/${current[0].docId}/follower`))
+       const WorkQ=query(collection(db,`Users/${current[0].docId}/${type}`))
     const workDetal=await getDocs(WorkQ)
     const collectionInfo=workDetal.docs.map(doc=>({
       ...doc.data(),docId:doc.id,
      
     }))
-    setSubCollection(collectionInfo[0])
+    setSubCollection(collectionInfo)
 }else{
 setIsDocIdAvalable(!isDocIdAvalable)
 }
@@ -42,7 +45,7 @@ console.log('hi');
 
 
        return ()=> unsubscribe();
-      }, [isDocIdAvalable]);
+      }, [isDocIdAvalable,PopUp.follow]);
       return { subCollection };
 
 }
