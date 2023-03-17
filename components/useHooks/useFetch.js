@@ -30,7 +30,7 @@ useEffect(() => {
     setData(data);
     setIsPending(false);
   });
-  console.log(data);
+  console.log('useFetch');
   return () => unsubscribe();
 }, [PopUp.postPopUp]);
 

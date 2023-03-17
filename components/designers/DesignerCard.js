@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ImageComponent from '../img/ImageComponent'
 import Img1 from '../assets/imgs/profileImg/texture-of-scratches-old-blue-paper-abstract-background-free-photo.jpg'
 import  profile  from '../assets/imgs/profileImg/user.png'
@@ -9,20 +9,51 @@ import { getAuth } from 'firebase/auth'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useFetch } from '../useHooks/useFetch'
 import { useMode } from '../useHooks/useMode'
+import { doc, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore'
+import { uuid } from 'uuidv4'
 
-const DesignerCard = ({user}) => {
-  console.log(user);
-  const Mode = useSelector((state) => state.open);
-  const auth=getAuth();
-
-  const {mode}=useMode();
-  console.log(mode);
-
-
-  // const [user,loading]=useAuthState(auth)
+const DesignerCard = ({user,cu}) => {
   
-// const {data}=useFetch('Users');
-// const current=data&&data.filter(dt=>dt.id==user.uid)
+  // const Mode = useSelector((state) => state.open);
+  const [follow,setFollow]=useState(false);
+  const {mode}=useMode();
+
+
+  const {data}=useFetch('Users');
+
+const clickFollowHandler=()=>{
+const current=data&&data.filter(dt=>dt.id==cu.uid)
+console.log(current[0].name);
+
+
+    const db = getFirestore(); // initialize Firestore
+
+ 
+
+   // send data to firebase
+  const SecondDocId=uuid();
+      const docRef = doc(db, `Users/${current[0].docId}/followings`,SecondDocId);
+    setDoc(docRef,{
+follow:'Following',
+timeStamp:serverTimestamp(),
+   })
+   // send data to firebase
+  const friendDocId=uuid();
+      const docRefFriend = doc(db, `Users/${user.docId}/follower`,friendDocId);
+    setDoc(docRefFriend,{
+      profilePhoto:current[0].profilePhoto&&current[0].profilePhoto,
+name:current[0].name,
+follow:'Followed you ',
+timeStamp:serverTimestamp(),
+   })
+
+   setFollow(false);
+
+
+
+}
+
+
 
   return (
 
@@ -55,7 +86,7 @@ const DesignerCard = ({user}) => {
     <p className='text-xl font-[550] -translate-y-5'> {user.name}</p>
     <p className='text-sm -translate-y-5'>{user.experience}</p>
 <div className='flex flex-col items-center gap-2 text-sm -translate-y-3'>
-<button className=' bg-[#757BB8] w-[74px] h-[26px] rounded-[15px] '>Follow</button>
+<button className={`bg-[#757BB8] w-[74px] h-[26px] cursor-pointer rounded-[15px] ${follow?'bg-[#757bb8a3]':'bg-[#757BB8]'}`} onClick={clickFollowHandler} disabled={follow}>{follow?'Following':'Follow'}</button>
     <button className=' bg-[#757BB8] w-[118px] h-[30px] rounded-[15px]'>Give a task</button>
     
 </div>

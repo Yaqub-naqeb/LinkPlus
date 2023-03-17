@@ -15,7 +15,7 @@ const designers = () => {
       <div className='grid grid-cols-3 gap-8 place-items-center '>
         <General/>
       {
-        data&&data.map((dt,index)=><DesignerCard key={index} user={dt}/>)
+        data&&data.map((dt,index)=><DesignerCard key={index} user={dt} cu={user}/>)
       }
     </div>
   </div>

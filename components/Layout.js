@@ -15,6 +15,7 @@ import AddSkillPopUp from "./popup/AddSkillPopUp";
 import ProjectPopUp from "./popup/ProjectPopUp";
 import { useMode } from "./useHooks/useMode";
 import { useRouter } from "next/router";
+import Notfications from "./notfications/Notfications";
 
 
 
@@ -40,6 +41,7 @@ const auth=getAuth();
 
  {currentPath!='/publicProfile'&&<DarkToggle/>}
      <div className={`pt-[8rem]  px-[5rem] ${mode?'bg-[#1B2430]':'bg-[#EBEBEB]  '}`}>
+      {isDark.notfication&&<Notfications/>}
      {children}
 
      </div>

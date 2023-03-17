@@ -8,7 +8,7 @@ import { close } from "./assets/svg/rigthNavbarIcons/close";
 import { search } from "./assets/svg/rigthNavbarIcons/search";
 import { setting } from "./assets/svg/rigthNavbarIcons/setting";
 import { notfication } from "./assets/svg/rigthNavbarIcons/notfication";
-import { setIsOpen, setIsProjectOpen } from "@/redux/reducers/isOpen";
+import { setIsOpen, setIsProjectOpen, setNotfication } from "@/redux/reducers/isOpen";
 import { useSelector, useDispatch } from "react-redux";
 import { darkSearch } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSearch";
 import { darkSetting } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSetting";
@@ -88,7 +88,7 @@ const signOutHandler=()=>{
 {/*  */}
             <div>{mode?darkSearch:search}</div>
 
-            <div>{mode?darkNotfication:notfication}</div>
+            <div onClick={()=>dsipatch(setNotfication(!isOpen.notfication))}>{mode?darkNotfication:notfication}</div>
             <div>{mode?darkSetting:setting}</div>
             {/* max-w-0 */}
             <div>
