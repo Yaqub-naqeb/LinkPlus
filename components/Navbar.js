@@ -18,11 +18,24 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth,signOut } from "firebase/auth";
 import SmallImage from "./profile/SmallImage";
 import { useMode } from "./useHooks/useMode";
+import { useFetchNotfication } from "./useHooks/useFetchNotfication";
+import { messageNotfi } from "./assets/svg/rigthNavbarIcons/messageNotfi";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "@/firebase/FirebaseApp";
+import { darkmsgNotfi } from "./assets/svg/rigthNavbarIcons/darkIcons/darkmsgNotfi";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
+
+  const {subCollection}=useFetchNotfication('follower');
+  // console.log(subCollection[0]);
+  const isNewFolower=subCollection&&subCollection.filter(sub=>sub.isNew==true);
+  console.log(isNewFolower[0]);
+
+
+
 
 
   const pages=[
@@ -45,6 +58,25 @@ const signOutHandler=()=>{
   }).catch((error) => {
     // An error happened.
   });
+}
+const notfiHandler=()=>{
+
+  // const friendDocId=uuid();
+if(isNewFolower[0]&&isNewFolower[0].isNew){
+  const docRefFriend = doc(db, `Users/${isNewFolower[0].userDocId}/follower`,isNewFolower[0].docId);
+setDoc(docRefFriend,{
+profilePhoto:isNewFolower[0].profilePhoto&&isNewFolower[0].profilePhoto,
+name:isNewFolower[0].name,
+follow:'Followed you ',
+timeStamp:isNewFolower[0].timeStamp,
+docId:isNewFolower[0].docId,
+userId:isNewFolower[0].userId,
+isNew:false,
+userDocId:isNewFolower[0].userDocId
+})
+}
+dsipatch(setNotfication(!isOpen.notfication))
+
 }
 
 
@@ -88,7 +120,7 @@ const signOutHandler=()=>{
 {/*  */}
             <div>{mode?darkSearch:search}</div>
 
-            <div onClick={()=>dsipatch(setNotfication(!isOpen.notfication))}>{mode?darkNotfication:notfication}</div>
+            <div onClick={notfiHandler}>{mode?isNewFolower[0]&&isNewFolower[0].isNew?darkmsgNotfi:darkNotfication: isNewFolower[0]&&isNewFolower[0].isNew?messageNotfi:notfication}</div>
             <div>{mode?darkSetting:setting}</div>
             {/* max-w-0 */}
             <div>

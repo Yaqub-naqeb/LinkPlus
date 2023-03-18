@@ -142,12 +142,14 @@ docId:SecondDocId
 const friendDocId=uuid();
  const docRefFriend = doc(db, `Users/${user.docId}/follower`,friendDocId);
 setDoc(docRefFriend,{
- profilePhoto:current[0].profilePhoto&&current[0].profilePhoto,
+ profilePhoto:current[0]&&current[0].profilePhoto?current[0].profilePhoto:'',
 name:current[0].name,
 follow:'Followed you ',
 timeStamp:serverTimestamp(),
 docId:friendDocId,
 userId:user.id,
+isNew:true,
+userDocId:user.docId
 
 
 })

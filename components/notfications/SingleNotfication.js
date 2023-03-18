@@ -5,7 +5,7 @@ import Image from 'next/image';
 const SingleNotfication = ({subCollection}) => {
   console.log(subCollection);
   return (
-    <div className='flex gap-3 items-center align-middle px-2 justify-between bg-[#efececde] py-3 mx-1 rounded-lg'>
+    <div className='flex gap-3  items-center align-middle px-2 justify-between bg-[#efececde] py-3 mx-1 rounded-lg'>
 {/* the person that follows you */}
 
 <div className='flex gap-3 items-center align-middle '>

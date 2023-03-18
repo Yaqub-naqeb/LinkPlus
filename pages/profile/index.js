@@ -12,7 +12,7 @@ const index = () => {
   return (
    <div className=''>
 
-     <div className='  h-[100vh]  flex items-start justify-center align-top gap-[10rem] '>
+     <div className='  h-[90vh]  flex items-start justify-center align-top gap-[10rem] '>
    <ProfileCard/>
 
    {/* skill && basic info using grid */}
