@@ -155,8 +155,6 @@ userDocId:user.docId
 })
 
 // update the folower inside users///////////////
-
-//  its send image to firebase too but not inside subCollection
 const docRef1 = doc(db, "Users",current[0].docId);
 
 const data1 = {
