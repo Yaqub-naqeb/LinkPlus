@@ -13,7 +13,9 @@ const NewPost = () => {
     const {mode}=useMode();
     const dsipatch=useDispatch();
   return (
-  <div className={` ${mode?'bg-[#273649]':'bg-[#FDFDFD]'} w-[688px] rounded-2xl   h-[126px] px-5 flex flex-col justify-evenly -translate-y-7`}>
+    // [688px]
+    // h-[126px]
+  <div className={` ${mode?'bg-[#273649]':'bg-[#FDFDFD]'} rounded-2xl w-full lg:h-[126px] md:h-[126px] h-[96px]    px-5 flex flex-col justify-evenly -translate-y-7`}>
       <div className='flex items-center gap-3 align-middle '>
       
      <SmallImage/>
@@ -34,7 +36,7 @@ const NewPost = () => {
 {mode?smth:WhiteSmth}
 {mode?location:whiteLocation}
 </div>
-<button className='bg-[#757BB8]  py-2 px-8 font-medium rounded-full' onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}>Post</button>
+<button className='bg-[#757BB8] md:py-2 py-1 lg:py-2 px-8 font-medium rounded-full' onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}>Post</button>
 </div>
 
 

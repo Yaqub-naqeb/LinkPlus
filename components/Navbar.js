@@ -23,6 +23,7 @@ import { messageNotfi } from "./assets/svg/rigthNavbarIcons/messageNotfi";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/FirebaseApp";
 import { darkmsgNotfi } from "./assets/svg/rigthNavbarIcons/darkIcons/darkmsgNotfi";
+import DarkToggle from "./main/toggle/DarkToggle";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "600" });
 const Navbar = () => {
@@ -82,12 +83,12 @@ dsipatch(setNotfication(!isOpen.notfication))
 
   return (
     
-    <div className=" fixed  w-full z-50">
+    <div className=" fixed  w-full z-50 ">
       <div
-        className={`flex    align-middle items-center justify-between lg:px-20 md:px-10 px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
+        className={`flex    align-middle items-center justify-between lg:px-20 md:px-10  px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
       >
         {/* nav */}
-        <nav className="flex align-middle items-center lg:gap-[10rem] justify-between md:gap-8">
+        <nav className="flex align-middle items-center lg:gap-[10rem] justify-between md:gap-8 ">
           {/* logo */}
           <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem]">
             {mode? darkSvg:svg}
@@ -100,7 +101,7 @@ dsipatch(setNotfication(!isOpen.notfication))
           </div>
           {/* links */}
 
-          <div className="lg:block md:block hidden">
+          <div className="lg:block  hidden">
             <ul className="flex gap-5 ">
             
             
@@ -115,7 +116,7 @@ dsipatch(setNotfication(!isOpen.notfication))
           </div>
         </nav>
 
-        <div className="lg:block md:block hidden">
+        <div className="lg:block  hidden">
           <div className="flex gap-5 items-center align-middle justify-center">
 {/*  */}
             <div>{mode?darkSearch:search}</div>
@@ -132,10 +133,10 @@ dsipatch(setNotfication(!isOpen.notfication))
         </div>
 
         {/* mobile */}
-
-        <div className="lg:hidden md:hidden ">
+{/* md:hidden */}
+        <div className="lg:hidden  ">
           <div
-            className="lg:hidden md:hidden transition-all  duration-300 ease-in-out cursor-pointer"
+            className="lg:hidden  transition-all  duration-300 ease-in-out cursor-pointer z-50"
             onClick={() => dsipatch(setIsOpen(!isOpen.open))}
           >
             {isOpen.open ? close : burger}
@@ -144,20 +145,31 @@ dsipatch(setNotfication(!isOpen.notfication))
       </div>
 
       <div
-        className={`bg-[#EBEBEB] transition-all   duration-300 py-5 lg:hidden md:hidden  ease-in-out absolute w-full top-0 opacity-0 -z-50 ${
+        className={`  ${mode?'bg-[#25303f]':'bg-[#ffffff]'} transition-all   duration-300 py-5 lg:hidden   ease-in-out absolute w-full md:px-6 px-5 top-0 opacity-0 -z-50 ${
           isOpen.open
             ? `opacity-100 -z-10 top-20 transition-all  duration-300 ease-in-out`
             : ""
         } `}
       >
         {/* mobile */}
-        <ul className=" flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5  ">
+        <div className="">
+
+        <ul className={`${mode?'text-white':'text-black'} flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5`}>
         {pages&&pages.map((nav,index)=>(<li  key={index} className={currentRoute === nav.href
        ? "active-class-name scale-110  font-[2rem]" 
        : "non-active-class-name"}>
                 <Link href={nav.href}>{nav.name}</Link>
               </li> ))}
+            
         </ul>
+        {/* togle */}
+        <div>
+          <DarkToggle/>
+        </div>
+
+        </div>
+      
+        
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ const clickHandler=()=>{
 
 
   return (
-    <div className='fixed  right-[90px] z-50 top-[14rem] rotate-90  '   >
+    <div className={`fixed   transition-all lg:block md:${Mode.open?'block ':''} ${Mode.open?'  translate-y-[-2rem] right-10':'hidden'}   right-[90px]  top-[14rem] rotate-90  `}   >
       
 
 

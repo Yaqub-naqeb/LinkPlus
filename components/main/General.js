@@ -20,9 +20,11 @@ console.log(mode);
 
   return (
     <div
-      className={`flex flex-col gap-8 h-[100vh] fixed left-[90px] top-[10rem] ${
+      className={` lg:flex   hidden flex-col gap-8 h-[100vh] fixed left-[90px] top-[10rem] ${
         dark.open ? "-z-20" : ""
       }    ${mode?'text-white':''}`}
+// isMobile
+
     >
       <div className="flex items-center  gap-3"><SmallImage/><p className='font-bold'>{user.displayName?user.displayName:name.userName}</p></div>
       <div className="flex items-center  gap-3">

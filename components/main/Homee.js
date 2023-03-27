@@ -35,9 +35,11 @@ useEffect(()=>{
   rendering();
 
 },[])
-
+// [688px]
+    // h-[126px]
   return (
-    <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen '>
+    <div className=' flex flex-col py-5  pb-10 gap-3 items-center min-h-screen  lg:w-[688px]  md:w-[688px] w-[358px] '>
+      
 <General/>
 <NewPost/>
 {data&&data.map((post,index)=>index==0? <Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />:<Posts key={index}  postData={post} text={post.text} src={post.src} />
