@@ -83,7 +83,7 @@ dsipatch(setNotfication(!isOpen.notfication))
 
   return (
     
-    <div className=" fixed  w-full z-50 ">
+    <div className={`fixed bg-white z-50  w-full`}>
       <div
         className={`flex    align-middle items-center justify-between lg:px-20 md:px-10  px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
       >
@@ -93,7 +93,7 @@ dsipatch(setNotfication(!isOpen.notfication))
           <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem]">
             {mode? darkSvg:svg}
             <div
-              className={`flex flex-col   align-middle items-center ${poppins.className}`}
+              className={`flex flex-col  align-middle items-center ${poppins.className}`}
             >
               <p> Designers </p>
               <p>commiunity</p>
@@ -101,8 +101,8 @@ dsipatch(setNotfication(!isOpen.notfication))
           </div>
           {/* links */}
 
-          <div className="lg:block  hidden">
-            <ul className="flex gap-5 ">
+          <div className="lg:block  hidden  ">
+            <ul className="flex gap-5">
             
             
 {pages&&pages.map((nav,index)=>(<li key={index}  className={currentRoute === nav.href
@@ -134,9 +134,9 @@ dsipatch(setNotfication(!isOpen.notfication))
 
         {/* mobile */}
 {/* md:hidden */}
-        <div className="lg:hidden  ">
+        <div className={`lg:hidden `}>
           <div
-            className="lg:hidden  transition-all  duration-300 ease-in-out cursor-pointer z-50"
+            className="lg:hidden  transition-all  duration-300 ease-in-out cursor-pointer"
             onClick={() => dsipatch(setIsOpen(!isOpen.open))}
           >
             {isOpen.open ? close : burger}
@@ -145,7 +145,7 @@ dsipatch(setNotfication(!isOpen.notfication))
       </div>
 
       <div
-        className={`  ${mode?'bg-[#25303f]':'bg-[#ffffff]'} transition-all   duration-300 py-5 lg:hidden   ease-in-out absolute w-full md:px-6 px-5 top-0 opacity-0 -z-50 ${
+        className={` ${isOpen.open?'z-50 bg-black':'-z-50'}  ${mode?'bg-[#25303f] ':'bg-[#ffffff]'} transition-all   duration-300 py-5 lg:hidden   ease-in-out absolute w-full md:px-6 px-5 top-0 opacity-0 -z-50 ${
           isOpen.open
             ? `opacity-100 -z-10 top-20 transition-all  duration-300 ease-in-out`
             : ""
