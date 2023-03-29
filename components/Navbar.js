@@ -83,9 +83,9 @@ dsipatch(setNotfication(!isOpen.notfication))
 
   return (
     
-    <div className={`fixed bg-white z-50  w-full`}>
+    <div className={`fixed bg-white z-50    w-full`}>
       <div
-        className={`flex    align-middle items-center justify-between lg:px-20 md:px-10  px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
+        className={`flex  align-middle items-center justify-between lg:px-20 md:px-10  px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
       >
         {/* nav */}
         <nav className="flex align-middle items-center lg:gap-[10rem] justify-between md:gap-8 ">
@@ -154,7 +154,7 @@ dsipatch(setNotfication(!isOpen.notfication))
         {/* mobile */}
         <div className="">
 
-        <ul className={`${mode?'text-white':'text-black'} flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5`}>
+        <ul className={` ${isOpen.open?'':'hidden'}  ${mode?'text-white':'text-black'} flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5`}>
         {pages&&pages.map((nav,index)=>(<li  key={index} className={currentRoute === nav.href
        ? "active-class-name scale-110  font-[2rem]" 
        : "non-active-class-name"}>

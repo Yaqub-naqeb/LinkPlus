@@ -120,9 +120,8 @@ setTimeout(() => {
 
       
 
-<input onChange={e=>setText(e.target.value)} value={text} type="text" className=' lg:pl-[10%] 
-px-3
-outline-none   min-w-full ' placeholder={`What is on your mind, ${user.displayName?user.displayName:fullname.userName}?`}/>
+<input onChange={e=>setText(e.target.value)} value={text} type="text" className='text-center
+outline-none   min-w-full lg:border-b-2' placeholder={`What is on your mind, ${user.displayName?user.displayName:fullname.userName}?`}/>
 {/* image */}
 <input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' required/>
 

@@ -12,14 +12,26 @@ const NewPost = () => {
     const Mode = useSelector((state) => state.open);
     const {mode}=useMode();
     const dsipatch=useDispatch();
+
+
+
+
+
   return (
     // [688px]
     // h-[126px]
-  <div className={` ${Mode.open?'':'z-50'} ${mode?'bg-[#273649]':'bg-[#FDFDFD]'} rounded-2xl w-full lg:h-[126px] md:h-[126px] h-[96px]    px-5 flex flex-col justify-evenly -translate-y-7`}>
+  <div className={` mt-3 ${Mode.open?'':'z-40'} ${mode?'bg-[#273649]':'bg-[#FDFDFD]'} rounded-2xl w-full lg:h-[126px] md:h-[126px] h-[96px]    px-5 flex flex-col justify-evenly -translate-y-7`}>
       <div className='flex items-center gap-3 align-middle '>
       
      <SmallImage/>
-      <input onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}  type="text" className='bg-transparent outline-none' placeholder='Type here...'/>
+      {/* <input onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}  type="text" className='bg-transparent  outline-none' 
+      placeholder='Type here...'
+      /> */}
+
+      <p onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))} className='bg-transparent  outline-none text-[#fffa]  '>Type here...</p>
+
+
+
       
       
       
