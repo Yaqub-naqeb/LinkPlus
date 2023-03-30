@@ -26,7 +26,11 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
 
   return (
-    <div className='row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300 flex gap-5 flex-col items-center justify-center relative '>
+    <div>
+      {/* for disctop */}
+      <div className=' 
+      lg:flex md:flex hidden
+      row-span-2 self-start place-self-center  w-[289px] h-[628px] rounded-[45px] bg-slate-300  gap-5 flex-col items-center justify-center relative '>
 
 {profileUrl[0]&&<>
 
@@ -42,9 +46,6 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 </div>
 <div className='z-50'>
 
-
-
-  
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
 
 
@@ -82,7 +83,56 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 </>}
 
     </div>
+
+    {/* for Mobile */}
+    <div className='bg-slate-400 lg:hidden md:hidden
+    absolute z-10 top-0 left-0 w-full h-screen 
     
+    '>
+
+{profileUrl[0]&&<>
+
+      {/* background image */}
+      <div className='h-1/3'>
+{profileUrl[0].backgroundPhoto?
+<Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
+:<Image src={defaultBackground} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>}
+</div>
+
+{/* image */}
+
+
+
+<div className='translate-y-[-32%]'>
+
+
+<div className='z-20 mx-auto w-[180px] p-1 flex items-center justify-center align-middle bg-white h-[180px] object-cover rounded-full '>
+
+{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full `} width={900} height={900}/>}
+</div>
+
+
+<div className='flex flex-col gap-2 mt-1  items-center justify-center align-middle'>
+     
+   <p className='font-bold'>{user.displayName?user.displayName:photoUrl.userName}</p>
+   
+   <p className=' text-[0.8rem]'>{photoUrl.exprince?photoUrl.exprince:'experince'}</p>
+   
+   
+   </div>
+
+</div>
+
+   {/*  */}
+   
+
+
+
+</>}
+
+    </div>
+    
+    </div>
   )
 }
 
