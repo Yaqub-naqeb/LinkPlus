@@ -7,6 +7,11 @@ import { edit } from '../assets/svg/edit/edit'
 import { setUploadProfilePhoto } from '@/redux/reducers/isOpen'
 import { useDispatch, useSelector } from 'react-redux'
 import defaultBackground from '../assets/imgs/profileImg/texture-of-scratches-old-blue-paper-abstract-background-free-photo.jpg'
+import { location } from '../assets/svg/socialIcons/location'
+import { whiteLocation } from '../assets/svg/socialIcons/whiteLocation'
+import { useMode } from '../useHooks/useMode'
+import { exp } from '../assets/svg/socialIcons/exp'
+import Skills from './Skills'
 
 
 const ProfileCard = () => {
@@ -19,7 +24,7 @@ const dispatch=useDispatch();
   const [user,loading]=useAuthState(auth)
   
 const {data}=useFetch('Users');
-
+const {mode}=useMode();
 
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
@@ -85,45 +90,61 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
     </div>
 
     {/* for Mobile */}
-    <div className='bg-slate-400 lg:hidden md:hidden
-    absolute z-10 top-0 left-0 w-full h-screen 
-    
+    <div className=' lg:hidden md:hidden
+    absolute z-10 top-0 left-0 w-full h-screen
     '>
 
 {profileUrl[0]&&<>
 
       {/* background image */}
-      <div className='h-1/3'>
+      <div className='h-1/3 flex '>
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
 :<Image src={defaultBackground} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>}
 </div>
 
 {/* image */}
+<div className='translate-y-[-14%]'>
 
 
 
-<div className='translate-y-[-32%]'>
-
-
-<div className='z-20 mx-auto w-[180px] p-1 flex items-center justify-center align-middle bg-white h-[180px] object-cover rounded-full '>
+  {/* profile image */}
+<div className='z-20 ml-8  w-[130px] p-1 flex items-center justify-center align-middle bg-white h-[130px] object-cover rounded-full  '>
 
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full `} width={900} height={900}/>}
 </div>
 
 
-<div className='flex flex-col gap-2 mt-1  items-center justify-center align-middle'>
+{/* name and exprience and location */}
+<div className='flex flex-col gap-2 mt-1  ml-8 '>
      
    <p className='font-bold'>{user.displayName?user.displayName:photoUrl.userName}</p>
-   
-   <p className=' text-[0.8rem]'>{photoUrl.exprince?photoUrl.exprince:'experince'}</p>
-   
-   
+
+<div className='flex gap-1 '>
+<div>{exp}</div>
+   <p className=' text-[.9rem] translate-y-1'>{photoUrl.exprince?photoUrl.exprince:'Experince'}</p>
+</div>
+    
+    <div className='flex gap-2.5 '>
+        <div className='translate-x-0.5 '>{whiteLocation}</div>
+        <p className='text-[.9rem] translate-y-[1px]'>{photoUrl.city?photoUrl.city:'Location'}</p>
+</div>
+   </div>
+{/* line */}
+   <hr className='mx-8 my-4  border border-[#0006] rounded-lg ' />
+   {/* Skills */}
+   <div className='flex flex-col gap-2 mt-1  ml-9  '>
+    <p className='font-bold'>Skills</p>
+   <div className='mx-6 my-5 translate-x-2'>
+   <Skills/>
    </div>
 
 </div>
 
-   {/*  */}
+</div>
+
+
+   {/*  (: here we go*/}
    
 
 

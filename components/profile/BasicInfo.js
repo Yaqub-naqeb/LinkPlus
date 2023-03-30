@@ -36,7 +36,7 @@ useEffect(()=>{
 },[isOpen.editPopup])
 
   return (
-    <div className='w-[472px] place-self-end text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] flex flex-col gap-5 items-center justify-center'> 
+    <div className='w-[472px]  place-self-end text-center bg-[#4D545C] text-[#E7F6F2] rounded-[45px] h-[161px] md:flex hidden lg:flex flex-col gap-5 items-center justify-center'> 
   <div className='flex self-end items-center w-[60%] pr-5 justify-between '>
   <p className='font-bold'>Basic info</p>
     <p  className='items-end justify-end' onClick={e=>dispatch(setEditPopup(isOpen.editPopup))}>{edit}</p>

@@ -13,13 +13,15 @@ const index = () => {
    <div className=''>
 
      <div className='  h-[90vh]  flex items-start justify-center align-top gap-[10rem] '>
+   <div className=''>
    <ProfileCard/>
+   </div>
 
    {/* skill && basic info using grid */}
  <div className='grid grid-cols-2 gap-y-5 gap-x-5 place-items-center '>
- <BasicInfo/>
+ {/* <BasicInfo/> */}
    <Skills/>
- <SecondCrousel/>
+ {/* <SecondCrousel/> */}
  </div>
     </div>
    </div>

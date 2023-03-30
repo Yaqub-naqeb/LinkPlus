@@ -77,7 +77,9 @@ const Skills = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-[233px] h-[161px] bg-[#51557E] flex flex-col items-center justify-center align-middle gap-5  text-[#E7F6F2] rounded-[45px] relative place-self-start">
+ <div>
+{/* for disctop */}
+<div className="w-[233px]  h-[161px] bg-[#51557E] md:flex hidden  lg:flex flex-col items-center justify-center align-middle gap-5  text-[#E7F6F2] rounded-[45px] relative place-self-start">
       <p>Skills</p>
       <p
         className="absolute right-3 cursor-pointer top-8"
@@ -109,6 +111,31 @@ const Skills = () => {
 
       </div>
     </div>
+
+    {/* for mobile */}
+
+
+    <div className="lg:hidden md:hidden ">
+       {/* skills */}
+       <div className="grid grid-cols-3 gap-x-1 b gap-y-5 ">
+
+{data&&data.map((dt) =>
+dt.id==user.uid&&dt.skill&&dt.skill.map((pskill) =>
+    SkillsIcon.map(
+      (skill,index) =>
+        pskill.label === skill.name && (
+          <Image key={index} className='h-[40px] w-[40px]' src={skill.icon}   width={800} height={800}/>
+        )
+    )
+  )
+)}
+</div>
+    </div>
+
+
+
+
+ </div>
   );
 };
 
