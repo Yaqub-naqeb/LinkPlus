@@ -119,7 +119,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
   {/* profile image */}
 <div className='z-20 ml-8  w-[130px] p-1 flex items-center justify-center align-middle bg-white h-[130px] object-cover rounded-full  relative'>
 
-{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[130px] h-[130px]   `} width={900} height={900}/>}
+{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>}
 
 <div className='
 
