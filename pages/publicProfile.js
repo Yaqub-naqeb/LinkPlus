@@ -40,8 +40,6 @@ const {mode}=useMode();
     rendering();
   },[])
 
-
-  console.log(dt);
   return (
    <div className='min-h-screen '>
      <div className={` -z-50  `}>
@@ -49,19 +47,22 @@ const {mode}=useMode();
       <div className=''> <Image className='w-full   h-1/3 object-cover absolute top-[6rem] right-0' src={dt&&dt.backgroundPhoto&&dt.backgroundPhoto} width={900} height={900}/></div>
 
 {/* the photo */}
-<div className=' flex items-center   gap-8 mt-[5rem]  '>
-        <Image className='w-[18rem] z-40 h-[18rem] bg-[#ffff] shadow-lg p-2 object-cover  rounded-full' src={dt&&dt.profilePhoto} width={900} height={900} />
-      <div className={``}>
-      <p className={`text-black translate-y-16 font-semibold text-2xl z-50 ${mode?'text-white':'text-black'}`}>{dt&&dt.name}</p>
-        <p className={`text-black translate-y-16 font-medium text-lg z-50 ${mode?'text-white':'text-black'}`}>{dt&&dt.experience?dt.experience:'experience'}</p>
+<div className=' flex lg:flex-row flex-col items-center   lg:gap-8 gap-2 lg:mt-[5rem] mt-[6.2rem] '>
+        <Image className='lg:w-[18rem] z-40 lg:h-[18rem] 
+        w-[12rem] h-[12rem] bg-[#ffff] shadow-lg p-2 object-cover  rounded-full' src={dt&&dt.profilePhoto} width={900} height={900} />
+
+      <div className={`lg:translate-y-16 lg:text-left text-center`}>
+      <p className={`text-black  font-semibold text-2xl z-50 ${mode?'text-white':'text-black'}`}>{dt&&dt.name}</p>
+        <p className={`text-black font-medium text-lg z-50 ${mode?'text-white':'text-black'}`}>{dt&&dt.experience?dt.experience:'experience'}</p>
       </div>
 
       </div>
 
 
     </div>
- <h1 className={`text-center pt-[8rem] text-2xl font-semibold ${mode?'text-white':'text-black'}`}>Projects</h1>
-    <div className="relative grid grid-cols-3 gap-8 rounded-2xl px-[5rem] py-[8rem] ">
+ <h1 className={`text-center lg:pt-[8rem] pt-[5rem] text-2xl font-semibold ${mode?'text-white':'text-black'}`}>Projects</h1>
+    <div className="relative grid lg:grid-cols-3 grid-cols-2 lg:gap-8 gap-y-8 gap-x-14 rounded-2xl lg:px-[5rem] px-0 lg:py-[8rem] py-[3rem] lg:w-full w-[80vw] place-items-center -translate-x-10">
+      {/* translate-x-[-3rem]  */}
 {subCollectionData&&subCollectionData.map((user)=>(
   user&&user.map((subData,index)=><SecondSingleCard key={index} data={subData} />)))}
     </div>
