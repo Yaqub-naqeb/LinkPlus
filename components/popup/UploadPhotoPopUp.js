@@ -12,7 +12,12 @@ import { getFirestore, updateDoc } from "firebase/firestore";
 import { useFetch } from '../useHooks/useFetch';
 import { set_Profile_Photo } from '@/redux/reducers/profille';
 import { collection, getDocs, query, where } from "firebase/firestore";
-import {useServerRendering} from '../useHooks/useServerRendering'
+
+import { HiUpload } from "@heroicons/react/outline";
+import UploadImageInput from './upload/UploadImageInput';
+import UploadProfile from './upload/UploadProfile';
+
+
 const UploadPhotoPopUp = () => {
 
 
@@ -102,6 +107,11 @@ updateDoc(docRef, data1)
   dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
 }
 
+// 
+
+ const uploadButtonStyles = "bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-300 flex gap-3 ";
+
+
 
 
   return (
@@ -117,36 +127,21 @@ updateDoc(docRef, data1)
 
     <hr />
     <form onSubmit={submitHandler}>
-    <div className='  flex flex-col items-center justify-center align-middle gap-16 lg:w-[30vw]  lg:h-[45vh] w-[90vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'>
+    <div className='  flex flex-col items-center justify-center   align-middle lg:gap-16 md:gap-14 gap-8 lg:w-[30vw]  lg:h-[45vh] w-[95vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16   pl-3'>
 
-    
-      <div className='flex gap-3  items-center justify-center align-middle'>
-       UploadImage: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border   lg:max-w-full md:max-w-full  w-2/3 ' />
-      </div>
+{/* kdjlsa */}
 
-{/* <div class="relative rounded-md bg-gray-100 p-4">
-  <input type="file" onChange={e=>setPhoto(e.target.files[0])}  className="opacity-0 absolute inset-0 z-50" />
-  <div class="flex items-center justify-center">
-    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-    </svg>
-    <span class="ml-2 leading-none">Upload an image</span>
-  </div>
-</div> */}
+<UploadProfile
+      label="Image:"
+      onChange={(e) => setPhoto(e.target.files[0])}
+    />
+<UploadImageInput
+      label="Background Image:"
+      onChange={(e) => setBgPhoto(e.target.files[0])}
+    />
+{/* kjl */}
 
 
-
-
-
-
-
-
-
-
-
-      <div className='flex gap-3  items-center justify-center align-middle'>
-       Upload Background Image: <input onChange={e=>setBgPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' />
-      </div>
    
 {/* image */}
 <button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo||bgphoto?'':'opacity-40'} `}  disabled={photo||bgphoto?false:true} >Post</button>
