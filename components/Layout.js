@@ -46,15 +46,15 @@ const auth=getAuth();
 
      </div>
 
-   <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] z-50`}></div>}
-      {isDark.editPopup&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] z-50`}></div>}
-      {isDark.uploadProfilePhoto&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] z-50`}></div>}
-      {isDark.skillsEdit&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] z-50`}></div>}
-      {isDark.projectPhoto&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] z-50`}></div>}
+   <div>  {isDark.postPopUp&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] lg:z-50 md:z-50`}></div>}
+      {isDark.editPopup&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] lg:z-50 md:z-50`}></div>}
+      {isDark.uploadProfilePhoto&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] lg:z-50 md:z-50`}></div>}
+      {isDark.skillsEdit&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] lg:z-50 md:z-50  `}></div>}
+      {isDark.projectPhoto&&<div className={`w-full fixed top-0 blur-lg h-full bg-[#f3f3f49d] lg:z-50 md:z-50`}></div>}
  
 </div>
  </div>
- <div className={`fixed mt-20 inset-0 flex items-center justify-center ${isDark.postPopUp||isDark.editPopup||isDark.uploadProfilePhoto||isDark.skillsEdit||isDark.projectPhoto?'':'-z-50'} `}>
+ <div className={`fixed mt-20 inset-0 flex items-center justify-center ${isDark.postPopUp||isDark.editPopup||isDark.uploadProfilePhoto||isDark.skillsEdit||isDark.projectPhoto?'lg:z-50 md:z-50 ':'-z-50'} `}>
        {isDark.postPopUp&&<PostPopUp/>}
        {isDark.editPopup&&<EditProfilePopUp/>}
        {isDark.uploadProfilePhoto&&<UploadPhotoPopUp/>}

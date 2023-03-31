@@ -92,14 +92,14 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
     {/* for Mobile */}
     <div className=' lg:hidden md:hidden
-    absolute z-10 top-0 left-0 w-full h-screen
+    absolute top-0 left-0 w-full h-screen 
     '>
 
 {profileUrl[0]&&<>
 
       {/* background image */}
       <div className='h-1/3 flex relative'>
-      <div className='absolute right-2 top-[5.8rem] z-50 bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle'>
+      <div className='absolute right-2 top-[5.8rem]  bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle z-10'>
 {/* <div className='translate-y-[-1px]'> */}
 {photo}
 {/* </div> */}
@@ -122,9 +122,9 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full  `} width={900} height={900}/>}
 
 <div className='
-absolute right-0 top-[5.8rem] z-50 bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle
+absolute right-0 top-[5.8rem] bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle
 
-
+z-10
 '>
 {photo}
 </div>
