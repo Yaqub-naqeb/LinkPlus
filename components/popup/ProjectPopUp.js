@@ -108,9 +108,10 @@ timeStamp:serverTimestamp(),
       </div>
 
 {/* project Image */}
-      <div className='flex lg:gap-3 md:gap-3 items-center justify-center align-middle'>
-       Project image: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border md:max-w-full max-w-[55vw]  lg:max-w-full ' required/>
+      <div className='flex lg:gap-3 md:gap-3 gap-1 items-center justify-center align-middle'>
+       Project image: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border md:max-w-full max-w-[55vw]  lg:max-w-[30vw] ' required/>
       </div>
+
 
     
    
