@@ -20,6 +20,7 @@ import figma from '../assets/skills/figma.png'
 import { useFetch } from "../useHooks/useFetch";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import { blackEdit } from "../assets/svg/edit/blackEdit";
 
 export const SkillsIcon = [
   {
@@ -79,7 +80,7 @@ const Skills = () => {
   return (
  <div>
 {/* for disctop */}
-<div className="w-[233px]  h-[161px] bg-[#51557E] md:flex hidden  lg:flex flex-col items-center justify-center align-middle gap-5  text-[#E7F6F2] rounded-[45px] relative place-self-start">
+<div className=" lg:flex  md:flex hidden  flex-col items-center justify-center align-middle w-[233px]  h-[161px] bg-[#51557E]  gap-5  text-[#E7F6F2] rounded-[45px] relative place-self-start">
       <p>Skills</p>
       <p
         className="absolute right-3 cursor-pointer top-8"
@@ -88,7 +89,7 @@ const Skills = () => {
         {edit}
       </p>
       {/* skills */}
-      <div className="grid grid-cols-3 gap-x-2 b gap-y-2 overflow-y-scroll scroll-smooth">
+      <div className="grid grid-cols-3 gap-x-2 b gap-y-2 overflow-y-scroll scroll-smooth ">
 
         {data&&data.map((dt) =>
     dt.id==user.uid&&dt.skill&&dt.skill.map((pskill) =>
@@ -117,8 +118,15 @@ const Skills = () => {
 
     <div className="lg:hidden md:hidden ">
        {/* skills */}
-       <div className="grid grid-cols-3 gap-x-1 b gap-y-5 ">
+       <p
+        className="absolute right-3 cursor-pointer -translate-y-[3.3rem] -translate-x-3 "
+        onClick={() => dispatch(setSkillsEdit(!PopUp.skillsEdit))}
+      >
+        {blackEdit}
+      </p>
 
+      
+       <div className="grid grid-cols-3 gap-x-1 b gap-y-5 ">
 {data&&data.map((dt) =>
 dt.id==user.uid&&dt.skill&&dt.skill.map((pskill) =>
     SkillsIcon.map(

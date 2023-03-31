@@ -54,7 +54,7 @@ const auth=getAuth();
  
 </div>
  </div>
- <div className="fixed mt-20 inset-0 flex items-center justify-center ">
+ <div className={`fixed mt-20 inset-0 flex items-center justify-center ${isDark.postPopUp||isDark.editPopup||isDark.uploadProfilePhoto||isDark.skillsEdit||isDark.projectPhoto?'':'-z-50'} `}>
        {isDark.postPopUp&&<PostPopUp/>}
        {isDark.editPopup&&<EditProfilePopUp/>}
        {isDark.uploadProfilePhoto&&<UploadPhotoPopUp/>}

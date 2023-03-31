@@ -19,7 +19,7 @@ const index = () => {
 
    {/* skill && basic info using grid */}
  <div className='grid grid-cols-2 gap-y-5 gap-x-5 place-items-center '>
- {/* <BasicInfo/> */}
+ <BasicInfo/>
    <Skills/>
  {/* <SecondCrousel/> */}
  </div>

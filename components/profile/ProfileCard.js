@@ -12,6 +12,7 @@ import { whiteLocation } from '../assets/svg/socialIcons/whiteLocation'
 import { useMode } from '../useHooks/useMode'
 import { exp } from '../assets/svg/socialIcons/exp'
 import Skills from './Skills'
+import { photo } from '../assets/svg/edit/photo'
 
 
 const ProfileCard = () => {
@@ -97,21 +98,37 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 {profileUrl[0]&&<>
 
       {/* background image */}
-      <div className='h-1/3 flex '>
+      <div className='h-1/3 flex relative'>
+      <div className='absolute right-2 top-[5.8rem] z-50 bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle'>
+{/* <div className='translate-y-[-1px]'> */}
+{photo}
+{/* </div> */}
+
+      </div>
+
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
 :<Image src={defaultBackground} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>}
 </div>
 
 {/* image */}
-<div className='translate-y-[-14%]'>
+<div className='translate-y-[-14%] '>
 
 
 
   {/* profile image */}
-<div className='z-20 ml-8  w-[130px] p-1 flex items-center justify-center align-middle bg-white h-[130px] object-cover rounded-full  '>
+<div className='z-20 ml-8  w-[130px] p-1 flex items-center justify-center align-middle bg-white h-[130px] object-cover rounded-full  relative'>
 
-{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full `} width={900} height={900}/>}
+{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full  `} width={900} height={900}/>}
+
+<div className='
+absolute right-0 top-[5.8rem] z-50 bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle
+
+
+'>
+{photo}
+</div>
+
 </div>
 
 
@@ -134,7 +151,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
    <hr className='mx-8 my-4  border border-[#0006] rounded-lg ' />
    {/* Skills */}
    <div className='flex flex-col gap-2 mt-1  ml-9  '>
-    <p className='font-bold'>Skills</p>
+    <p className='font-bold  w-[82vw] '>Skills</p>
    <div className='mx-6 my-5 translate-x-2'>
    <Skills/>
    </div>
