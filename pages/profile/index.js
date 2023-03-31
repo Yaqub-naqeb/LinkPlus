@@ -12,7 +12,7 @@ const index = () => {
   return (
    <div className=''>
 
-     <div className='  h-[10vh]  flex items-start justify-center align-top gap-[10rem] '>
+     <div className='  lg:h-[100vh]  md:h-[100vh] min-h-full flex items-start justify-center align-top gap-[10rem] '>
    <div className=''>
    <ProfileCard/>
    </div>

@@ -15,6 +15,7 @@ import { useFetch } from "../useHooks/useFetch";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useMode } from "../useHooks/useMode";
+import { blackEdit } from "../assets/svg/edit/blackEdit";
 
 const SecondCrousel = () => {
   const PopUp = useSelector((state) => state.open);
@@ -35,9 +36,9 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
 + Add your Projects
 </div>
-<div className={`text-center cursor-pointer w-fit lg:hidden md:hidden absolute left-[50%] translate-x-[8rem] translate-y-[-6.3rem] font-semibold  md:text-[1rem] text-[1.3rem] ${mode?'text-white':'text-black '}   `}
+<div className={`text-center cursor-pointer w-fit lg:hidden md:hidden absolute left-[50%] translate-x-[8rem] translate-y-[-6.1rem] font-semibold  md:text-[1rem] text-[1.3rem] ${mode?'text-white':'text-black '}   `}
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
-+
+{blackEdit}
 </div>
 
     <Swiper

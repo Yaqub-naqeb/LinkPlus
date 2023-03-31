@@ -105,30 +105,51 @@ updateDoc(docRef, data1)
 
 
   return (
-    <div className='z-50 bg-white text-center '>
+    <div className='z-50 bg-white text-center  '>
    
-<div className='flex justify-end px-5 items-center'>
-<div className='flex align-middle items-center justify-between gap-[9rem] '>
+<div className='flex relative lg:justify-end  lg:px-5'>
+<div className='flex lg:px-0 px-3 align-middle items-center justify-between lg:gap-[9rem]'>
       <h1 className='font-semibold text-2xl py-5 '>Edit Profile Picture</h1>
-<p className='cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))}>{close}</p>
+<p className='cursor-pointer lg:relative absolute right-4' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))}>{close}</p>
       </div>
 </div>
 
 
     <hr />
     <form onSubmit={submitHandler}>
-    <div className='   flex flex-col items-center justify-center align-middle gap-5 w-[30vw] h-[45vh] rounded-md shadow-md px-16'>
+    <div className='  flex flex-col items-center justify-center align-middle gap-16 lg:w-[30vw]  lg:h-[45vh] w-[90vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'>
 
     
       <div className='flex gap-3  items-center justify-center align-middle'>
-       UploadImage: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' />
+       UploadImage: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border   lg:max-w-full md:max-w-full  w-2/3 ' />
       </div>
+
+{/* <div class="relative rounded-md bg-gray-100 p-4">
+  <input type="file" onChange={e=>setPhoto(e.target.files[0])}  className="opacity-0 absolute inset-0 z-50" />
+  <div class="flex items-center justify-center">
+    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span class="ml-2 leading-none">Upload an image</span>
+  </div>
+</div> */}
+
+
+
+
+
+
+
+
+
+
+
       <div className='flex gap-3  items-center justify-center align-middle'>
        Upload Background Image: <input onChange={e=>setBgPhoto(e.target.files[0])}  type="file"  className='border   max-w-full ' />
       </div>
    
 {/* image */}
-<button className={`w-full bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo||bgphoto?'':'opacity-40'} `}  disabled={photo||bgphoto?false:true} >Post</button>
+<button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo||bgphoto?'':'opacity-40'} `}  disabled={photo||bgphoto?false:true} >Post</button>
 
     </div>
 </form>

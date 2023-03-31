@@ -14,6 +14,7 @@ import { exp } from '../assets/svg/socialIcons/exp'
 import Skills from './Skills'
 import { photo } from '../assets/svg/edit/photo'
 import SecondCrousel from './SecondCrousel'
+import { blackEdit } from '../assets/svg/edit/blackEdit'
 
 
 const ProfileCard = () => {
@@ -42,9 +43,9 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 {profileUrl[0]&&<>
 
 
-  <div className='absolute right-2 top-5 z-50 cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{edit}</div>
+  <div className='absolute right-2 top-5 z-50 p-1 rounded-full bg-white   cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{blackEdit}</div>
 
-{/* profile Image Card */}
+{/* background Image Card */}
 <div className='absolute top-0 left-0 w-full h-1/3'>
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
@@ -52,9 +53,9 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
 </div>
 <div className='z-50'>
-
+{/* profile imageee */}
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
-
+{/* <div className='absolute right-2 top-5 z-50 p-1 rounded-full bg-white   cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{blackEdit} fldaksjaldkjflkdj</div> */}
 
    <div className='flex flex-col gap-3  items-center justify-center align-middle'>
      
@@ -100,12 +101,10 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
       {/* background image */}
       <div className='h-1/3 flex relative'>
-      <div className='absolute right-2 top-[6.3rem]  bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle z-10'>
-{/* <div className='translate-y-[-1px]'> */}
+      {/* <div className='absolute right-2 top-[6.3rem]  bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle z-10 '  onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >
 {photo}
-{/* </div> */}
 
-      </div>
+      </div> */}
 
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
@@ -126,7 +125,8 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 absolute right-0 top-[5.8rem] bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle
 
 z-10
-'>
+' onClick={()=>  dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
+}>
 {photo}
 </div>
 
