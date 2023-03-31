@@ -28,7 +28,7 @@ const NewPost = () => {
       placeholder='Type here...'
       /> */}
 
-      <p onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))} className='bg-transparent   font-semibold outline-none text-[#5f5e5eaa] '>Type here...</p>
+      <p onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))} className={`bg-transparent  font-medium outline-none  ${mode?'text-[#d3d1d1e2]':'text-[#5f5e5eaa]'} `}>Type here...</p>
 
 
 
