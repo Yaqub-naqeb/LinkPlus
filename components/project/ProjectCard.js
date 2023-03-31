@@ -5,7 +5,7 @@ const ProjectCard = () => {
 
 const {subCollectionData}=useFetchProjects('Users');
   return (
-    <div className="relative grid grid-cols-3 gap-8 rounded-2xl">
+    <div className="relative grid lg:grid-cols-3 md:grid-cols-3 grid-cols-2 gap-8 rounded-2xl ">
 {subCollectionData&&subCollectionData.map((user)=>(
   user&&user.map((subData,index)=><SingleCard key={index} data={subData} />)))}
 
