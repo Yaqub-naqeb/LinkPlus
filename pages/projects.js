@@ -5,9 +5,9 @@ import React from 'react'
 const projects = () => {
 
   return (
-    <div className='min-h-screen flex items-center flex-col'>
+    <div className='min-h-screen   flex items-center flex-col '>
         <General/>
-      <div className='flex items-center align-middle justify-center w-[1024px]  '>
+      <div className='flex items-center  align-middle justify-center lg:w-[1024px]  w-[96vw] transition-all duration-700 ease-in-out  '>
       <ProjectCard/>
       </div>
     </div>
