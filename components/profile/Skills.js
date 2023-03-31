@@ -116,10 +116,10 @@ const Skills = () => {
     {/* for mobile */}
 
 
-    <div className="lg:hidden md:hidden ">
+    <div className="lg:hidden md:hidden relative">
        {/* skills */}
        <p
-        className="absolute right-3 cursor-pointer -translate-y-[3.3rem] -translate-x-3 "
+        className="absolute right-3 cursor-pointer -translate-y-[3.2rem] -translate-x-3 "
         onClick={() => dispatch(setSkillsEdit(!PopUp.skillsEdit))}
       >
         {blackEdit}

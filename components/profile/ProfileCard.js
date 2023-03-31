@@ -13,10 +13,12 @@ import { useMode } from '../useHooks/useMode'
 import { exp } from '../assets/svg/socialIcons/exp'
 import Skills from './Skills'
 import { photo } from '../assets/svg/edit/photo'
+import SecondCrousel from './SecondCrousel'
 
 
 const ProfileCard = () => {
   const photoUrl=useSelector((state) => state.profile);
+  console.log(photoUrl.city);
 
   const PopUp = useSelector((state) => state.open);
 const dispatch=useDispatch();
@@ -28,7 +30,6 @@ const {data}=useFetch('Users');
 const {mode}=useMode();
 
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
-
 
 
   return (
@@ -99,7 +100,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
       {/* background image */}
       <div className='h-1/3 flex relative'>
-      <div className='absolute right-2 top-[5.8rem]  bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle z-10'>
+      <div className='absolute right-2 top-[6.3rem]  bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle z-10'>
 {/* <div className='translate-y-[-1px]'> */}
 {photo}
 {/* </div> */}
@@ -144,7 +145,7 @@ z-10
     
     <div className='flex gap-2.5 '>
         <div className='translate-x-0.5 '>{whiteLocation}</div>
-        <p className='text-[.9rem] translate-y-[1px]'>{photoUrl.city?photoUrl.city:'Location'}</p>
+        <p className='text-[.9rem] translate-y-[1px]'>{profileUrl[0].city?profileUrl[0].city:'Location'}</p>
 </div>
    </div>
 {/* line */}
@@ -155,8 +156,20 @@ z-10
    <div className='mx-6 my-5 translate-x-2'>
    <Skills/>
    </div>
-
 </div>
+{/* line */}
+<hr className='mx-8 my-4  border border-[#0006] rounded-lg ' />
+
+  {/* Skills */}
+  <div className='flex flex-col gap-2 mt-1  ml-9  '>
+    <p className='font-bold  w-[82vw] '>Projects</p>
+   <div className='mx-auto my-8  -translate-x-5  '>
+   <SecondCrousel/>
+   </div>
+   </div>
+
+
+
 
 </div>
 

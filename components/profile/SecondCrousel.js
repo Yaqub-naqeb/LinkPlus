@@ -30,10 +30,14 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
   return (
     
-    <div className=" w-[730px] place-self-start relative  pt-8   h-[437px] col-start-1 row-start-0  col-span-2  rounded-2xl">
-<div className={`text-center cursor-pointer w-fit  absolute left-[50%] translate-x-[-50%] top-0 ${mode?'text-white':'text-black'}`}
+    <div className="  lg:w-[730px] md:w-[730px] place-self-start relative  pt-8   lg:h-[437px] md:h-[437px] h-[250px] col-start-1 row-start-0  col-span-2  rounded-2xl">
+<div className={`text-center cursor-pointer w-fit lg:block md:block  hidden absolute left-[50%] translate-x-[-50%] top-0 lg:text-[1rem] md:text-[1rem] text-[0.8rem] ${mode?'text-white':'text-black'}  `}
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
 + Add your Projects
+</div>
+<div className={`text-center cursor-pointer w-fit lg:hidden md:hidden absolute left-[50%] translate-x-[8rem] translate-y-[-6.3rem] font-semibold  md:text-[1rem] text-[1.3rem] ${mode?'text-white':'text-black '}   `}
+ onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
++
 </div>
 
     <Swiper

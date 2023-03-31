@@ -12,16 +12,20 @@ const index = () => {
   return (
    <div className=''>
 
-     <div className='  h-[90vh]  flex items-start justify-center align-top gap-[10rem] '>
+     <div className='  h-[10vh]  flex items-start justify-center align-top gap-[10rem] '>
    <div className=''>
    <ProfileCard/>
    </div>
 
    {/* skill && basic info using grid */}
- <div className='grid grid-cols-2 gap-y-5 gap-x-5 place-items-center '>
+ <div className='grid grid-cols-2 gap-y-5 gap-x-5 lg:place-items-start md:place-items-start place-items-center '>
  <BasicInfo/>
-   <Skills/>
- {/* <SecondCrousel/> */}
+ <div className='lg:block md:block hidden'>
+ <Skills/>
+ </div>
+ <div className='lg:block md:block hidden lg:translate-x-[4rem] md:translate-x-[4rem] translate-x-[10rem]'>
+ <SecondCrousel/>
+ </div>
  </div>
     </div>
    </div>
