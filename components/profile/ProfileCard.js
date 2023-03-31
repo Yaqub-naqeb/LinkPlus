@@ -113,7 +113,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 </div>
 
 {/* image */}
-<div className='translate-y-[-14%] '>
+<div className='translate-y-[-6%] '>
 
 
 
