@@ -89,13 +89,13 @@ timeStamp:serverTimestamp(),
    
 <div className='flex relative lg:justify-end  lg:px-5  '>
 <div className='flex lg:px-0 px-3 align-middle items-center justify-between lg:gap-[9rem] '>
-      <h1 className='font-semibold text-2xl py-5  '>Edit Profile Picture</h1>
+      <h1 className='font-semibold text-2xl py-5  '>Add your project</h1>
 <p className='cursor-pointer lg:relative absolute right-4' onClick={()=>  dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>{close}</p>
       </div>
 </div>
     <hr />
     <form onSubmit={submitHandler}>
-    <div className='    flex flex-col items-center justify-center align-middle gap-16 lg:w-[30vw]  lg:h-[45vh] w-[95vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'> 
+    <div className='   text-[.9rem] font-semibold flex flex-col items-center justify-center align-middle lg:gap-8 gap-16 lg:w-[30vw]  lg:h-[45vh] w-[95vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'> 
 
 {/* project Name */}
 <div className='flex gap-3  items-center justify-center align-middle'>
@@ -108,8 +108,8 @@ timeStamp:serverTimestamp(),
       </div>
 
 {/* project Image */}
-      <div className='flex lg:gap-3 md:gap-3 gap-1 items-center justify-center align-middle'>
-       Project image: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border md:max-w-full max-w-[55vw]  lg:max-w-[30vw] ' required/>
+      <div className='flex lg:gap-3  md:gap-3 gap-1 items-center justify-center align-middle'>
+       Project image: <input onChange={e=>setPhoto(e.target.files[0])}  type="file"  className='border font-medium md:max-w-full max-w-[55vw]  lg:max-w-[14vw] ' required/>
       </div>
 
 

@@ -5,8 +5,8 @@ import { view } from "../assets/svg/socialIcons/view";
 
 const SecondSingleCard = ({data}) => {
   return (
-    <div className="relative overflow-hidden transition-all duration-150 ease-in-out projectCard rounded-2xl ">
-    <div className="transition-all duration-150 ease-in-out lg:w-80 lg:h-72  w-[10rem]  h-[10rem] ">
+    <div className="relative overflow-hidden  transition-all duration-150 ease-in-out projectCard rounded-2xl ">
+    <div className="transition-all duration-150 ease-in-out lg:w-80 lg:h-72  w-[10rem]   h-[10rem] ">
       <ImageComponent
         isContain={false}
         layout={true}

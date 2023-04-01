@@ -93,31 +93,31 @@ const googleProvider = new GoogleAuthProvider();
 
 
   return (
-    <div className='w-[505px] h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center gap-16  translate-y-[-4rem]  '>
+    <div className=' lg:w-[505px] w-[90vw] lg:h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center lg:gap-12 gap-8  py-5  translate-y-[-4rem]  '>
       
 <p className='text-4xl text-[#51557E] font-bold '>Welcome Back</p>
 
-<form onSubmit={submitHandler}  className='flex flex-col gap-8 items-center  align-middle'>
+<form onSubmit={submitHandler}  className='flex flex-col gap-5 lg:gap-8 items-center  align-middle'>
 
 
 {/* first input */}
-<input onChange={(e)=>setEmail(e.target.value)}  type="text"  name="" id="" placeholder='Email' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] '/>
+<input onChange={(e)=>setEmail(e.target.value)}  type="text"  name="" id="" placeholder='Email' className='bg-[#EBEBEB] outline-none lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] px-5 rounded-[10px] '/>
 
 <div>
 <div className='relative'>
-<input onChange={(e)=>setPassword(e.target.value)} type="text" name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 w-[447px] h-[58px] rounded-[10px] '/>
+<input onChange={(e)=>setPassword(e.target.value)} type="text" name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] '/>
 {/* Eye icon */}
-<div className='absolute right-4 -translate-y-9 cursor-pointer'>{Eye}</div>
+<div className='absolute right-4 -translate-y-7 lg:-translate-y-9 cursor-pointer'>{Eye}</div>
 </div>
 
 
 
-<p className='underline text-[#51557E] flex items-end justify-end my-2'>Forgot Password?</p>
+<p className='underline text-[#51557E] flex items-end justify-end mt-5'>Forgot Password?</p>
 </div>
 
 
 {/* btn */}
-<button className='bg-[#51557E] tracking-wider rounded-[10px] w-[447px] h-[58px] font-bold text-[#E7F6F2] text-xl'>Login</button>
+<button className='bg-[#51557E] tracking-wider rounded-[10px] lg:w-[447px] h-[2.5rem] w-[60vw] lg:h-[58px] font-bold text-[#E7F6F2] text-xl'>Login</button>
  <p className='text-2xl font-semibold cursor-pointer text-[#4A4E7C]' onClick={()=>dsipatch(setLogin(!signForm.login))}>SignUp</p>
 </form>
 <button onClick={popupHandler}>G</button>

@@ -109,7 +109,8 @@ flex relative lg:justify-end  lg:px-5
       </label>
    
 {/* imskill */}
-<button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl  font-semibold ${skillName?'':'opacity-40'} `}  disabled={skillName?false:true}  >submit</button>
+{/* ${skillName?'':'opacity-40'} */}
+<button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl  font-semibold  `}  disabled={skillName?false:true}  >submit</button>
 
     </div>
 </form>
