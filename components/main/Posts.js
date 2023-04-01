@@ -119,7 +119,7 @@ const profileHandler=()=>{
 
 
   return (
-    <div className={`shadow-md ${mode?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'}  h-full w-full place-items-center rounded-2xl mx-3`}>
+    <div className={`shadow-md ${mode?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'} lg:w-[40vw] w-[90vw]  h-full  place-items-center rounded-2xl mx-3`}>
       
 {/* card */}
 <div className=''>

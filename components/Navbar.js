@@ -134,7 +134,9 @@ dsipatch(setNotfication(!isOpen.notfication))
 
         {/* mobile */}
 {/* md:hidden */}
-        <div className={`lg:hidden `}>
+        <div className={`lg:hidden flex gap-3  items-center justify-center `}>
+        <SmallImage/>
+
           <div
             className="lg:hidden  transition-all  duration-300 ease-in-out cursor-pointer"
             onClick={() => dsipatch(setIsOpen(!isOpen.open))}
@@ -160,7 +162,8 @@ dsipatch(setNotfication(!isOpen.notfication))
        : "non-active-class-name"}>
                 <Link href={nav.href}>{nav.name}</Link>
               </li> ))}
-            
+              {user&&<div className="cursor-pointer  text-red-500" onClick={signOutHandler}><Link href={"/form"}  >SignOut</Link></div>}
+
         </ul>
         {/* togle */}
         <div>

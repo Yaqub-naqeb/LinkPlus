@@ -6,7 +6,7 @@ const TaskCard = () => {
     const Mode = useSelector((state) => state.open);
 const {mode}=useMode()
   return (
-    <div className={`w-[383px] hover:scale-105 transition-all duration-150 ease-in-out h-[89px] rounded-2xl grid grid-cols-3 ${mode?' text-[#E7F6F2]  font-medium bg-[#273649]':'bg-[#FDFDFD]'} shadow-md place-items-center content-center text-center `}>
+    <div className={`lg:w-[383px] w-[90vw] hover:scale-105 transition-all duration-150 ease-in-out h-[89px] rounded-2xl grid grid-cols-3 ${mode?' text-[#E7F6F2]  font-medium bg-[#273649]':'bg-[#FDFDFD]'} shadow-md place-items-center content-center text-center `}>
 {/* first */}
 <div>
     <p className='font-bold'>Task</p>
