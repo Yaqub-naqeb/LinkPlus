@@ -119,11 +119,9 @@ updateDoc(docRef1, data1)
 
  
 //  })
-
-
-
-
   }
+
+
 
 }else{
 // if it is New
@@ -136,8 +134,8 @@ follow:true,
 timeStamp:serverTimestamp(),
 userId:user.id,
 docId:SecondDocId
-
 })
+
 // send data to firebase
 const friendDocId=uuid();
  const docRefFriend = doc(db, `Users/${user.docId}/follower`,friendDocId);
@@ -150,8 +148,6 @@ docId:friendDocId,
 userId:user.id,
 isNew:true,
 userDocId:user.docId
-
-
 })
 
 // update the folower inside users///////////////
@@ -168,17 +164,12 @@ updateDoc(docRef1, data1)
   console.log(error);
 })
 
-
-
-
-
 }
   //  setFollow(false);
   dispatch(setFollow(!Mode.follow))
-
-
-
 }
+
+
 
 
 

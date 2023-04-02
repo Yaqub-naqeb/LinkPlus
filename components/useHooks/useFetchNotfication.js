@@ -45,7 +45,7 @@ console.log('hi');
 
 
        return ()=> unsubscribe();
-      }, [isDocIdAvalable,PopUp.follow,PopUp.notfication]);
+      }, [isDocIdAvalable,PopUp.follow,PopUp.notfication,PopUp.isDelete]);
       return { subCollection };
 
 }
