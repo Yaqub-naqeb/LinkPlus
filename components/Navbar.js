@@ -83,6 +83,7 @@ dsipatch(setNotfication(!isOpen.notfication))
 
   return (
     
+    
     <div className={`fixed bg-white z-50    w-full`}>
       <div
         className={`flex  align-middle items-center justify-between lg:px-20 md:px-10  px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
@@ -134,7 +135,15 @@ dsipatch(setNotfication(!isOpen.notfication))
 
         {/* mobile */}
 {/* md:hidden */}
+
+
+
+
         <div className={`lg:hidden flex gap-3  items-center justify-center `}>
+
+
+        <div onClick={notfiHandler} className="">{mode?isNewFolower[0]&&isNewFolower[0].isNew?darkmsgNotfi:darkNotfication: isNewFolower[0]&&isNewFolower[0].isNew?messageNotfi:notfication}</div>
+
         <SmallImage/>
 
           <div

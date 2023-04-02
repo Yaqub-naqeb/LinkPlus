@@ -10,7 +10,7 @@ console.log(subCollection);
 
 
   return (
-    <div className='min-h-screen fixed right-0 top-[6rem] w-[23%] bg-[#51557E] z-50 py-10 flex flex-col gap-3 '>
+    <div className='lg:min-h-screen h-[70vw] lg:px-0 px-3 fixed right-0 top-[5.3rem] lg:top-[6rem] lg:w-[23%] w-[100vw] bg-[#51557E] z-50 lg:py-10 py-4 flex flex-col gap-3 '>
 {
 subCollection&&subCollection.map((sub,index)=>(
   <SingleNotfication key={index} subCollection={sub}/>

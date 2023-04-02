@@ -19,7 +19,9 @@ console.log(mode);
 
 
   return (
-    <div
+   <div>
+    {/* for disctop */}
+     <div
       className={` lg:flex   hidden flex-col gap-8 h-[100vh] fixed left-[90px] top-[10rem] ${
         dark.open ? "-z-20" : ""
       }    ${mode?'text-white':''}`}
@@ -58,6 +60,8 @@ console.log(mode);
         Tasks
       </div>
     </div>
+
+   </div>
   );
 };
 
