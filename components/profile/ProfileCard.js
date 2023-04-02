@@ -141,7 +141,7 @@ z-10
 
    {/* kjfdsldkfjas */}
    {/* lkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj */}
-   <div className='grid grid-cols-2 gap-x-8  place-items-center absolute right-5 top-20'>
+   <div className='grid grid-cols-2 gap-x-8  place-items-center absolute right-7 top-20'>
       <p>Following</p>
       <p>Follower</p>
       <p>{profileUrl[0].following}</p>
