@@ -19,6 +19,7 @@ import { set_user_uid } from "@/redux/reducers/profille";
 import { useMode } from "../useHooks/useMode";
 
 const Posts = ({postData,src,text}) => {
+    
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
 const auth=getAuth()
 const [user]=useAuthState(auth);
@@ -107,11 +108,7 @@ setTimeout(() => {
 
 // profileHandler
 const profileHandler=()=>{
-
     dispatch(set_user_uid(postData.userUid))
-    console.log(prof.user_uid);
-
-
 }  
 
 

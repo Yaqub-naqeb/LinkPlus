@@ -13,6 +13,7 @@ import { doc, getFirestore, serverTimestamp, setDoc, updateDoc } from 'firebase/
 import { uuid } from 'uuidv4'
 import { useFetchNotfication } from '../useHooks/useFetchNotfication'
 import { setFollow } from '@/redux/reducers/isOpen'
+import { set_user_uid } from '@/redux/reducers/profille'
 
 const DesignerCard = ({user,cu}) => {
   // console.log(user.following);
@@ -185,6 +186,10 @@ updateDoc(docRef2, data2)
   dispatch(setFollow(!Mode.follow))
 }
 
+// profileHandler
+const profileHandler=()=>{
+  dispatch(set_user_uid(user.id))
+}  
 
 
 
@@ -209,7 +214,7 @@ updateDoc(docRef2, data2)
       
       
        {/* profileeeeee */}
-       <div className="cursor-pointer "><Link href={"/profile"}>
+       <div className="cursor-pointer "><Link href={"/publicProfile"} onClick={profileHandler}>
               {user&&user.profilePhoto?<Image src={user.profilePhoto} className={`w-14 h-14 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-14 h-14 object-cover rounded-full `} width={100} height={100}/>}
               </Link>
               </div>

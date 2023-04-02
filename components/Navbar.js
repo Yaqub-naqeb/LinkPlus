@@ -122,7 +122,7 @@ dsipatch(setNotfication(!isOpen.notfication))
 {/*  */}
             <div>{mode?darkSearch:search}</div>
 
-            <div onClick={notfiHandler}>{mode?isNewFolower[0]&&isNewFolower[0].isNew?darkmsgNotfi:darkNotfication: isNewFolower[0]&&isNewFolower[0].isNew?messageNotfi:notfication}</div>
+            <div onClick={notfiHandler} className="cursor-pointer">{mode?isNewFolower[0]&&isNewFolower[0].isNew?darkmsgNotfi:darkNotfication: isNewFolower[0]&&isNewFolower[0].isNew?messageNotfi:notfication}</div>
             <div>{mode?darkSetting:setting}</div>
             {/* max-w-0 */}
             <div>
