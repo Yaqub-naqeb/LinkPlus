@@ -26,7 +26,6 @@ const DesignerCard = ({user,cu}) => {
 
   
   const folowerData=useFetchNotfication('follower')
-  console.log(folowerData.subCollection);
 
 
   const isFollow=subCollection&&subCollection.filter(sub=>user.id==sub.userId);
@@ -150,7 +149,7 @@ isNew:true,
 userDocId:user.docId
 })
 
-// update the folower inside users///////////////
+// update the folowing inside users///////////////
 const docRef1 = doc(db, "Users",current[0].docId);
 
 const data1 = {
@@ -163,6 +162,23 @@ updateDoc(docRef1, data1)
 .catch(error => {
   console.log(error);
 })
+
+
+// update the folower for this account that you followed///////////////
+const docRef2 = doc(db, "Users",user.docId);
+
+const data2 = {
+  follower:user.follower+1,
+};
+updateDoc(docRef2, data2)
+.then(docRef => {
+  // alert("Follow sent");
+})
+.catch(error => {
+  console.log(error);
+})
+
+
 
 }
   //  setFollow(false);

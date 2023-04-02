@@ -112,14 +112,16 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 </div>
 
 {/* image */}
-<div className='translate-y-[-6%] '>
+<div className='translate-y-[-6%]  '>
 
 
 
   {/* profile image */}
 <div className='z-20 ml-8  w-[130px] p-1 flex items-center justify-center align-middle bg-white h-[130px] object-cover rounded-full  relative'>
+  
 
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>}
+
 
 <div className='
 
@@ -132,14 +134,23 @@ z-10
 </div>
 
 </div>
-
-
 {/* name and exprience and location */}
 <div className='flex flex-col gap-2 mt-1  ml-8 '>
      
    <p className='font-bold'>{user.displayName?user.displayName:photoUrl.userName}</p>
 
+   {/* kjfdsldkfjas */}
+   {/* lkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj */}
+   <div className='grid grid-cols-2 gap-x-8  place-items-center absolute right-5 top-20'>
+      <p>Following</p>
+      <p>Follower</p>
+      <p>{profileUrl[0].following}</p>
+      <p>{profileUrl[0].follower}</p>
+       </div>
+  
+
 <div className='flex gap-1 '>
+  
 <div>{exp}</div>
    <p className=' text-[.9rem] translate-y-1'>{photoUrl.exprince?photoUrl.exprince:'Experince'}</p>
 </div>

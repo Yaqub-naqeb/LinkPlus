@@ -1,16 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import defaultImage from '../assets/imgs/profileImg/user.png'
 import Link from 'next/link';
 import Image from 'next/image';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseApp';
 import { setIsDelete } from '@/redux/reducers/isOpen';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useFetch } from '../useHooks/useFetch';
 const SingleNotfication = ({subCollection}) => {
   console.log(subCollection);
 
   const ob = useSelector((state) => state.open);
   const dispatch=useDispatch();
+  const [docId,setDocId]=useState();
+
+  const {data}=useFetch('Users');
+
+
+const [currentUserData,setCurrentUserData]=useState();
+
+    const auth=getAuth();
+    const us=useAuthState(auth);
+
+
+    useEffect(()=>{
+      const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", us[0].uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setDocId(doc.id, " => ", doc.data())
+setCurrentUserData(doc.data());
+        // dispatch(set_userName(doc.data().name))
+      });}
+    
+      rendering();
+    
+    },[])
+
+console.log(currentUserData);
+
+  
 
 
 const deleteHandler=()=>{
@@ -23,6 +53,35 @@ delete:true
 })
 dispatch(setIsDelete(!ob.isDelete))
 
+
+}
+const confirmHandler=()=>{
+
+  
+  // To delete the notfication 
+ const docRefFriend = doc(db, `Users/${subCollection.userDocId}/follower`,subCollection.docId);
+ setDoc(docRefFriend,{
+ delete:true
+ })
+
+// update the folower inside users///////////////
+const docRef1 = doc(db, "Users",docId);
+
+const data1 = {
+  following:currentUserData.following+1,
+};
+updateDoc(docRef1, data1)
+.then(docRef => {
+  // alert("Follow sent");
+})
+.catch(error => {
+  console.log(error);
+})
+
+
+ dispatch(setIsDelete(!ob.isDelete))
+ 
+ 
 
 }
 
@@ -45,7 +104,7 @@ dispatch(setIsDelete(!ob.isDelete))
 </div>
 
 <div className='flex gap-3 '>
-<button className='bg-blue-400 rounded-md text-white px-2 py-2 ' >Confirm</button>
+<button className='bg-blue-400 rounded-md text-white px-2 py-2 ' onClick={confirmHandler}>Confirm</button>
 <button className='bg-red-400 rounded-md text-white px-2 py-2 ' onClick={deleteHandler}>Delete</button>
 
 </div>
