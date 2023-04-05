@@ -11,6 +11,7 @@ import { addDoc, collection, serverTimestamp, setDoc,
    } from 'firebase/firestore';
 import { setLogin } from '@/redux/reducers/isOpen';
 import { useFetch } from '../useHooks/useFetch';
+import { TailSpin } from  'react-loader-spinner'
 
 
 const SignUp = () => {
@@ -34,9 +35,19 @@ const router=useRouter();
 
 // using react firebase hooks
 const [user,loading]=useAuthState(auth)
+// npm install react-loader-spinner --save
 
 if(loading){
-  return <div>Loading...</div>
+  return <div><TailSpin
+  height="100"
+  width="100"
+  color="#757BB7"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+/></div>
 }
 if(user){
   console.log(like.userName);
@@ -88,7 +99,7 @@ setEmail('')
 setPassword('')
 setConfirmPassword('')
 }
-
+// 
 
  // sign up with Google
  const popupHandler = async () => {

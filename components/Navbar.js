@@ -43,7 +43,7 @@ const Navbar = () => {
     {name:'Home',href:'/',isProject:false},
     {name:'Projects',href:'/projects',isProject:true},
     {name:'Tasks',href:'/tasks',isProject:false},
-    {name:'Designers',href:'/designers',isProject:false}
+    {name:'Users',href:'/users',isProject:false}
   ]
 
 
@@ -79,8 +79,7 @@ isNew:false,
 userDocId:isNewFolower[0].userDocId
 })
 }
-dsipatch(setNotfication(true))
-
+dsipatch(setNotfication(!isOpen.notfication))
 
 }
 
@@ -113,8 +112,7 @@ dsipatch(setNotfication(true))
 {pages&&pages.map((nav,index)=>(<li key={index}  className={currentRoute === nav.href
        ? "active-class-name scale-125  font-[2rem]" 
        : "non-active-class-name"}>
-                <Link onClick={()=>dsipatch(setNotfication(!isOpen.notfication))
-} href={nav.href}>{nav.name}</Link>
+                <Link  href={nav.href}>{nav.name}</Link>
               </li> ))}
 
 

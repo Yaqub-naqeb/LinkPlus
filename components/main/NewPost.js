@@ -48,7 +48,7 @@ const NewPost = () => {
 {mode?smth:WhiteSmth}
 {mode?location:whiteLocation}
 </div>
-<button className='bg-[#757BB8] md:py-2 py-1 lg:py-2 px-8 font-medium rounded-full' onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}>Post</button>
+<button className='bg-[#757BB8] text-white  md:py-2 py-1 lg:py-2 px-8 font-medium rounded-full' onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}>Post</button>
 </div>
 
 

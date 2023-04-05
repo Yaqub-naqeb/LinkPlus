@@ -5,7 +5,7 @@ import { getAuth } from 'firebase/auth'
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-const designers = () => {
+const Users = () => {
 
   const auth=getAuth()
   const [user]=useAuthState(auth);
@@ -22,4 +22,4 @@ const designers = () => {
   )
 }
 
-export default designers
+export default Users
