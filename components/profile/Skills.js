@@ -21,6 +21,7 @@ import { useFetch } from "../useHooks/useFetch";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import { blackEdit } from "../assets/svg/edit/blackEdit";
+import { useMode } from "../useHooks/useMode";
 
 export const SkillsIcon = [
   {
@@ -69,7 +70,7 @@ export const SkillsIcon = [
 ];
 
 const Skills = () => {
-
+const {mode}=useMode();
   const { data } = useFetch("Users");
   const auth=getAuth();
   const [user,loading]=useAuthState(auth)
@@ -122,7 +123,7 @@ const Skills = () => {
         className="absolute right-3 cursor-pointer -translate-y-[3.2rem] -translate-x-3 "
         onClick={() => dispatch(setSkillsEdit(!PopUp.skillsEdit))}
       >
-        {blackEdit}
+        {mode?edit:blackEdit}
       </p>
 
       

@@ -5,14 +5,16 @@ import ProfileCard from '@/components/profile/ProfileCard'
 import Projects from '@/components/profile/Projects'
 import SecondCrousel from '@/components/profile/SecondCrousel'
 import Skills from '@/components/profile/Skills'
+import { useMode } from '@/components/useHooks/useMode'
 import { getAuth } from 'firebase/auth'
 import React from 'react'
 
 const index = () => {
+  const {mode}=useMode();
   return (
-   <div className=''>
+   <div className={`${mode?'bg-[#1B2430]':''}`}>
 
-     <div className='  lg:h-[100vh]  md:h-[100vh] min-h-full flex items-start justify-center align-top gap-[10rem] '>
+     <div className='  lg:h-[screen]  md:h-screen min-h-full flex items-start justify-center align-top gap-[10rem] '>
    <div className=''>
    <ProfileCard/>
    </div>

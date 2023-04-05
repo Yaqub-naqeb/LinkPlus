@@ -92,19 +92,16 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
     </div>
 
+{/* className={``} */}
     {/* for Mobile */}
-    <div className=' lg:hidden md:hidden
-    absolute top-0 left-0 w-full h-screen 
-    '>
+    <div className={` ${mode?'bg-[#1B2430] text-white':''} lg:hidden md:hidden
+    absolute top-0 left-0 w-full min-h-full 
+    `}>
 
 {profileUrl[0]&&<>
 
       {/* background image */}
       <div className='h-1/3 flex relative'>
-      {/* <div className='absolute right-2 top-[6.3rem]  bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle z-10 '  onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >
-{photo}
-
-      </div> */}
 
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
@@ -123,12 +120,12 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>}
 
 
-<div className='
-
-absolute right-0 top-[5.8rem] bg-white p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle
-
+<div className={`
+${mode?'text-black':''}
+bg-white
+absolute right-0 top-[5.8rem]   p-1 rounded-full w-7 h-7  flex items-center justify-center align-middle
 z-10
-' onClick={()=>  dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
+`} onClick={()=>  dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))
 }>
 {photo}
 </div>
@@ -156,7 +153,7 @@ z-10
 </div>
     
     <div className='flex gap-2.5 '>
-        <div className='translate-x-0.5 '>{whiteLocation}</div>
+        <div className='translate-x-0.5 '>{mode?location:whiteLocation}</div>
         <p className='text-[.9rem] translate-y-[1px]'>{profileUrl[0].city?profileUrl[0].city:'Location'}</p>
 </div>
    </div>

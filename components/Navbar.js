@@ -59,6 +59,9 @@ const signOutHandler=()=>{
   }).catch((error) => {
     // An error happened.
   });
+  dsipatch(setIsOpen(!isOpen.open))
+
+
 }
 const notfiHandler=()=>{
 
@@ -78,13 +81,14 @@ userDocId:isNewFolower[0].userDocId
 }
 dsipatch(setNotfication(!isOpen.notfication))
 
+
 }
 
 
   return (
     
     
-    <div className={`fixed bg-white z-50    w-full`}>
+    <div className={`fixed bg-white z-50  w-full`}>
       <div
         className={`flex  align-middle items-center justify-between lg:px-20 md:px-10  px-5 ${mode?'bg-[#1B2430] text-[#E7F6F2]':'bg-[#EBEBEB]'}   shadow-md py-6`}
       >
@@ -109,7 +113,8 @@ dsipatch(setNotfication(!isOpen.notfication))
 {pages&&pages.map((nav,index)=>(<li key={index}  className={currentRoute === nav.href
        ? "active-class-name scale-125  font-[2rem]" 
        : "non-active-class-name"}>
-                <Link href={nav.href}>{nav.name}</Link>
+                <Link onClick={()=>dsipatch(setNotfication(!isOpen.notfication))
+} href={nav.href}>{nav.name}</Link>
               </li> ))}
 
 
@@ -169,7 +174,7 @@ dsipatch(setNotfication(!isOpen.notfication))
         {pages&&pages.map((nav,index)=>(<li  key={index} className={currentRoute === nav.href
        ? "active-class-name scale-110  font-[2rem]" 
        : "non-active-class-name"}>
-                <Link href={nav.href}>{nav.name}</Link>
+                <Link href={nav.href } onClick={()=>dsipatch(setIsOpen(!isOpen.open))}>{nav.name}</Link>
               </li> ))}
               {user&&<div className="cursor-pointer  text-red-500" onClick={signOutHandler}><Link href={"/form"}  >SignOut</Link></div>}
 

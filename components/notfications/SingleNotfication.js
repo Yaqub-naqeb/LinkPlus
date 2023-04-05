@@ -16,9 +16,6 @@ const SingleNotfication = ({subCollection}) => {
   const dispatch=useDispatch();
   const [docId,setDocId]=useState();
 
-  const {data}=useFetch('Users');
-
-
 const [currentUserData,setCurrentUserData]=useState();
 
     const auth=getAuth();
