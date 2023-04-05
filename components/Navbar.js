@@ -79,7 +79,7 @@ isNew:false,
 userDocId:isNewFolower[0].userDocId
 })
 }
-dsipatch(setNotfication(!isOpen.notfication))
+dsipatch(setNotfication(true))
 
 
 }
