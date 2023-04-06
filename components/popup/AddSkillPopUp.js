@@ -92,9 +92,9 @@ flex relative lg:justify-end  lg:px-5
 
     <hr />
     <form onSubmit={submitHandler}>
-    <div className='  flex flex-col items-center justify-center align-middle gap-16 lg:w-[30vw]  lg:h-[45vh] w-[90vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'> 
+    <div className='  flex flex-col items-center justify-center align-middle gap-16 lg:w-[30vw]   lg:h-[45vh] w-[95vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'> 
      
-      <label   className='flex gap-3  items-center justify-center align-middle lg:translate-x-0 md:translate-x-0 -translate-x-4'>
+      <label   className='flex gap-3 px-16  items-center justify-center align-middle lg:translate-x-0 md:translate-x-0 -translate-x-4'>
      <span className='font-semibold'> Skills: </span><Select   className='border z-50  min-w-full '
       closeMenuOnSelect={false}
       components={animatedComponents}

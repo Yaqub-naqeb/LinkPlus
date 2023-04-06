@@ -16,6 +16,7 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useMode } from "../useHooks/useMode";
 import { blackEdit } from "../assets/svg/edit/blackEdit";
+import { edit } from "../assets/svg/edit/edit";
 
 const SecondCrousel = () => {
   const PopUp = useSelector((state) => state.open);
@@ -38,7 +39,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 </div>
 <div className={`text-center cursor-pointer w-fit lg:hidden md:hidden absolute left-[50%] translate-x-[8rem] translate-y-[-6.1rem] font-semibold  md:text-[1rem] text-[1.3rem] ${mode?'text-white':'text-black '}   `}
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
-{blackEdit}
+{mode?edit:blackEdit}
 </div>
 
     <Swiper
