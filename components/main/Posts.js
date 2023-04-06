@@ -17,6 +17,8 @@ import { useLikeDetail } from "../useHooks/useLikeDetail";
 import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 import { set_user_uid } from "@/redux/reducers/profille";
 import { useMode } from "../useHooks/useMode";
+import { ThreeDots } from "react-loader-spinner";
+import ThreeDotsMenu from "./ThreeDotsMenu";
 
 const Posts = ({postData,src,text}) => {
     
@@ -135,8 +137,8 @@ const profileHandler=()=>{
         
         
         </div>   </div>
-
-    <h1 className='font-bold cursor-pointer'>...</h1>
+{/* three dots */}
+    <h1 className='font-bold cursor-pointer'><ThreeDotsMenu/></h1>
     
 </div>
 {/* the content */}
