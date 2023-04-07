@@ -63,9 +63,7 @@ if (!/\S+@\S+\.\S+/.test(email)) {
 //  else {
 //   setEmailError('');
 // }
-if (password.length < 6 ) {
-  setPasswordError('Password must be at least 6 characters');
-}
+
 //  else {
 //   setPasswordError('');
 // }
@@ -83,7 +81,14 @@ signInWithEmailAndPassword(auth, email, password)
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
+    console.log(errorCode);
+    if(errorCode==='auth/user-not-found'){
+      setEmailError('This Gmail was not found!');
+
+    }
+    else{
+      setPasswordError('Wrong Password!');
+    }
   });
 
 
@@ -128,7 +133,7 @@ const googleProvider = new GoogleAuthProvider();
 
 
   return (
-    <div className=' lg:w-[505px] w-[90vw] lg:h-[560px] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center lg:gap-12 gap-8  py-5  translate-y-[-4rem]  '>
+    <div className=' lg:w-[505px] w-[90vw] lg:h-[full] rounded-[25px] bg-[#FFFFFF]  text-center flex flex-col items-center align-middle justify-center lg:gap-12 gap-8  py-5  translate-y-[-4rem]  '>
       
 <p className='text-4xl text-[#51557E] font-bold '>Welcome Back</p>
 
