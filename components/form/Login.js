@@ -7,10 +7,17 @@ import { setLogin } from '@/redux/reducers/isOpen';
 import { useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { TailSpin } from 'react-loader-spinner';
 
 const Login = () => {
 const [email,setEmail]=useState();
 const [password,setPassword]=useState();
+
+const [emailError, setEmailError] = useState('');
+const [passwordError, setPasswordError] = useState('');
+
+const [showPass,setShowPass]=useState(false);
+
 const signForm = useSelector((state) => state.open);
 const dsipatch = useDispatch();
 
@@ -24,7 +31,16 @@ const router=useRouter();
 const [user,loading]=useAuthState(auth)
 
 if(loading){
-  return <div>Loading...</div>
+  return <div><TailSpin
+  height="100"
+  width="100"
+  color="#757BB7"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+/></div>
 }
 if(user){
   router.push("/profile")  
@@ -37,6 +53,24 @@ initFirebase();
 
 const submitHandler=(e)=>{
 e.preventDefault();
+
+
+
+
+if (!/\S+@\S+\.\S+/.test(email)) {
+  setEmailError('Email is invalid');
+}
+//  else {
+//   setEmailError('');
+// }
+if (password.length < 6 ) {
+  setPasswordError('Password must be at least 6 characters');
+}
+//  else {
+//   setPasswordError('');
+// }
+
+
 
 const auth = getAuth();
 signInWithEmailAndPassword(auth, email, password)
@@ -89,6 +123,7 @@ const googleProvider = new GoogleAuthProvider();
   } catch (error) {
     console.log(error);
   }
+
 };
 
 
@@ -101,14 +136,19 @@ const googleProvider = new GoogleAuthProvider();
 
 
 {/* first input */}
-<input onChange={(e)=>setEmail(e.target.value)}  type="text"  name="" id="" placeholder='Email' className='bg-[#EBEBEB] outline-none lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] px-5 rounded-[10px] '/>
+<input onChange={(e)=>setEmail(e.target.value)}  type="email"  name="" id="" placeholder='Email' className='bg-[#EBEBEB] outline-none lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] px-5 rounded-[10px] ' required/>
+
+{emailError && <span className='text-red-500 font-semibold text-[0.8rem]'>{emailError}</span>}
+
 
 <div>
 <div className='relative'>
-<input onChange={(e)=>setPassword(e.target.value)} type="text" name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] '/>
+<input onChange={(e)=>setPassword(e.target.value)} type={`${showPass?'text':'password'}`} name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
 {/* Eye icon */}
-<div className='absolute right-4 -translate-y-7 lg:-translate-y-9 cursor-pointer'>{Eye}</div>
+<div className='absolute right-4 -translate-y-7 lg:-translate-y-9 cursor-pointer' onClick={()=>setShowPass(!showPass)}>{Eye}</div>
 </div>
+
+{passwordError && <span className='text-red-500 font-semibold text-[0.8rem] '>{passwordError}</span>}
 
 
 

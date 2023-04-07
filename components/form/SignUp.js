@@ -12,6 +12,7 @@ import { addDoc, collection, serverTimestamp, setDoc,
 import { setLogin } from '@/redux/reducers/isOpen';
 import { useFetch } from '../useHooks/useFetch';
 import { TailSpin } from  'react-loader-spinner'
+import { Eye } from '../assets/svg/passwordEye/Eye';
 
 
 const SignUp = () => {
@@ -35,6 +36,8 @@ const [emailError, setEmailError] = useState('');
 const [passwordError, setPasswordError] = useState('');
 const [ConfirmpasswordError, setConfirmPasswordError] = useState('');
 
+const [showPass,setShowPass]=useState(false);
+const [showConPass,setShowConPass]=useState(false);
 
 
 
@@ -207,13 +210,20 @@ setConfirmPassword('')
 
 
 
-      <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
+   <div className='relative'>
+   <input onChange={(e)=>setPassword(e.target.value)} value={password} type={`${showPass?'text':'password'}`} name="" id="" placeholder='Password' className='bg-[#EBEBEB]  outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
+      <div className='absolute right-4 -translate-y-7 lg:-translate-y-9 cursor-pointer' onClick={()=>setShowPass(!showPass)}>{Eye}</div>
+   </div>
+
       {/*Password */}
       {passwordError && <span className='text-red-500 font-semibold text-[0.8rem] '>{passwordError}</span>}
 
 
 
-      <input onChange={(e)=>setConfirmPassword(e.target.value)} value={ConfirmPassword} type="password" name="" id="" placeholder='ConfirmPassword' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
+<div className='relative'>
+<input onChange={(e)=>setConfirmPassword(e.target.value)} value={ConfirmPassword} type={`${showConPass?'text':'password'}`} name="" id="" placeholder='ConfirmPassword' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
+      <div className='absolute right-4 -translate-y-7 lg:-translate-y-9 cursor-pointer' onClick={()=>setShowConPass(!showConPass)}>{Eye}</div>
+</div>
       {ConfirmpasswordError && <span className='text-red-500 font-semibold text-[0.8rem] '>{ConfirmpasswordError}</span>}
 
       
