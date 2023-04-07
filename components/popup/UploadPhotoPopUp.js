@@ -72,7 +72,9 @@ if(photo){
   };
   updateDoc(docRef, data1)
   .then(docRef => {
-    dispatch(setIsUploading(false))
+    setTimeout(() => {
+      dispatch(setIsUploading(false))
+    }, 5000);
   })
   .catch(error => {
     console.log(error);

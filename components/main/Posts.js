@@ -27,7 +27,7 @@ const auth=getAuth()
 const [user]=useAuthState(auth);
 const [active, setActive] = useState(true);
 
-
+const [isPostDeleted,setIsPostDeleted]=useState(false);
 
     const like = useSelector((state) => state.open);
     const prof = useSelector((state) => state.profile);
@@ -38,7 +38,8 @@ const [active, setActive] = useState(true);
 
     const db = getFirestore(); // initialize Firestore
 
-
+const postDeleted=()=>{
+}
 
 const likedHandler=async()=>{
     setActive(false);
@@ -118,61 +119,67 @@ const profileHandler=()=>{
 
 
   return (
-    <div className={`shadow-md ${mode?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'} lg:w-[40vw] w-[90vw]  h-full  place-items-center rounded-2xl mx-3`}>
+   <>
+   {!isPostDeleted&& <div className={`shadow-md ${mode?'bg-[#273649] text-[#E7F6F2]':'bg-[#ffffffe8]'} lg:w-[40vw] w-[90vw]  h-full  place-items-center rounded-2xl mx-3`}>
       
-{/* card */}
-<div className=''>
-{/* header of card */}
-<div className='flex justify-between  px-7 pt-5 ' > 
-    <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
+      {/* card */}
+      <div className=''>
+      {/* header of card */}
+      <div className='flex justify-between  px-7 pt-5 ' > 
+          <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
+              
+                 {/* profileeeeee */}
+                 <Link href={"/publicProfile"} className={'flex items-center gap-3'} onClick={profileHandler}>
+                   <div className="cursor-pointer relative" >
+                    {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>}    
+                    </div>
+                    <h1 className='font-bold cursor-pointer'>{postData.name}</h1>
+                    </Link>
+         
+              
+              
+              </div>   </div>
+      {/* three dots */}
+          <h1 className='font-bold cursor-pointer'><ThreeDotsMenu isPostDeleted={isPostDeleted} setIsPostDeleted={setIsPostDeleted}/></h1>
+          
+      </div>
+      {/* the content */}
+      <div className='px-8 py-5'>
+          <p>{text}</p>
+      </div>
+      {/*  image */}
+      <div className="relative w-[full] h-[30rem]">
+      {src&&<ImageComponent2 
+              isContain={false}
+              layout={true}
+              pathImage={`${src}`}
+            />}
+      </div>
+      
+      {/* likes */}
+      <div className='flex justify-between mx-5 py-5 items-center '>
         
-           {/* profileeeeee */}
-           <Link href={"/publicProfile"} className={'flex items-center gap-3'} onClick={profileHandler}>
-             <div className="cursor-pointer relative" >
-              {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>}    
-              </div>
-              <h1 className='font-bold cursor-pointer'>{postData.name}</h1>
-              </Link>
+      <div>
+         {postData&&postData.likes} Likes
+      </div>
+      {/* Like comment Send */}
+         <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={active ? likedHandler : null} >
+      
+          {postData.isNew?love: subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
+          {/* { subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div> */}
+      
+          <div className="cursor-pointer">{comment}</div>
+          <div className="cursor-pointer">{send}</div>
+          </div>
+      
+      </div>
+      </div>
+      </div>}
    
-        
-        
-        </div>   </div>
-{/* three dots */}
-    <h1 className='font-bold cursor-pointer'><ThreeDotsMenu/></h1>
-    
-</div>
-{/* the content */}
-<div className='px-8 py-5'>
-    <p>{text}</p>
-</div>
-{/*  image */}
-<div className="relative w-[full] h-[30rem]">
-{src&&<ImageComponent2 
-        isContain={false}
-        layout={true}
-        pathImage={`${src}`}
-      />}
-</div>
-
-{/* likes */}
-<div className='flex justify-between mx-5 py-5 items-center '>
-  
-<div>
-   {postData&&postData.likes} Likes
-</div>
-{/* Like comment Send */}
-   <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={active ? likedHandler : null} >
-
-    {postData.isNew?love: subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
-    {/* { subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div> */}
-
-    <div className="cursor-pointer">{comment}</div>
-    <div className="cursor-pointer">{send}</div>
-    </div>
-
-</div>
-</div>
-</div>
+   
+   
+   
+   </>
   )
 }
 

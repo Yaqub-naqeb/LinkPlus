@@ -3,7 +3,7 @@ import { useMode } from '../useHooks/useMode';
 import { save } from '../assets/svg/save/SavePost';
 import { close } from '../assets/svg/close/close';
 
-const ThreeDotsMenu = () => {
+const ThreeDotsMenu = ({setIsPostDeleted,isPostDeleted}) => {
     const [open ,setOpen]=useState(false);
 const {mode}=useMode()
   return (
@@ -24,7 +24,7 @@ const {mode}=useMode()
     <div className="py-1" role="none">
       {/* <!-- Menu items --> */}
       <a href="#" class="flex items-center gap-1 px-4 py-2 text-sm   hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="menu-item-0"><span>{save}</span> Save Post</a>
-      <a href="#" class="flex items-center gap-1 px-4 py-2 text-sm  hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="menu-item-1"> {close} Hide Post</a>
+      <a href="#" class="flex items-center gap-1 px-4 py-2 text-sm  hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="menu-item-1" onClick={()=>setIsPostDeleted(true)}> {close} Hide Post</a>
      
     </div>
   </div>
