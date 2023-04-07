@@ -73,14 +73,16 @@ const submitHandler= async(e)=>{
 
 if (!/\S+@\S+\.\S+/.test(email)) {
     setEmailError('Email is invalid');
-  } else {
-    setEmailError('');
   }
+  //  else {
+  //   setEmailError('');
+  // }
  if (password.length < 6 ) {
     setPasswordError('Password must be at least 6 characters');
-  } else {
-    setPasswordError('');
   }
+  //  else {
+  //   setPasswordError('');
+  // }
 if(ConfirmPassword.length < 6){
   setConfirmPasswordError('Password must be at least 6 characters');
 
@@ -88,7 +90,6 @@ if(ConfirmPassword.length < 6){
  else if (ConfirmPassword !== password) {
     setConfirmPasswordError('Confirm Password must be Match with password');
   } else {
-    setPasswordError('');
 
 
     
@@ -193,7 +194,7 @@ setConfirmPassword('')
       
       <input onChange={e=>setFullName(e.target.value)} value={fullName} type="text" name="" id="" placeholder='FullName' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
 {/* Name Error */}
-{nameError && <span className='text-red-500 text-[0.8rem] '>{nameError}</span>}
+{nameError && <span className='text-red-500 font-semibold  text-[0.8rem] '>{nameError}</span>}
 
 
 
@@ -201,19 +202,19 @@ setConfirmPassword('')
 
       <input onChange={(e)=>setEmail(e.target.value)} value={email}  type="email"  name="" id="" placeholder='Email' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
 {/*Email  */}
-{emailError && <span className='text-red-500 text-[0.8rem]'>{emailError}</span>}
+{emailError && <span className='text-red-500 font-semibold text-[0.8rem]'>{emailError}</span>}
 
 
 
 
       <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="" id="" placeholder='Password' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
       {/*Password */}
-      {passwordError && <span className='text-red-500 text-[0.8rem] '>{passwordError}</span>}
+      {passwordError && <span className='text-red-500 font-semibold text-[0.8rem] '>{passwordError}</span>}
 
 
 
       <input onChange={(e)=>setConfirmPassword(e.target.value)} value={ConfirmPassword} type="password" name="" id="" placeholder='ConfirmPassword' className='bg-[#EBEBEB] outline-none px-5 lg:w-[447px] h-[2.5rem] w-[80vw] lg:h-[58px] rounded-[10px] ' required/>
-      {ConfirmpasswordError && <span className='text-red-500 text-[0.8rem] '>{ConfirmpasswordError}</span>}
+      {ConfirmpasswordError && <span className='text-red-500 font-semibold text-[0.8rem] '>{ConfirmpasswordError}</span>}
 
       
       {/* btn */}
