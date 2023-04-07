@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { doc} from "firebase/firestore"; 
 import { db, storage } from '@/firebase/FirebaseApp';
 import { useSelector,useDispatch } from 'react-redux';
-import { setEditPopup, setPostPopUp, setUploadProfilePhoto } from '@/redux/reducers/isOpen';
+import { setEditPopup, setIsUploading, setPostPopUp, setUploadProfilePhoto } from '@/redux/reducers/isOpen';
 import { close } from '../assets/svg/close/close';
 import {  ref, uploadBytesResumable, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -16,10 +16,12 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { HiUpload } from "@heroicons/react/outline";
 import UploadImageInput from './upload/UploadImageInput';
 import UploadProfile from './upload/UploadProfile';
+import { ColorRing } from 'react-loader-spinner';
 
+import { css } from '@emotion/react';
+import { RingLoader } from 'react-spinners';
 
 const UploadPhotoPopUp = () => {
-
 
     const PopUp = useSelector((state) => state.open);
     const photoUrl=useSelector((state) => state.profile);
@@ -53,6 +55,10 @@ const submitHandler =(e)=>{
 
 
 const code=uuid();
+
+// setLod(true);
+dispatch(setIsUploading(true))
+
 // console.log(photo.name);
 if(photo){
   const imageRef = ref(storage,`images/${photo.name+code}`);
@@ -66,7 +72,7 @@ if(photo){
   };
   updateDoc(docRef, data1)
   .then(docRef => {
-    alert("profile picture successfully changed");
+    dispatch(setIsUploading(false))
   })
   .catch(error => {
     console.log(error);
@@ -90,8 +96,10 @@ const data1 = {
 backgroundPhoto:url,
 };
 updateDoc(docRef, data1)
-.then(docRef => {
-  alert("background picture successfully changed");
+.then(docRef  => {
+  // alert("background picture successfully changed");
+  // dispatch(setIsUploading(false))
+
 })
 .catch(error => {
   console.log(error);
@@ -109,7 +117,7 @@ updateDoc(docRef, data1)
 
 // 
 
- const uploadButtonStyles = "bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-300 flex gap-3 ";
+//  const uploadButtonStyles = "bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-300 flex gap-3 ";
 
 
 
@@ -145,10 +153,20 @@ updateDoc(docRef, data1)
    
 {/* image */}
 <button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${photo||bgphoto?'':'opacity-40'} `}  disabled={photo||bgphoto?false:true} >Post</button>
+{/* <p>{lod&&<ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>}</p> */}
+      {/* <RingLoader css={override} size={100} color={'#123abc'} loading={lod} /> */}
+
 
     </div>
 </form>
-
     </div>
   )
 }

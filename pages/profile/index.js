@@ -14,7 +14,7 @@ const index = () => {
   return (
    <div className={`${mode?'bg-[#1B2430]':''}`}>
 
-     <div className='  lg:h-[screen]  md:h-screen min-h-full flex items-start justify-center align-top gap-[10rem] '>
+     <div className='  lg:h-[90vh]  md:h-screen min-h-full flex items-start justify-center align-top gap-[10rem] '>
    <div className=''>
    <ProfileCard/>
    </div>

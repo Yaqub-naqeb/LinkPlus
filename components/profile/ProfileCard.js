@@ -15,7 +15,10 @@ import Skills from './Skills'
 import { photo } from '../assets/svg/edit/photo'
 import SecondCrousel from './SecondCrousel'
 import { blackEdit } from '../assets/svg/edit/blackEdit'
-
+import { css } from '@emotion/react';
+import { RingLoader,FadeLoader
+} from 'react-spinners';
+import { Oval } from 'react-loader-spinner'
 
 const ProfileCard = () => {
   const photoUrl=useSelector((state) => state.profile);
@@ -31,7 +34,13 @@ const {data}=useFetch('Users');
 const {mode}=useMode();
 
 const profileUrl= data&&data.filter(name=>name.id==user.uid)
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
 
+`;
+console.log(PopUp.uploading);
 
   return (
     <div>
@@ -53,8 +62,38 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
 </div>
 <div className='z-50'>
-{/* profile imageee */}
+<div className='relative '>
+  {/* profile imageee */}
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
+
+{PopUp.uploading&&<>
+  <div className=' bg-[#fffb] absolute top-0 w-[209px]  h-[303px]  rounded-[32px]'></div>
+
+  <div className='absolute top-[30%] left-[25%] rounded-[32px]'>
+  <Oval
+  height={100}
+  width={100}
+  color="#6f74b6"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  ariaLabel='oval-loading'
+  secondaryColor="#757BB"
+  strokeWidth={3}
+  strokeWidthSecondary={3}
+
+/>
+</div>
+
+
+</>}
+
+
+ 
+
+
+</div>
+
 {/* <div className='absolute right-2 top-5 z-50 p-1 rounded-full bg-white   cursor-pointer' onClick={()=>dispatch(setUploadProfilePhoto(!PopUp.uploadProfilePhoto))} >{blackEdit} fldaksjaldkjflkdj</div> */}
 
    <div className='flex flex-col gap-3  items-center justify-center align-middle'>
@@ -115,6 +154,27 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
 
   {/* profile image */}
 <div className='z-20 ml-8  w-[130px] p-1 flex items-center justify-center align-middle bg-white h-[130px] object-cover rounded-full  relative'>
+{/* <RingLoader className='translate-x-4' css={override} size={95} color={'#123abc'} loading={PopUp.uploading} /> */}
+{PopUp.uploading&&<>
+  <div className=' bg-[#fffb] absolute left-0 top-0 w-[130px]  h-[130px]  rounded-full '></div>
+
+<div className='absolute'>
+ <Oval
+  height={60}
+  width={60}
+  color="#6f74b6"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  ariaLabel='oval-loading'
+  secondaryColor="#757BB"
+  strokeWidth={4}
+  strokeWidthSecondary={4}
+
+/> 
+</div>
+</>
+}
   
 
 {profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>}
