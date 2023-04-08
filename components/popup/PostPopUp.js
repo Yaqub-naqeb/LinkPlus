@@ -23,7 +23,6 @@ const [user,loading]=useAuthState(auth)
 const [text,setText]=useState();
 const [file,setFile]=useState(null);
 const [postLoad,setPostLoad]=useState(true);
-// const [data,setData]=useState('');
 
 const {data}=useFetch('Users');
 
@@ -76,17 +75,22 @@ const addData = async (
       getDownloadURL(snapshot.ref).then(async(url) => {
         dispatch(set_Update(url))
         // add them to fire base
+      
      addData(
           url,
           text,
           user && user.uid,
         );
+        dispatch(setIsImagePosted(true))
+
 dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 // TODO:labar away postaka newya dabe false bchta naw
 
 // dispatch(set_Update(!PopUp.update))
 
-      
+
+
+
       });
     });
 // like.isLikeByUser
@@ -94,7 +98,7 @@ dispatch(setPostPopUp(!PopUp.postPopUp))
 
 setTimeout(() => {
   setPostLoad(true)
-  dispatch(setIsImagePosted(true))
+  // dispatch(setIsImagePosted(true))
   dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 
 }, 5000);

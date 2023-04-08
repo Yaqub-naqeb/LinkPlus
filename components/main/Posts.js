@@ -21,6 +21,7 @@ import { ThreeDots } from "react-loader-spinner";
 import ThreeDotsMenu from "./ThreeDotsMenu";
 
 const Posts = ({postData,src,text}) => {
+    console.log(postData);
     
 const {subCollectionLikeData}=useLikeDetail('Posts',postData.docId);
 const auth=getAuth()
@@ -131,9 +132,9 @@ const profileHandler=()=>{
                  {/* profileeeeee */}
                  <Link href={"/publicProfile"} className={'flex items-center gap-3'} onClick={profileHandler}>
                    <div className="cursor-pointer relative" >
-                    {postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>}    
+                    {like.isImagePosted&&postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>}    
                     </div>
-                    <h1 className='font-bold cursor-pointer'>{postData.name}</h1>
+                    <h1 className='font-bold cursor-pointer'>{like.isImagePosted?postData.name:'Name...'}</h1>
                     </Link>
          
               

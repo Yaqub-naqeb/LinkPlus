@@ -42,7 +42,7 @@ useEffect(()=>{
       
 <General/>
 <NewPost/>
-{data&&data.map((post,index)=>index==0? <Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />:<Posts key={index}  postData={post} text={post.text} src={post.src} />
+{data&&data.map((post,index)=>post.isNew? <Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />:<Posts key={index}  postData={post} text={post.text} src={post.src} />
 )}
 
     </div>

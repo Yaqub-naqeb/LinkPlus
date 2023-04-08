@@ -6,7 +6,6 @@ import { dark2 } from '../assets/svg/darkImg/dark2'
 const ThirdPart = () => {
 
   const Mode = useSelector((state) => state.open);
-  console.log(Mode.dark);
 
 const dispatch=useDispatch();
 
