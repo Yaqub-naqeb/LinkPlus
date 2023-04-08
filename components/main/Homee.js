@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { getAuth } from 'firebase/auth'
 import { set_userName } from '@/redux/reducers/profille'
+import LoadingOverlay from 'react-loading-overlay';
 
 
 const Homee = () => {
@@ -42,6 +43,10 @@ useEffect(()=>{
       
 <General/>
 <NewPost/>
+{/* {data&&data.map((post,index)=>index==0?   <LoadingOverlay className='w-fit mx-5 rounded-2xl ' active={op.isImagePosted} spinner text='Loading...'>
+<Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />
+  </LoadingOverlay>:<Posts key={index}  postData={post} text={post.text} src={post.src} />
+)} */}
 {data&&data.map((post,index)=>post.isNew? <Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />:<Posts key={index}  postData={post} text={post.text} src={post.src} />
 )}
 

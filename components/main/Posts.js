@@ -19,6 +19,8 @@ import { set_user_uid } from "@/redux/reducers/profille";
 import { useMode } from "../useHooks/useMode";
 import { ThreeDots } from "react-loader-spinner";
 import ThreeDotsMenu from "./ThreeDotsMenu";
+import LoadingOverlay from "react-loading-overlay";
+
 
 const Posts = ({postData,src,text}) => {
     console.log(postData);
@@ -149,6 +151,7 @@ const profileHandler=()=>{
           <p>{text}</p>
       </div>
       {/*  image */}
+      {/* { !like.isImagePosted? <LoadingOverlay className='w-fit mx-5 rounded-2xl ' active={like.isImagePosted} spinner text='Loading...'>
       <div className="relative w-[full] h-[30rem]">
       {src&&<ImageComponent2 
               isContain={false}
@@ -156,6 +159,14 @@ const profileHandler=()=>{
               pathImage={`${src}`}
             />}
       </div>
+  </LoadingOverlay> :   <div className="relative w-[full] h-[30rem]">
+      {src&&<ImageComponent2 
+              isContain={false}
+              layout={true}
+              pathImage={`${src}`}
+            />}
+      </div>} */}
+   
       
       {/* likes */}
       <div className='flex justify-between mx-5 py-5 items-center '>
