@@ -40,7 +40,6 @@ setIsDocIdAvalable(!isDocIdAvalable)
         });
 
 
-console.log('hi');
 
 
 

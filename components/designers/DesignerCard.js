@@ -17,6 +17,7 @@ import { set_user_uid } from '@/redux/reducers/profille'
 
 const DesignerCard = ({user,cu}) => {
   // console.log(user.following);
+  console.log(cu.uid);
   const Mode = useSelector((state) => state.open);
   const dispatch=useDispatch();
   const [dis,setDisable]=useState(false);
@@ -133,7 +134,9 @@ setDoc(docRef,{
 follow:true,
 timeStamp:serverTimestamp(),
 userId:user.id,
-docId:SecondDocId
+docId:SecondDocId,
+senderUserId:cu.uid
+
 })
 
 // send data to firebase
@@ -147,37 +150,39 @@ timeStamp:serverTimestamp(),
 docId:friendDocId,
 userId:user.id,
 isNew:true,
-userDocId:user.docId
+userDocId:user.docId,
+senderUserId:cu.uid,
+firstSenderDocId:current[0].docId,
 })
 
 // update the folowing inside users///////////////
-const docRef1 = doc(db, "Users",current[0].docId);
+// const docRef1 = doc(db, "Users",current[0].docId);
 
-const data1 = {
-  following:user.following+1,
-};
-updateDoc(docRef1, data1)
-.then(docRef => {
-  // alert("Follow sent");
-})
-.catch(error => {
-  console.log(error);
-})
+// const data1 = {
+//   following:user.following+1,
+// };
+// updateDoc(docRef1, data1)
+// .then(docRef => {
+//   // alert("Follow sent");
+// })
+// .catch(error => {
+//   console.log(error);
+// })
 
 
 // update the folower for this account that you followed///////////////
-const docRef2 = doc(db, "Users",user.docId);
+// const docRef2 = doc(db, "Users",user.docId);
 
-const data2 = {
-  follower:user.follower+1,
-};
-updateDoc(docRef2, data2)
-.then(docRef => {
-  // alert("Follow sent");
-})
-.catch(error => {
-  console.log(error);
-})
+// const data2 = {
+//   follower:user.follower+1,
+// };
+// updateDoc(docRef2, data2)
+// .then(docRef => {
+//   // alert("Follow sent");
+// })
+// .catch(error => {
+//   console.log(error);
+// })
 
 
 

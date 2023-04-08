@@ -20,7 +20,7 @@ import SmallImage from "./profile/SmallImage";
 import { useMode } from "./useHooks/useMode";
 import { useFetchNotfication } from "./useHooks/useFetchNotfication";
 import { messageNotfi } from "./assets/svg/rigthNavbarIcons/messageNotfi";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase/FirebaseApp";
 import { darkmsgNotfi } from "./assets/svg/rigthNavbarIcons/darkIcons/darkmsgNotfi";
 import DarkToggle from "./main/toggle/DarkToggle";
@@ -68,7 +68,7 @@ const notfiHandler=()=>{
   // const friendDocId=uuid();
 if(isNewFolower[0]&&isNewFolower[0].isNew){
   const docRefFriend = doc(db, `Users/${isNewFolower[0].userDocId}/follower`,isNewFolower[0].docId);
-setDoc(docRefFriend,{
+updateDoc(docRefFriend,{
 profilePhoto:isNewFolower[0].profilePhoto&&isNewFolower[0].profilePhoto,
 name:isNewFolower[0].name,
 follow:'Followed you ',

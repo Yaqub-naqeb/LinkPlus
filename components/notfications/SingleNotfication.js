@@ -17,27 +17,43 @@ const SingleNotfication = ({subCollection}) => {
   const [docId,setDocId]=useState();
 
 const [currentUserData,setCurrentUserData]=useState();
+const [SenderUserData,setSenderUserData]=useState();
 
     const auth=getAuth();
     const us=useAuthState(auth);
 
 
+//     useEffect(()=>{
+//       const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", us[0].uid));
+//       const querySnapshot = await getDocs(q);
+//       querySnapshot.forEach((doc) => {
+//         setDocId(doc.id, " => ", doc.data())
+// setCurrentUserData(doc.data());
+//         // dispatch(set_userName(doc.data().name))
+//       });}
+    
+//       rendering();
+    
+//     },[])
+
+console.log(subCollection);
+
     useEffect(()=>{
-      const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", us[0].uid));
+      const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==",subCollection.senderUserId&&subCollection.senderUserId));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        setDocId(doc.id, " => ", doc.data())
-setCurrentUserData(doc.data());
-        // dispatch(set_userName(doc.data().name))
+        // setDocId(doc.id, " => ", doc.data())
+setSenderUserData(doc.data());
+        console.log(SenderUserData);
+
       });}
     
       rendering();
     
     },[])
 
-console.log(currentUserData);
+    console.log(SenderUserData);
 
-  
 
 
 const deleteHandler=()=>{
@@ -62,10 +78,11 @@ const confirmHandler=()=>{
  })
 
 // update the folower inside users///////////////
-const docRef1 = doc(db, "Users",docId);
+const docRef1 = doc(db, "Users",subCollection.firstSenderDocId);
+// const docRef1 = doc(db,`Users/${subCollection.userDocId}`);
 
 const data1 = {
-  following:currentUserData.following+1,
+  following:SenderUserData.following+1,
 };
 updateDoc(docRef1, data1)
 .then(docRef => {
@@ -75,11 +92,8 @@ updateDoc(docRef1, data1)
   console.log(error);
 })
 
-
  dispatch(setIsDelete(!ob.isDelete))
- 
- 
-
+  
 }
 
 

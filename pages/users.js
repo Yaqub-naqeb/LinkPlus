@@ -9,6 +9,7 @@ const Users = () => {
 
   const auth=getAuth()
   const [user]=useAuthState(auth);
+  console.log(user.uid);
   const {data}=useFetch('Users');
   return (
   <div className='flex flex-col items-center justify-start min-h-screen '>
