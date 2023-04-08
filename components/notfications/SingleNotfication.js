@@ -84,6 +84,7 @@ updateDoc(docRef1, data1)
 
 
   return (
+    // #efececde
     <div className={`flex gap-3  items-center align-middle px-2 justify-between bg-[#efececde] ${subCollection.delete&&'hidden'} py-3 mx-1 rounded-lg`}>
 {/* the person that follows you */}
 
