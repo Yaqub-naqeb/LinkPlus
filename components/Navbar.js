@@ -100,7 +100,7 @@ dsipatch(setNotfication(!isOpen.notfication))
             <div
               className={`flex flex-col  align-middle items-center ${poppins.className}`}
             >
-              <p> Designers </p>
+              <p> JobFinders </p>
               <p>commiunity</p>
             </div>
           </div>
