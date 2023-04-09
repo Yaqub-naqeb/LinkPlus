@@ -15,7 +15,7 @@ const SingleNotfication = ({subCollection}) => {
   const ob = useSelector((state) => state.open);
   const dispatch=useDispatch();
   const [docId,setDocId]=useState();
-
+const [isConfirm,setIsConfirm]=useState(false);
 const [currentUserData,setCurrentUserData]=useState();
 const [SenderUserData,setSenderUserData]=useState();
 
@@ -23,18 +23,18 @@ const [SenderUserData,setSenderUserData]=useState();
     const us=useAuthState(auth);
 
 
-//     useEffect(()=>{
-//       const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", us[0].uid));
-//       const querySnapshot = await getDocs(q);
-//       querySnapshot.forEach((doc) => {
-//         setDocId(doc.id, " => ", doc.data())
-// setCurrentUserData(doc.data());
-//         // dispatch(set_userName(doc.data().name))
-//       });}
+    useEffect(()=>{
+      const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==", us[0].uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setDocId(doc.id, " => ", doc.data())
+setCurrentUserData(doc.data());
+        // dispatch(set_userName(doc.data().name))
+      });}
     
-//       rendering();
+      rendering();
     
-//     },[])
+    },[])
 
 console.log(subCollection);
 
@@ -70,17 +70,34 @@ dispatch(setIsDelete(!ob.isDelete))
 }
 const confirmHandler=()=>{
 
-  
+  setIsConfirm(true)
   // To delete the notfication 
  const docRefFriend = doc(db, `Users/${subCollection.userDocId}/follower`,subCollection.docId);
- setDoc(docRefFriend,{
- delete:true
+ updateDoc(docRefFriend,{
+ confirmFollow:true
  })
 
-// update the folower inside users///////////////
-const docRef1 = doc(db, "Users",subCollection.firstSenderDocId);
-// const docRef1 = doc(db,`Users/${subCollection.userDocId}`);
+ // update My Followings  inside users///////////////
+const docRef = doc(db, "Users",docId);
 
+const data = {
+  follower:currentUserData.follower+1,
+};
+updateDoc(docRef, data)
+.then(docRef => {
+  // alert("Follow sent");
+})
+.catch(error => {
+  console.log(error);
+})
+
+
+
+
+
+
+// update the folowing for sender///////////////
+const docRef1 = doc(db, "Users",subCollection.firstSenderDocId);
 const data1 = {
   following:SenderUserData.following+1,
 };
@@ -95,6 +112,61 @@ updateDoc(docRef1, data1)
  dispatch(setIsDelete(!ob.isDelete))
   
 }
+
+
+
+const FollowBack=()=>{
+
+
+    // To delete the notfication 
+ const docRefFriend = doc(db, `Users/${subCollection.userDocId}/follower`,subCollection.docId);
+ setDoc(docRefFriend,{
+ delete:true
+ })
+
+
+
+
+// update My Followings  inside users///////////////
+const docRef1 = doc(db, "Users",docId);
+
+const data1 = {
+  following:currentUserData.following+1,
+};
+updateDoc(docRef1, data1)
+.then(docRef => {
+  // alert("Follow sent");
+})
+.catch(error => {
+  console.log(error);
+})
+
+// update follower of sender 
+// update the folower inside users///////////////
+const docRef = doc(db, "Users",subCollection.firstSenderDocId);
+// const docRef1 = doc(db,`Users/${subCollection.userDocId}`);
+
+const data = {
+  follower:SenderUserData.follower+1,
+};
+updateDoc(docRef, data)
+.then(docRef => {
+  // alert("Follow sent");
+})
+.catch(error => {
+  console.log(error);
+})
+
+
+
+
+
+}
+
+
+
+
+
 
 
   return (
@@ -116,8 +188,14 @@ updateDoc(docRef1, data1)
 </div>
 
 <div className='flex gap-3 '>
+  {subCollection&&subCollection.confirmFollow?<button className='bg-blue-400 rounded-md text-white px-2 py-1 mr-1 ' onClick={FollowBack}>FollowBack</button>
+:<>
 <button className='bg-blue-400 rounded-md text-white px-2 py-2 ' onClick={confirmHandler}>Confirm</button>
+
 <button className='bg-red-400 rounded-md text-white px-2 py-2 ' onClick={deleteHandler}>Delete</button>
+
+</>
+}
 
 </div>
 

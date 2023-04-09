@@ -12,7 +12,7 @@ import { useMode } from '../useHooks/useMode'
 import { doc, getFirestore, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import { uuid } from 'uuidv4'
 import { useFetchNotfication } from '../useHooks/useFetchNotfication'
-import { setFollow } from '@/redux/reducers/isOpen'
+import { setFollow, setNotfication } from '@/redux/reducers/isOpen'
 import { set_user_uid } from '@/redux/reducers/profille'
 
 const DesignerCard = ({user,cu}) => {
@@ -153,7 +153,11 @@ isNew:true,
 userDocId:user.docId,
 senderUserId:cu.uid,
 firstSenderDocId:current[0].docId,
+isConfirm:false,
+confirmFollow:false
+
 })
+
 
 // update the folowing inside users///////////////
 // const docRef1 = doc(db, "Users",current[0].docId);
@@ -187,8 +191,10 @@ firstSenderDocId:current[0].docId,
 
 
 }
+
   //  setFollow(false);
   dispatch(setFollow(!Mode.follow))
+
 }
 
 // profileHandler
