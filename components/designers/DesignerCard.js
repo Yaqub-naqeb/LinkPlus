@@ -12,7 +12,7 @@ import { useMode } from '../useHooks/useMode'
 import { doc, getFirestore, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import { uuid } from 'uuidv4'
 import { useFetchNotfication } from '../useHooks/useFetchNotfication'
-import { setFollow, setNotfication } from '@/redux/reducers/isOpen'
+import { setFollow, setNotfication, setUpdateNofication } from '@/redux/reducers/isOpen'
 import { set_user_uid } from '@/redux/reducers/profille'
 
 const DesignerCard = ({user,cu}) => {
@@ -45,10 +45,6 @@ const current=data&&data.filter(dt=>dt.id==cu.uid)
 
 const isFollow=subCollection&&subCollection.filter(sub=>user.id==sub.userId);
 const followerId=folowerData.subCollection&&folowerData.subCollection.filter(sub=>user.id==sub.userId);
-console.log(followerId);
-
-// console.log(isFollow);
-
 
     const db = getFirestore(); // initialize Firestore
 
@@ -64,7 +60,7 @@ if(isFollow[0]?true:false){
 // const SecondDocId=uuid();
 
 const docRef = doc(db, `Users/${current[0].docId}/followings`,isFollow[0].docId);
-setDoc(docRef,{
+updateDoc(docRef,{
 follow:false,
 docId:isFollow[0].docId,
 userId:user.id,
@@ -72,18 +68,18 @@ userId:user.id,
 })
 
 // update the folowing inside users///////////////
-const docRef1 = doc(db, "Users",current[0].docId);
+// const docRef1 = doc(db, "Users",current[0].docId);
 
-const data1 = {
-  following:user.following-1,
-};
-updateDoc(docRef1, data1)
-.then(docRef => {
-  // alert("unFollow");
-})
-.catch(error => {
-  console.log(error);
-})
+// const data1 = {
+//   following:user.following-1,
+// };
+// updateDoc(docRef1, data1)
+// .then(docRef => {
+//   // alert("unFollow");
+// })
+// .catch(error => {
+//   console.log(error);
+// })
 
 // if it is false
   }else{
@@ -137,11 +133,17 @@ isConfirm:false,
 confirmFollow:false
 
 })
+// setUpdateNofication
 
+setTimeout(() => {
+  dispatch(setUpdateNofication(!Mode.updateNofication))
+
+}, 5000);
 }
 
   //  setFollow(false);
   dispatch(setFollow(!Mode.follow))
+  dispatch(setUpdateNofication(!Mode.updateNofication))
 
 }
 

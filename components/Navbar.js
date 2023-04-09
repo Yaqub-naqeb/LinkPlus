@@ -8,7 +8,7 @@ import { close } from "./assets/svg/rigthNavbarIcons/close";
 import { search } from "./assets/svg/rigthNavbarIcons/search";
 import { setting } from "./assets/svg/rigthNavbarIcons/setting";
 import { notfication } from "./assets/svg/rigthNavbarIcons/notfication";
-import { setIsOpen, setIsProjectOpen, setNotfication } from "@/redux/reducers/isOpen";
+import { setIsOpen, setIsProjectOpen, setNotfication, setUpdateNofication } from "@/redux/reducers/isOpen";
 import { useSelector, useDispatch } from "react-redux";
 import { darkSearch } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSearch";
 import { darkSetting } from "./assets/svg/rigthNavbarIcons/darkIcons/darkSetting";
@@ -94,7 +94,8 @@ dsipatch(setNotfication(!isOpen.notfication))
         {/* nav */}
         <nav className="flex align-middle items-center lg:gap-[10rem] justify-between md:gap-8 ">
           {/* logo */}
-          <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem]">
+          <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem] cursor-pointer"               onClick={()=>router.push('/')}
+>
             {mode? darkSvg:svg}
             <div
               className={`flex flex-col  align-middle items-center ${poppins.className}`}

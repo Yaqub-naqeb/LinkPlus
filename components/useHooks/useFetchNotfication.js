@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import { useFetch } from "./useFetch";
+import { setUpdateNofication } from "@/redux/reducers/isOpen";
 
 export const useFetchNotfication = (type) => {
   const PopUp = useSelector((state) => state.open);
@@ -39,12 +40,12 @@ setIsDocIdAvalable(!isDocIdAvalable)
 }
         });
 
-
+console.log('useFetchNotfication');
 
 
 
        return ()=> unsubscribe();
-      }, [isDocIdAvalable,PopUp.follow,[],PopUp.notfication,PopUp.isDelete]);
+      }, [isDocIdAvalable,PopUp.follow,PopUp.notfication,PopUp.isDelete,PopUp.updateNofication]);
       return { subCollection };
 
 }

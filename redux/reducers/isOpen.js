@@ -22,6 +22,7 @@ const isOpenSlice=createSlice({
         follow:false,
         isDelete:false,
         uploading:false,
+        updateNofication:false,
     
     },
     // to update the initial value
@@ -85,6 +86,9 @@ const isOpenSlice=createSlice({
         ,
         setIsUploading(state,action){
             state.uploading=!state.uploading
+        },
+        setUpdateNofication(state,action){
+            state.updateNofication=!state.updateNofication
         }
      
         
@@ -93,5 +97,5 @@ const isOpenSlice=createSlice({
 
 
 })
-export const {setIsOpen,setIsUploading,setLike,setDarkMode,setPostPopUp,setProjectsPhoto, setSwe,setEditPopup,setUploadProfilePhoto,setLogin,setSkillsEdit,setImageUrl,setIsLikeByUser,setIsImagePosted,setNotfication,setFollow,setIsDelete}=isOpenSlice.actions
+export const {setIsOpen,setIsUploading,setLike,setDarkMode,setPostPopUp,setProjectsPhoto, setSwe,setEditPopup,setUploadProfilePhoto,setLogin,setSkillsEdit,setImageUrl,setIsLikeByUser,setIsImagePosted,setNotfication,setFollow,setIsDelete,setUpdateNofication}=isOpenSlice.actions
 export default isOpenSlice.reducer
