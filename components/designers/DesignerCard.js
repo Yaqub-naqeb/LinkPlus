@@ -70,13 +70,6 @@ docId:isFollow[0].docId,
 userId:user.id,
 
 })
-// send data to firebase/////////
-// const friendDocId=uuid();
-// const docRefFriend = doc(db, `Users/${user.docId}/follower`,followerId[0].docId);
-// setDoc(docRefFriend,{
-// follow:false,
-// })
-
 
 // update the folowing inside users///////////////
 const docRef1 = doc(db, "Users",current[0].docId);
@@ -107,19 +100,6 @@ updateDoc(docRef1, data1)
  })
 
 
- // send data to firebase
- // const friendDocId=uuid();////////////////
-//   const docRefFriend = doc(db, `Users/${user.docId}/follower`,followerId[0].docId);
-//  setDoc(docRefFriend,{
-//   profilePhoto:current[0].profilePhoto&&current[0].profilePhoto,
-//  name:current[0].name,
-//  follow:'Followed you ',
-//  timeStamp:serverTimestamp(),
-//  docId:friendDocId,
-//  userId:user.id,
-
- 
-//  })
   }
 
 
@@ -157,38 +137,6 @@ isConfirm:false,
 confirmFollow:false
 
 })
-
-
-// update the folowing inside users///////////////
-// const docRef1 = doc(db, "Users",current[0].docId);
-
-// const data1 = {
-//   following:user.following+1,
-// };
-// updateDoc(docRef1, data1)
-// .then(docRef => {
-//   // alert("Follow sent");
-// })
-// .catch(error => {
-//   console.log(error);
-// })
-
-
-// update the folower for this account that you followed///////////////
-// const docRef2 = doc(db, "Users",user.docId);
-
-// const data2 = {
-//   follower:user.follower+1,
-// };
-// updateDoc(docRef2, data2)
-// .then(docRef => {
-//   // alert("Follow sent");
-// })
-// .catch(error => {
-//   console.log(error);
-// })
-
-
 
 }
 
