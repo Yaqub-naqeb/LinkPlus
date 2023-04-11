@@ -36,10 +36,9 @@ setCurrentUserData(doc.data());
     
     },[])
 
-console.log(subCollection);
 
     useEffect(()=>{
-      const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==",subCollection.senderUserId&&subCollection.senderUserId));
+      const rendering=async()=>{  const q = query(collection(db, "Users"), where("id", "==",subCollection.senderUserId?subCollection.senderUserId:''));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // setDocId(doc.id, " => ", doc.data())
@@ -52,7 +51,6 @@ setSenderUserData(doc.data());
     
     },[])
 
-    console.log(SenderUserData);
 
 
 
