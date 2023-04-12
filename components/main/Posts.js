@@ -149,13 +149,15 @@ const profileHandler=()=>{
           <p>{text}</p>
       </div>
       {/*  image */}
-      <div className="relative w-[full] h-[30rem]">
+    <a href={src}>
+    <div className="relative w-[full] h-[30rem]">
       {src&&<ImageComponent2 
               isContain={false}
               layout={true}
               pathImage={`${src}`}
             />}
       </div>
+    </a>
       
       {/* likes */}
       <div className='flex justify-between mx-5 py-5 items-center '>
