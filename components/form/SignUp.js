@@ -14,7 +14,6 @@ import { useFetch } from '../useHooks/useFetch';
 import { TailSpin } from  'react-loader-spinner'
 import { Eye } from '../assets/svg/passwordEye/Eye';
 
-
 const SignUp = () => {
 
 
@@ -233,7 +232,13 @@ setConfirmPassword('')
       </form>
       <button  onClick={()=>dsipatch(setLogin(!signForm.login))} className='text-2xl font-semibold  text-[#4A4E7C]'>Login</button>
       
-      <button onClick={popupHandler}>G</button>
+      {/* <button onClick={popupHandler}>G</button> */}
+  
+      <button  className="flex items-center justify-center hover:bg-[#dad7d73b]  lg:p-3  rounded-full bg-white shadow cursor-pointer"
+        onClick={popupHandler}>
+
+<img className='lg:w-7 lg:h-7 w-6 h-6' src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt=""  />
+</button>
 
           </div>
 

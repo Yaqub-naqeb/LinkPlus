@@ -165,8 +165,11 @@ const googleProvider = new GoogleAuthProvider();
 <button className='bg-[#51557E] tracking-wider rounded-[10px] lg:w-[447px] h-[2.5rem] w-[60vw] lg:h-[58px] font-bold text-[#E7F6F2] text-xl'>Login</button>
  <p className='text-2xl font-semibold cursor-pointer text-[#4A4E7C]' onClick={()=>dsipatch(setLogin(!signForm.login))}>SignUp</p>
 </form>
-<button onClick={popupHandler}>G</button>
+<button  className="flex items-center lg:-translate-y-7 -translate-y-3 justify-center hover:bg-[#dad7d73b]  lg:p-3  rounded-full bg-white shadow cursor-pointer"
+        onClick={popupHandler}>
 
+<img className='lg:w-7 lg:h-7 w-6 h-6' src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt=""  />
+</button>
 
 
     </div>
