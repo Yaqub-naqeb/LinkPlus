@@ -160,26 +160,32 @@ dsipatch(setNotfication(!isOpen.notfication))
       </div>
 
       <div
-        className={` ${isOpen.open?'z-50 bg-black':'-z-50'}  ${mode?'bg-[#25303f] ':'bg-[#ffffff]'} transition-all   duration-300 py-5 lg:hidden   ease-in-out absolute w-full md:px-6 px-5 top-0 opacity-0 -z-50 ${
+        className={` ${isOpen.open?'z-50 bg-black':'-z-50'}  ${mode?'bg-[#25303f] ':'bg-[#f4f4f4] shadow-md'} transition-all   duration-300 py-5 lg:hidden   ease-in-out absolute w-full md:px-6 px-5 top-0 opacity-0 -z-50 ${
           isOpen.open
             ? `opacity-100 -z-10 top-20 transition-all  duration-300 ease-in-out`
             : ""
         } `}
       >
         {/* mobile */}
-        <div className="">
+        <div className=" ">
 
         <ul className={` ${isOpen.open?'':'hidden'}  ${mode?'text-white':'text-black'} flex flex-col text-[1.2rem] px-5 text-lg font-bold gap-5`}>
+
+        <Link href={'/profile'} onClick={()=>dsipatch(setIsOpen(!isOpen.open))} className="flex gap-3 text-[0.9rem] translate-y-3 align-middle items-center" >        <SmallImage/> View Profile</Link>
+<hr  className="mb-2"/>
+
         {pages&&pages.map((nav,index)=>(<li  key={index} className={currentRoute === nav.href
        ? "active-class-name scale-110  font-[2rem]" 
        : "non-active-class-name"}>
+
+
                 <Link href={nav.href } onClick={()=>dsipatch(setIsOpen(!isOpen.open))}>{nav.name}</Link>
               </li> ))}
               {user&&<div className="cursor-pointer  text-red-500" onClick={signOutHandler}><Link href={"/form"}  >SignOut</Link></div>}
 
         </ul>
         {/* togle */}
-        <div>
+        <div className="">
           <DarkToggle/>
         </div>
 

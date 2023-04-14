@@ -18,7 +18,7 @@ const SmallImage = () => {
     <div>
          {/* profileeeeee */}
          <div className="cursor-pointer "><Link href={"/profile"}>
-              {current&&current[0]&&current[0].profilePhoto?<Image src={current[0].profilePhoto} className={`lg:w-10 lg:h-10 w-7 h-7 object-cover rounded-full  `} width={100} height={100}/>:<Image src={defaultImage} className={`w-10 h-10 object-cover rounded-full `}/>}
+              {current&&current[0]&&current[0].profilePhoto?<Image src={current[0].profilePhoto} className={`lg:w-10 lg:h-10 w-8 h-8 object-cover rounded-full  `} width={100} height={100}/>:<Image src={defaultImage} className={`w-10 h-10 object-cover rounded-full `}/>}
               </Link>
               </div>
     </div>
