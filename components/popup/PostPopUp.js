@@ -32,8 +32,6 @@ const {data}=useFetch('Users');
 
 
   const current=data&&data.filter(dt=>dt.id==user.uid)
-  console.log(current);
-
   
 const addData = async (
   img,
@@ -57,51 +55,66 @@ const addData = async (
 };
 
 
-
-
       // upload the text
 
     const submitHandler=async(e)=>{
         e.preventDefault()
+
+
+        if (file.type.startsWith('image/')) {
+
+
+          
        dispatch(setIsImagePosted(false));
-        setPostLoad(false);
+       setPostLoad(false);
 
-    const code=uuid();
+   const code=uuid();
 
-    const imageRef = ref(storage,`images/${file.name+code}`);
+   const imageRef = ref(storage,`images/${file.name+code}`);
 
 
-    uploadBytes(imageRef, file).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then(async(url) => {
-        dispatch(set_Update(url))
-        // add them to fire base
-      
-     addData(
-          url,
-          text,
-          user && user.uid,
-        );
-        dispatch(setIsImagePosted(true))
+   uploadBytes(imageRef, file).then((snapshot) => {
+     getDownloadURL(snapshot.ref).then(async(url) => {
+       dispatch(set_Update(url))
+       // add them to fire base
+     
+    addData(
+         url,
+         text,
+         user && user.uid,
+       );
+       dispatch(setIsImagePosted(true))
 
 dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
-// TODO:labar away postaka newya dabe false bchta naw
-
-// dispatch(set_Update(!PopUp.update))
 
 
-
-
-      });
-    });
+     });
+   });
 // like.isLikeByUser
 dispatch(setPostPopUp(!PopUp.postPopUp))
 
 setTimeout(() => {
-  setPostLoad(true)
-  // dispatch(setIsImagePosted(true))
-  dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
+ setPostLoad(true)
+ // dispatch(setIsImagePosted(true))
+ dispatch(setIsLikeByUser(!PopUp.isLikeByUser))
 
 }, 5000);
+
+
+
+         
+        } else if (file.type.startsWith('video/')) {
+          alert('Sorry you cannot Post video Yet!');
+          dispatch(setPostPopUp(!PopUp.postPopUp))
+          // The selected file is a video
+         
+        } else {
+          // The selected file is neither an image nor a video
+          // You can handle it accordingly
+        }
+
+
+
 
   }
 
@@ -127,7 +140,7 @@ setTimeout(() => {
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className='text-center
 outline-none   min-w-full lg:border-b-2' placeholder={`What is on your mind, ${user.displayName?user.displayName:fullname.userName}?`}/>
 {/* image */}
-<input onChange={e=>setFile(e.target.files[0])}   type="file" className='outline-none   w-[15rem] ' required/>
+<input onChange={e=>setFile(e.target.files[0])}  accept="image/*,video/*"  type="file" className='outline-none   w-[15rem] ' required/>
 
 
 <button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text&&postLoad?'':'opacity-40'} `} disabled={text&&postLoad?false:true}>Post</button>
