@@ -4,7 +4,7 @@ import { useFetch } from '../useHooks/useFetch'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { getAuth } from 'firebase/auth'
 import { edit } from '../assets/svg/edit/edit'
-import { setUploadProfilePhoto } from '@/redux/reducers/isOpen'
+import { setEditPopup, setUploadProfilePhoto } from '@/redux/reducers/isOpen'
 import { useDispatch, useSelector } from 'react-redux'
 import defaultBackground from '../assets/imgs/profileImg/texture-of-scratches-old-blue-paper-abstract-background-free-photo.jpg'
 import { location } from '../assets/svg/socialIcons/location'
@@ -205,6 +205,12 @@ z-10
       <p>{profileUrl[0].follower}</p>
        </div>
   
+       <p
+        className="absolute right-3 cursor-pointer translate-y-[2rem] -translate-x-6 "
+        onClick={() =>dispatch(setEditPopup(!PopUp.editPopup))}
+      >
+        {mode?edit:blackEdit}
+      </p>
 
 <div className='flex gap-1 '>
   
