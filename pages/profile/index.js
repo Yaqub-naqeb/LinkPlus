@@ -1,8 +1,5 @@
-import SignUp from '@/components/form/SignUp'
 import BasicInfo from '@/components/profile/BasicInfo'
-import Crousel from '@/components/profile/Crousel'
 import ProfileCard from '@/components/profile/ProfileCard'
-import Projects from '@/components/profile/Projects'
 import SecondCrousel from '@/components/profile/SecondCrousel'
 import Skills from '@/components/profile/Skills'
 import { useMode } from '@/components/useHooks/useMode'
@@ -31,6 +28,7 @@ const index = () => {
  </div>
     </div>
    </div>
+  //  h
   )
 }
 
