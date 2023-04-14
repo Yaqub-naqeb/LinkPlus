@@ -99,8 +99,7 @@ backgroundPhoto:url,
 };
 updateDoc(docRef, data1)
 .then(docRef  => {
-  // alert("background picture successfully changed");
-  // dispatch(setIsUploading(false))
+
   dispatch(setIsUploading(false))
 
 })

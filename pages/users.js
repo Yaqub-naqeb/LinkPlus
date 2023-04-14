@@ -13,10 +13,10 @@ const Users = () => {
   const {data}=useFetch('Users');
   return (
   <div className='flex flex-col items-center justify-start min-h-screen '>
-      <div className='grid lg:grid-cols-3  gap-8 place-items-center pb-14'>
         <General/>
-      {
-        data&&data.map((dt,index)=><DesignerCard key={index} user={dt} cu={user}/>)
+        <div className='grid lg:grid-cols-3  gap-8 place-items-center pb-14 lg:translate-x-14'>
+   {
+        data&&data.map((dt,index)=><DesignerCard key={index} index={index} user={dt} cu={user}/>)
       }
     </div>
   </div>

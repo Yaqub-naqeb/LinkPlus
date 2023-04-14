@@ -15,7 +15,7 @@ import { useFetchNotfication } from '../useHooks/useFetchNotfication'
 import { setFollow, setNotfication, setUpdateNofication } from '@/redux/reducers/isOpen'
 import { set_user_uid } from '@/redux/reducers/profille'
 
-const DesignerCard = ({user,cu}) => {
+const DesignerCard = ({user,cu,index}) => {
   // console.log(user.following);
   console.log(cu.uid);
   const Mode = useSelector((state) => state.open);
@@ -152,7 +152,7 @@ const profileHandler=()=>{
   dispatch(set_user_uid(user.id))
 }  
 
-
+console.log(index);
 
 
   return (
