@@ -140,7 +140,7 @@ console.log(PopUp.uploading);
 {profileUrl[0]&&<>
 
       {/* background image */}
-      <div className='h-1/3 flex relative'>
+      <div className='h-[40vh] flex relative'>
 
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
