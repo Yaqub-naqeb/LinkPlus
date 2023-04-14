@@ -11,6 +11,7 @@ import { getAuth } from 'firebase/auth';
 import { uuid } from 'uuidv4';
 import { set_isLiked, set_Update } from '@/redux/reducers/profille';
 import { useFetch } from '../useHooks/useFetch';
+import Warning from '../main/Warning';
 
 
 const PostPopUp = () => {
@@ -106,11 +107,13 @@ setTimeout(() => {
         } else if (file.type.startsWith('video/')) {
           alert('Sorry you cannot Post video Yet!');
           dispatch(setPostPopUp(!PopUp.postPopUp))
+
           // The selected file is a video
          
         } else {
           // The selected file is neither an image nor a video
           // You can handle it accordingly
+          alert('please choose only image or video!')
         }
 
 
@@ -133,14 +136,13 @@ setTimeout(() => {
     <form onSubmit={submitHandler}>
     <div className='   flex flex-col items-center justify-center align-middle gap-16 lg:w-[30vw]  lg:h-[45vh] w-[90vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'>
 
-       
 
       
 
 <input onChange={e=>setText(e.target.value)} value={text} type="text" className='text-center
 outline-none   min-w-full lg:border-b-2' placeholder={`What is on your mind, ${user.displayName?user.displayName:fullname.userName}?`}/>
 {/* image */}
-<input onChange={e=>setFile(e.target.files[0])}  accept="image/*,video/*"  type="file" className='outline-none   w-[15rem] ' required/>
+<input onChange={e=>setFile(e.target.files[0])}  accept="image/*,video/*"  type="file" className='outline-none   w-[15rem] '  required/>
 
 
 <button className={`lg:w-full w-1/2  bg-[#757BB8] h-[2rem]  rounded-full text-xl font-semibold ${text&&postLoad?'':'opacity-40'} `} disabled={text&&postLoad?false:true}>Post</button>

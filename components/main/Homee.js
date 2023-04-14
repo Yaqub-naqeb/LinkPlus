@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { getAuth } from 'firebase/auth'
 import { set_userName } from '@/redux/reducers/profille'
+import Warning from './Warning'
 // 
 
 
@@ -40,7 +41,7 @@ useEffect(()=>{
     // h-[126px]
   return (
     <div className=' flex flex-col lg:py-5  pb-10 gap-3 items-center min-h-screen  lg:w-[688px]  md:w-[688px] w-[358px] '>
-      
+
 <General/>
 <NewPost/>
 {data&&data.map((post,index)=>post.isNew? <Posts key={index}  postData={post} text={op.isImagePosted?post.text:'Loding...'} src={op.isImagePosted&&post.src}  />:<Posts key={index}  postData={post} text={post.text} src={post.src} />

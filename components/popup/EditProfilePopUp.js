@@ -74,7 +74,7 @@ const submitHandler =(e)=>{
 
     <hr />
     <form onSubmit={submitHandler}>
-    <div className='   flex flex-col items-center justify-center align-middle lg:gap-16 gap-10 lg:w-[30vw]  lg:h-[45vh] w-[90vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'>
+    <div className='   flex flex-col items-center justify-center align-middle lg:gap-16 gap-10 lg:w-[30vw]  lg:h-[45vh] w-[96vw] lg:py-0  py-[3rem]  rounded-md shadow-md lg:px-16'>
 
        
 
