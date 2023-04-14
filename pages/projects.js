@@ -7,7 +7,7 @@ const projects = () => {
   return (
     <div className='min-h-screen   flex items-center flex-col '>
         <General/>
-      <div className='flex items-center align-middle justify-center lg:w-[1024px] w-[97vw] '>
+      <div className='flex items-center align-middle justify-center lg:w-[1024px] w-[97vw] lg:translate-x-12 '>
       <ProjectCard/>
       </div>
     </div>
