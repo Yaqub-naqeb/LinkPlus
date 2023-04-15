@@ -94,14 +94,15 @@ dsipatch(setNotfication(!isOpen.notfication))
         {/* nav */}
         <nav className="flex align-middle items-center lg:gap-[10rem] justify-between md:gap-8 ">
           {/* logo */}
-          <div className="flex gap-5 md:text-[.8rem] text-[.7rem] lg:text-[1rem] cursor-pointer"               onClick={()=>router.push('/')}
+          <div className="flex gap-3 md:text-[.8rem] text-[.7rem] lg:text-[1rem] cursor-pointer"               onClick={()=>router.push('/')}
 >
             {mode? darkSvg:svg}
             <div
-              className={`flex flex-col  align-middle items-center ${poppins.className}`}
+              className={`flex flex-col  align-middle justify-center items-center ${poppins.className}`}
             >
-              <p> JobFinders </p>
-              <p>commiunity</p>
+              {/* <p> JobFinders </p>
+              <p>commiunity</p> */}
+              <p>LinkPlus</p>
             </div>
           </div>
           {/* links */}

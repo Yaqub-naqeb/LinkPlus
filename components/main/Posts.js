@@ -127,11 +127,11 @@ const profileHandler=()=>{
       <div className=''>
       {/* header of card */}
       <div className='flex justify-between  px-7 pt-5 ' > 
-          <div className='flex items-center gap-1'>  <div className='cursor-pointer'>
+          <div className='flex items-center gap-1 '>  <div className='cursor-pointer '>
               
                  {/* profileeeeee */}
-                 <Link href={"/publicProfile"} className={'flex items-center gap-3'} onClick={profileHandler}>
-                   <div className="cursor-pointer relative" >
+                 <Link href={"/publicProfile"} className={'flex items-center gap-3 '} onClick={profileHandler}>
+                   <div className="cursor-pointer relative " >
                     {like.isImagePosted&&postData&&postData.profilePhoto&&postData.profilePhoto?<Image alt="Image" src={`${postData.profilePhoto}`} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>:<Image src={profile} className={`w-10 h-10 object-cover rounded-full `} width={100} height={100}/>}    
                     </div>
                     <h1 className='font-bold cursor-pointer'>{like.isImagePosted?postData.name:'Name...'}</h1>

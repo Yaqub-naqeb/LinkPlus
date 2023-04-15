@@ -19,6 +19,7 @@ import { css } from '@emotion/react';
 import { RingLoader,FadeLoader
 } from 'react-spinners';
 import { Oval } from 'react-loader-spinner'
+import noImg from '../assets/imgs/profileImg/user.png'
 
 const ProfileCard = () => {
   const photoUrl=useSelector((state) => state.profile);
@@ -64,7 +65,7 @@ console.log(PopUp.uploading);
 <div className='z-50'>
 <div className='relative '>
   {/* profile imageee */}
-{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
+{profileUrl[0].profilePhoto?<Image src={profileUrl[0].profilePhoto} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>:<Image src={noImg} className={`w-[209px]  h-[303px] object-cover rounded-[32px]`} width={900} height={900}/>}
 
 {PopUp.uploading&&<>
   <div className=' bg-[#fffb] absolute top-0 w-[209px]  h-[303px]  rounded-[32px]'></div>
@@ -140,7 +141,7 @@ console.log(PopUp.uploading);
 {profileUrl[0]&&<>
 
       {/* background image */}
-      <div className='h-[40vh] flex relative'>
+      <div className='h-[30vh] flex relative'>
 
 {profileUrl[0].backgroundPhoto?
 <Image src={profileUrl[0].backgroundPhoto} className={`w-full h-full   object-cover  rounded-t-[32px]`} width={900} height={900}/>
@@ -177,7 +178,7 @@ console.log(PopUp.uploading);
 }
   
 
-{profileUrl[0].profilePhoto&&<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>}
+{profileUrl[0].profilePhoto?<Image src={profileUrl[0].profilePhoto} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>:<Image src={noImg} className={`object-cover rounded-full w-[120px] h-[120px]   `} width={900} height={900}/>}
 
 
 <div className={`
