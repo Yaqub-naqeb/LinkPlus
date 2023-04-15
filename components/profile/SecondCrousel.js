@@ -37,7 +37,7 @@ const profileUrl= data&&data.filter(name=>name.id==user.uid)
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
 + Add your Projects
 </div>
-<div className={`text-center cursor-pointer w-fit lg:hidden md:hidden absolute left-[50%] translate-x-[8rem] translate-y-[-6.1rem] font-semibold  md:text-[1rem] text-[1.3rem] ${mode?'text-white':'text-black '}   `}
+<div className={`text-center cursor-pointer w-fit lg:hidden md:hidden absolute left-[50%] translate-x-[9rem] translate-y-[-6.1rem] font-semibold  md:text-[1rem] text-[1.3rem] ${mode?'text-white':'text-black '}   `}
  onClick={()=>dispatch(setProjectsPhoto(!PopUp.projectPhoto))}>
 {mode?edit:blackEdit}
 </div>
