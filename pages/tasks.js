@@ -9,7 +9,7 @@ const tasks = () => {
   return (
     <div className={`min-h-screen `}>
                 <General/>
-
+<h1 className='text-[1.2rem] font-semibold text-center pb-10'>Tasks</h1>
       <Tasks/>
     </div>
   )
