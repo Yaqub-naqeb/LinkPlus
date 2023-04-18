@@ -1,30 +1,20 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Poppins } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
-import {useSelector} from "react-redux";
 import Homee from "@/components/main/Homee";
 import { db, initFirebase } from "@/firebase/FirebaseApp";
-import PostPopUp from "@/components/popup/PostPopUp";
-import SignUp from "@/components/form/SignUp";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useDocument } from 'react-firebase-hooks/firestore';
 
 import { getAuth } from "firebase/auth";
-import {Index}from './profile'
 import { useMode } from "@/components/useHooks/useMode";
 const poppins = Poppins({ subsets: ["latin"],weight: ['400','700'] });
-
+// remove
 export default function Home() {
-  
-  // const mode = useSelector((state) => state.open);
-  const {mode}=useMode();
+    const {mode}=useMode();
   const auth = getAuth();
 
 const app=initFirebase();
 const [user]=useAuthState(auth)
 
-// const [userDoc, loading, error] = useDocument(user && db.collection('ProfileInfo').doc(user.uid));
 
   return (
     <div className="flex flex-col items-center">
