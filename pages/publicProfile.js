@@ -1,5 +1,4 @@
 import { useFetchCurrentUserProjects } from '@/components/useHooks/useFetchCurrentUserProjects';
-import { useFetchProjects } from '@/components/useHooks/useFetchProjects';
 import { useMode } from '@/components/useHooks/useMode';
 import { db } from '@/firebase/FirebaseApp';
 import { getAuth } from 'firebase/auth';
@@ -19,13 +18,8 @@ const publicProfile = () => {
   console.log(like.dark);
 
   const [dt,setDt]=useState([]);
-  const auth=getAuth();
-  const [user]=useAuthState(auth)
   const prof = useSelector((state) => state.profile);
-  console.log(prof.user_uid);
-
   const {subCollectionData}=useFetchCurrentUserProjects('Users',prof.user_uid);
-  console.log(subCollectionData);
   
 const {mode}=useMode();
 

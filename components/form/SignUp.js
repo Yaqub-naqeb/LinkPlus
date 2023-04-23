@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, getAdditionalUserInfo, confirmPasswordReset  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { db, initFirebase } from '@/firebase/FirebaseApp';
 // using react firebase hook
 import {useAuthState}from 'react-firebase-hooks/auth'
@@ -10,7 +10,6 @@ import {  set_userName } from '@/redux/reducers/profille';
 import { addDoc, collection, serverTimestamp, setDoc,	
    } from 'firebase/firestore';
 import { setLogin } from '@/redux/reducers/isOpen';
-import { useFetch } from '../useHooks/useFetch';
 import { TailSpin } from  'react-loader-spinner'
 import { Eye } from '../assets/svg/passwordEye/Eye';
 
@@ -20,7 +19,6 @@ const SignUp = () => {
   const like = useSelector((state) => state.profile);
   const signForm = useSelector((state) => state.open);
   const dsipatch = useDispatch();
-  const {data}=useFetch('Posts');
   const googleProvider = new GoogleAuthProvider();
 
 
@@ -37,11 +35,6 @@ const [ConfirmpasswordError, setConfirmPasswordError] = useState('');
 
 const [showPass,setShowPass]=useState(false);
 const [showConPass,setShowConPass]=useState(false);
-
-
-
-
-
 
 initFirebase();
 const auth = getAuth();
@@ -76,15 +69,11 @@ const submitHandler= async(e)=>{
 if (!/\S+@\S+\.\S+/.test(email)) {
     setEmailError('Email is invalid');
   }
-  //  else {
-  //   setEmailError('');
-  // }
+
  if (password.length < 6 ) {
     setPasswordError('Password must be at least 6 characters');
   }
-  //  else {
-  //   setPasswordError('');
-  // }
+
 if(ConfirmPassword.length < 6){
   setConfirmPasswordError('Password must be at least 6 characters');
 
@@ -137,13 +126,7 @@ setEmail('')
 setPassword('')
 setConfirmPassword('')
 
-
-
-
   }
-
-
-
 }
 // Form validation
 
@@ -232,7 +215,6 @@ setConfirmPassword('')
       </form>
       <button  onClick={()=>dsipatch(setLogin(!signForm.login))} className='text-2xl font-semibold  text-[#4A4E7C]'>Login</button>
       
-      {/* <button onClick={popupHandler}>G</button> */}
   
       <button  className="flex items-center justify-center hover:bg-[#dad7d73b]  lg:p-3  rounded-full bg-white shadow cursor-pointer"
         onClick={popupHandler}>
