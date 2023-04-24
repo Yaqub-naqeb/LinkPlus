@@ -2,12 +2,11 @@ import { getAuth } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { set_age,set_city,set_exprience, set_userName} from '@/redux/reducers/profille';
+import {set_exprience, set_userName} from '@/redux/reducers/profille';
 
 import { edit } from '../assets/svg/edit/edit';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseApp';
-import { useFetch } from '../useHooks/useFetch';
 import { setEditPopup } from '@/redux/reducers/isOpen';
 
 const BasicInfo = () => {

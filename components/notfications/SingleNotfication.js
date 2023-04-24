@@ -8,7 +8,6 @@ import { setIsDelete } from '@/redux/reducers/isOpen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useFetch } from '../useHooks/useFetch';
 const SingleNotfication = ({subCollection}) => {
   console.log(subCollection);
 
@@ -52,8 +51,6 @@ setSenderUserData(doc.data());
     },[])
 
 
-
-
 const deleteHandler=()=>{
 
 
@@ -91,9 +88,6 @@ updateDoc(docRef, data)
 
 
 
-
-
-
 // update the folowing for sender///////////////
 const docRef1 = doc(db, "Users",subCollection.firstSenderDocId);
 const data1 = {
@@ -121,7 +115,6 @@ const FollowBack=()=>{
  setDoc(docRefFriend,{
  delete:true
  })
-
 
 
 
@@ -154,19 +147,7 @@ updateDoc(docRef, data)
 .catch(error => {
   console.log(error);
 })
-
-
-
-
-
 }
-
-
-
-
-
-
-
   return (
     // #efececde
     <div className={`flex gap-3  items-center align-middle px-2 justify-between bg-[#efececde] ${subCollection.delete&&'hidden'} py-3 mx-1 rounded-lg`}>

@@ -17,7 +17,6 @@ import { useLikeDetail } from "../useHooks/useLikeDetail";
 import { setIsLikeByUser } from "@/redux/reducers/isOpen";
 import { set_user_uid } from "@/redux/reducers/profille";
 import { useMode } from "../useHooks/useMode";
-import { ThreeDots } from "react-loader-spinner";
 import ThreeDotsMenu from "./ThreeDotsMenu";
 
 const Posts = ({postData,src,text}) => {
@@ -114,10 +113,6 @@ setTimeout(() => {
 const profileHandler=()=>{
     dispatch(set_user_uid(postData.userUid))
 }  
-
-
-
-
 
   return (
    <>

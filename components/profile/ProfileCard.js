@@ -16,8 +16,7 @@ import { photo } from '../assets/svg/edit/photo'
 import SecondCrousel from './SecondCrousel'
 import { blackEdit } from '../assets/svg/edit/blackEdit'
 import { css } from '@emotion/react';
-import { RingLoader,FadeLoader
-} from 'react-spinners';
+
 import { Oval } from 'react-loader-spinner'
 import noImg from '../assets/imgs/profileImg/user.png'
 

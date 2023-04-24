@@ -37,7 +37,6 @@ if(loading){
   color="#757BB7"
   ariaLabel="tail-spin-loading"
   radius="1"
-  wrapperStyle={{}}
   wrapperClass=""
   visible={true}
 /></div>
@@ -60,13 +59,6 @@ e.preventDefault();
 if (!/\S+@\S+\.\S+/.test(email)) {
   setEmailError('Email is invalid');
 }
-//  else {
-//   setEmailError('');
-// }
-
-//  else {
-//   setPasswordError('');
-// }
 
 
 

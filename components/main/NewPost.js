@@ -13,30 +13,15 @@ const NewPost = () => {
     const {mode}=useMode();
     const dsipatch=useDispatch();
 
-
-
-
-
   return (
-    // [688px]
-    // h-[126px]
+   
   <div className={` mt-3 ${Mode.open?'':'z-40'} ${mode?'bg-[#273649]':'bg-[#FDFDFD]'} rounded-2xl w-full lg:h-[126px] md:h-[126px] h-[96px]    px-5 flex flex-col justify-evenly -translate-y-7 `}>
       <div className='flex items-center gap-3 align-middle '>
       
      <SmallImage/>
-      {/* <input onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))}  type="text" className='bg-transparent  outline-none' 
-      placeholder='Type here...'
-      /> */}
 
-      <p onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))} className={`bg-transparent  font-medium outline-none  ${mode?'text-[#d3d1d1e2]':'text-[#5f5e5eaa]'} `}>Type here...</p>
-
-
-
-      
-      
-      
+      <p onClick={()=>dsipatch(setPostPopUp(!Mode.postPopUp))} className={`bg-transparent  font-medium outline-none  ${mode?'text-[#d3d1d1e2]':'text-[#5f5e5eaa]'} `}>Type here...</p>  
           </div>
-
 
 <div className='px-1'> <hr /></div>
 

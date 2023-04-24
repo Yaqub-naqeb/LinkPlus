@@ -16,8 +16,6 @@ import { setFollow, setNotfication, setUpdateNofication } from '@/redux/reducers
 import { set_user_uid } from '@/redux/reducers/profille'
 
 const DesignerCard = ({user,cu,index}) => {
-  // console.log(user.following);
-  console.log(cu.uid);
   const Mode = useSelector((state) => state.open);
   const dispatch=useDispatch();
   const [dis,setDisable]=useState(false);
@@ -55,9 +53,7 @@ if(isFollow[0]?true:false){
 // if unfollow
   if(isFollow[0].follow){
 
-    
-   // send data to firebase
-// const SecondDocId=uuid();
+
 
 const docRef = doc(db, `Users/${current[0].docId}/followings`,isFollow[0].docId);
 updateDoc(docRef,{
@@ -67,26 +63,10 @@ userId:user.id,
 
 })
 
-// update the folowing inside users///////////////
-// const docRef1 = doc(db, "Users",current[0].docId);
-
-// const data1 = {
-//   following:user.following-1,
-// };
-// updateDoc(docRef1, data1)
-// .then(docRef => {
-//   // alert("unFollow");
-// })
-// .catch(error => {
-//   console.log(error);
-// })
 
 // if it is false
   }else{
 
-
-     // send data to firebase
-//  const SecondDocId=uuid();
  const docRef = doc(db, `Users/${current[0].docId}/followings`,isFollow[0].docId);
  setDoc(docRef,{
  follow:true,

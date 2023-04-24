@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { getAuth } from 'firebase/auth'
 import { set_userName } from '@/redux/reducers/profille'
-import Warning from './Warning'
 // 
 
 

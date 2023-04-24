@@ -102,13 +102,7 @@ const {mode}=useMode();
             )
           )
         )}
-        {/* {info&&info.map((pskill) =>
-            SkillsIcon.map(
-              (skill,index) =>
-                pskill.label === skill.name && (
-                  <Image key={index} className='h-[40px] w-[40px]' src={skill.icon}   width={800} height={800}/>
-                )
-            ))} */}
+      
 
 
       </div>
