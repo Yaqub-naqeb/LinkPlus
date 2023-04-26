@@ -30,16 +30,11 @@ const [active, setActive] = useState(true);
 const [isPostDeleted,setIsPostDeleted]=useState(false);
 
     const like = useSelector((state) => state.open);
-    const prof = useSelector((state) => state.profile);
     const {mode}=useMode();
 
     const dispatch=useDispatch();
 
 
-    const db = getFirestore(); // initialize Firestore
-
-const postDeleted=()=>{
-}
 
 const likedHandler=async()=>{
     setActive(false);
@@ -164,7 +159,6 @@ const profileHandler=()=>{
          <div className='flex  gap-5 items-center align-middle justify-center'> <div className="cursor-pointer" onClick={active ? likedHandler : null} >
       
           {postData.isNew?love: subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div>
-          {/* { subCollectionLikeData&&subCollectionLikeData.isLiked?loveRed:love}</div> */}
       
           <div className="cursor-pointer">{comment}</div>
           <div className="cursor-pointer">{send}</div>
