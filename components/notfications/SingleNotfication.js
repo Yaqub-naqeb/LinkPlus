@@ -28,7 +28,6 @@ const [SenderUserData,setSenderUserData]=useState();
       querySnapshot.forEach((doc) => {
         setDocId(doc.id, " => ", doc.data())
 setCurrentUserData(doc.data());
-        // dispatch(set_userName(doc.data().name))
       });}
     
       rendering();

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getDocs, collection, query, where } from 'firebase/firestore';
-import { db, auth } from '../../firebase';
+
 const useImageFetch = ({ imageUrl }) => {
     const [photo, setPhoto] = useState(null);
 
@@ -34,7 +32,6 @@ const useImageFetch = ({ imageUrl }) => {
           },
           () => {
             // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               setImageUrl(downloadURL);
               console.log(imageUrl);
