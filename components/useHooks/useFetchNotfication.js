@@ -1,6 +1,5 @@
 
 import { db } from "@/firebase/FirebaseApp";
-import { current } from "@reduxjs/toolkit";
 import { getAuth } from "firebase/auth";
 import { collection, query,onSnapshot, orderBy, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";

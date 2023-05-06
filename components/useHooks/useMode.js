@@ -1,6 +1,6 @@
 import { db } from "@/firebase/FirebaseApp";
 import { getAuth } from "firebase/auth";
-import { collection, query,onSnapshot, orderBy, getDocs, where } from "firebase/firestore";
+import { collection, query, getDocs, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
