@@ -43,7 +43,7 @@ if(loading){
 }
 if(user){
   router.push("/profile")  
-  return <div>welcome {user.displayName}</div>
+  return <div>Welcome {user.displayName}</div>
 }
 
 
