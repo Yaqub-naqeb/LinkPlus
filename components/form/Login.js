@@ -43,7 +43,7 @@ if(loading){
 }
 if(user){
   router.push("/profile")  
-  return <div>welcome {user.displayName}</div>
+  return <div>Welcome {user.displayName}</div>
 }
 
 
@@ -59,7 +59,7 @@ e.preventDefault();
 if (!/\S+@\S+\.\S+/.test(email)) {
   setEmailError('Email is invalid');
 }
-
+// klfjsda
 
 
 const auth = getAuth();
