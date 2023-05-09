@@ -59,7 +59,7 @@ e.preventDefault();
 if (!/\S+@\S+\.\S+/.test(email)) {
   setEmailError('Email is invalid');
 }
-
+// klfjsda
 
 
 const auth = getAuth();
