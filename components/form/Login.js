@@ -54,7 +54,7 @@ const submitHandler=(e)=>{
 e.preventDefault();
 
 
-
+// v
 
 if (!/\S+@\S+\.\S+/.test(email)) {
   setEmailError('Email is invalid');
