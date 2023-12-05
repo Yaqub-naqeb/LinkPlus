@@ -9,6 +9,9 @@ const form = () => {
   const Mode = useSelector((state) => state.open);
 const {mode}=useMode();
   return (
+       <Head>
+    <meta name="google-site-verification" content="0mBSfDrUrat0KaaakEYLTBjBJNESc03bGquvZ75S46s" />
+    </Head>
     <div className='  h-[90vh] flex flex-col items-center py-[40px]  align-middle gap-11'>
      <h1 className={`${mode?'text-[#E7F6F2]':'text-[#000]'}   text-[2.5rem] font- font-bold `}>Designers Community</h1>
      
