@@ -3,6 +3,7 @@ import SignUp from '@/components/form/SignUp'
 import { useMode } from '@/components/useHooks/useMode';
 import React from 'react'
 import { useSelector } from 'react-redux';
+import Head from 'next/head';
 
 
 const form = () => {
