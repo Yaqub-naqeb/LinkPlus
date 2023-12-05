@@ -10,6 +10,7 @@ const form = () => {
   const Mode = useSelector((state) => state.open);
 const {mode}=useMode();
   return (
+    <>
        <Head>
     <meta name="google-site-verification" content="0mBSfDrUrat0KaaakEYLTBjBJNESc03bGquvZ75S46s" />
     </Head>
@@ -19,6 +20,7 @@ const {mode}=useMode();
      {Mode.login?<Login/>:<SignUp/>}
      {/* <Login/> */}
     </div>
+    </>
   )
 }
 
